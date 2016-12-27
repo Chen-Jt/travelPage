@@ -1,0 +1,43 @@
+
+.my-title{
+	position: relative;
+}
+.left-title{
+	color: #007AFF;
+	text-align: left;
+	text-indent: 14px;
+}
+.middle-title
+{
+	text-align: center;
+}
+.right-title-link{
+	position: absolute;
+	top: -5px;
+	right: 14px;
+	line-height: 100%;
+}
+.my-media-object
+{
+	width: 100%;
+	height: auto;
+}
+.my-media-title
+{
+	display: block;
+    position: absolute;
+    bottom: 4px;
+    width: 100%;
+    left: 14px;
+    padding-right: 14px;
+    height: 20%;
+    opacity: .6;
+    background-color: #000;
+}
+.my-media-title p{
+	position: absolute;
+	text-align: left;
+	text-indent: 3%;
+	font-size: 18px;
+	bottom: 0px;
+}
