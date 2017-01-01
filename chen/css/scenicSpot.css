@@ -1,0 +1,37 @@
+/*
+* @Author: cjt
+* @Date:   2016-12-31 15:42:30
+* @Last Modified by:   Marte
+* @Last Modified time: 2017-01-01 13:06:08
+*/
+.header{
+    max-height:40%;
+    overflow: hidden;
+}
+.image{
+    width:100%;
+    height:auto;
+}
+.ui-content{
+    margin-top:-30px;
+}
+.title{
+    font-size: 1.6em;
+}
+.button-group{
+    position: relative;
+}
+.left-button{
+    width: 30%;
+    position:absolute;
+    left：20px;
+}
+.right-button{
+    width:30%;
+    position:absolute;
+    right: 20px;
+}
+.discription {
+    text-indent: 2em;
+    text-align: left;
+}
