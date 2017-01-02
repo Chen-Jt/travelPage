@@ -20,7 +20,8 @@ var url = "http://10.50.63.83:8080/TourGuide/getPromotions.do";
 				alert("活动信息success!");
 				$.each(data,function(i,item)
 				{								        
-			        $("#slider_id1").attr("src",item.promotionImage);			        
+			        $("#slider_id1").attr("src",item.promotionImage);
+			        $("#slider_a1").attr("href",item.promotionLinks);
 			  });
 			}			
 	   });
@@ -42,7 +43,7 @@ $.ajax({
 		alert("推荐景点success!");
 		$.each(data, function(i,item) 
 		{
-			$("#recommend_img1").attr("src",item.scenicImagePath);			
+			$("#recommend_img1").attr("src",item.scenicImagePath);	
 		});
 	}
 });
