@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>预约讲解员</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="css/orderGuide.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
+    <script type="text/javascript" src="js/"></script>
+</head>
+<body>
+<div data-role="page" id="choosePage">
+<div data-role="panel" id="myPanel">
+  <h2>筛选条件</h2>
+  <form action="" method="">
+
+  <fieldset data-role="controlgroup" data-type="horizontal">
+  <legend></legend>
+  <label for=""></label>
+  <input type="checkbox" name="" value="">
+  <label for=""></label>
+  <input type="checkbox" name="" value="">
+  <label for=""></label>
+  <input type="checkbox" name="" value="">
+  </fieldset>
+  <fieldset data-role="controlgroup" data-type="horizontal">
+  <legend></legend>
+  <label for=""></label>
+  <input type="checkbox" name="" value="">
+  <label for=""></label>
+  <input type="checkbox" name="" value="">
+  <label for=""></label>
+  <input type="checkbox" name="" value="">
+  <label for=""></label>
+  <input type="checkbox" name="" value="">
+  </fieldset>
+  <fieldset data-role="controlgroup" data-type="horizontal">
+  <legend></legend>
+  <label for=""></label>
+  <input type="checkbox" name="" value="">
+  <label for=""></label>
+  <input type="checkbox" name="" value="">
+  <label for=""></label>
+  <input type="checkbox" name="" value="">
+  <label for=""></label>
+  <input type="checkbox" name="" value="">
+  </fieldset>
+  <fieldset data-role="controlgroup" data-type="horizontal">
+  <legend></legend>
+  <label for=""></label>
+  <input type="checkbox" name="" value="">
+  <label for=""></label>
+  <input type="checkbox" name="" value="">
+  <label for=""></label>
+  <input type="checkbox" name="" value="">
+  <label for=""></label>
+  <input type="checkbox" name="" value="">
+  </fieldset>
+  </form>
+</div>
+    <div data-role="header"  id="header" data-position="fixed" class="header">
+       <div data-role="navbar">
+           <ul>
+               <li><a id="chooseGuidebtn"  href="#">选择讲解员</a></li>
+           </ul>
+       </div>
+    </div>
+    <div  data-role="main" class="ui-content">
+        <div id="chosePanel" >
+          <form action="chooseGuide_submit" method="get" accept-charset="utf-8">
+             <div class="ui-field-contain">
+               <label for="chooseDate" class="ui-hidden-accessible">日期</label>
+               <input type="date" id="chooseDate" name=date"" value="" data-icon="calendar" data-iconpos="right" data-inline="true" placeholder="">
+               <label for="chooseDatetime" class="ui-hidden-accessible">时间</label>
+               <input type="datetime" id="chooseDatetime" name="datetime" value=""  placeholder="时间">
+               <a href="#myPanel" class="ui-btn ui-btn-inline">筛选</a>
+             </div>
+          </form>
+          <ul data-role="listview" data-inset="true">
+               <li>
+                <a href="guideInfo.html" target="_top" >
+                <img src="img/angelababy.jpg">
+                <p>姓名:<span class="name">angelababy</span><br/>
+                   性别：<span class="sex">女</span><br/>
+                   年龄：<span class="age">27</span><br>
+                   等级：<span class="starLevel">3</span>
+                </p>
+                </a>
+                 <a id="orderGuideA" href="#orderPage">查看详情</a>
+              </li>
+              <li>
+                <a href="guideInfo.html" target="_top" >
+                <img src="img/angelababy.jpg">
+                <p>姓名:<span class="name">angelababy</span><br/>
+                   性别：<span class="sex">女</span><br/>
+                   年龄：<span class="age">27</span><br>
+                   等级：<span class="starLevel">3</span>
+                </p>
+                </a>
+                 <a id="orderGuideA" href="#orderPage">查看详情</a>
+              </li>
+              <li>
+                <a href="guideInfo.html" target="_top" >
+                <img src="img/angelababy.jpg">
+                <p>姓名:<span class="name">angelababy</span><br/>
+                   性别：<span class="sex">女</span><br/>
+                   年龄：<span class="age">27</span><br>
+                   等级：<span class="starLevel">3</span>
+                </p>
+                </a>
+                 <a id="orderGuideA" href="#orderPage">查看详情</a>
+              </li>
+              <li>
+                <a href="guideInfo.html" target="_top" >
+                <img src="img/angelababy.jpg">
+                <p>姓名:<span class="name">angelababy</span><br/>
+                   性别：<span class="sex">女</span><br/>
+                   年龄：<span class="age">27</span><br>
+                   等级：<span class="starLevel">3</span>
+                </p>
+                </a>
+                 <a id="orderGuideA" href="#orderPage">查看详情</a>
+              </li>
+              <li>
+                <a href="guideInfo.html" target="_top" >
+                <img src="img/angelababy.jpg">
+                <p>姓名:<span class="name">angelababy</span><br/>
+                   性别：<span class="sex">女</span><br/>
+                   年龄：<span class="age">27</span><br>
+                   等级：<span class="starLevel">3</span>
+                </p>
+                </a>
+                 <a id="orderGuideA" href="#orderPage">查看详情</a>
+              </li>
+              <li>
+                <a href="guideInfo.html" target="_top" >
+                <img src="img/angelababy.jpg">
+                <p>姓名:<span class="name">angelababy</span><br/>
+                   性别：<span class="sex">女</span><br/>
+                   年龄：<span class="age">27</span><br>
+                   等级：<span class="starLevel">3</span>
+                </p>
+                </a>
+                 <a id="orderGuideA" href="#orderPage">查看详情</a>
+              </li>
+
+          </ul>
+        </div>
+    </div>
+</div>
+<div data-role="page" id="orderPage">
+     <div data-role="header"  id="header" data-position="fixed" class="header">
+       <div data-role="navbar">
+           <ul>
+               <li><a id="orderGuidebtn"  href="#">发布订单</a></li>
+           </ul>
+       </div>
+    </div>
+    <div data-role="main" class="ui-content">
+
+        <div id="orderPanel">
+            <form action="orderGuide_submit" method="get" accept-charset="utf-8">
+                <div>
+                    <label for="orderDate" class="ui-hidden-accessible">日期</label>
+                    <input id="orderDate" type="date" name="" value="" placeholder="年/月/日">
+                    <label for="orderDatetime" class="ui-hidden-accessible">时间</label>
+                    <input type="datetime" id="orderDatetime" name="datetime" value="" placeholder="时间">
+                    <label for="visitorCount" class="ui-hidden-accessible">游客人数</label>
+                    <input type="number" id="visitorCount" name="visitorCount" value="" placeholder="参观人数">
+
+                    <label for="guideLanguage" >讲解语言</label>
+
+                    <select id="guideLanguage" name="guideLanguage" >
+                        <option value="Chinese">汉语</option>
+                        <option value="English">英语</option>
+                        <option value="Japanese">日语</option>
+                        <option value="Russia">俄语</option>
+                        <option value="French">法语</option>
+                    </select>
+                    <fieldset data-role="controlgroup" data-type="horizontal">
+                     <legend>讲解员性别</legend>
+                        <label for="guideFmale" >女</label>
+                        <input type="radio"  id="guideFmale" name="guideSex" value="fmale"/>
+                        <label for="guideMale" >男</label>
+                        <input type="radio"  id="guideMale" name="guideSex" value="male"/>
+                    </fieldset>
+                    <fieldset data-role="controlgroup" data-type="horizontal">
+                    <legend>是否代购门票</legend>
+                        <label for="orderTicket" >是</label>
+                        <input type="radio"  id="orderTicket" name="orderTicket" value="yes"/>
+                        <label for="notOrderTicket" >否</label>
+                        <input type="radio"  id="notOrderTicket" name="orderTicket" value="no"/>
+                    <label for="visitorPhone" class="ui-hidden-accessible" >联系电话</label>
+                    </fieldset>
+                    <input type="tel" id="visitorPhone" name="visitorPhone" value="" placeholder="联系电话">
+                    <label for="visitorName" class="ui-hidden-accessible">姓名</label>
+                    <input type="text" id="visitorName" name="visitorName" value="" placeholder="您的姓名">
+                    <label for="otherRequest">其他需求</label>
+                    <textarea name="otherRequest" id="otherRequest"></textarea>
+                    <input id="submitOrderForm" type="submit" name="submit" value="提交订单">
+                </div>
+            </form>
+        </div>
+      </div>
+</div>
+<script type="text/javascript">
+ $(document).ready(function(){
+     /*$("#orderPanel").hide();
+ $("#orderGuidebtn").bind("click", function(event) {
+        $("#chosePanel").hide(300);
+        $("#orderPanel").show(300);
+    });
+    $("#chooseGuidebtn").bind("click", function(event) {
+        $("#orderPanel").hide(300);
+        $("#chosePanel").show(300);
+    });
+    $("#orderGuideA").click(function(event){
+      $("#chosePanel").hide(300);
+      $("#orderPanel").show(300);
+    });
+});*/
+</script>
+</body>
+</html>
