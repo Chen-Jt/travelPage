@@ -11,7 +11,7 @@
     <script type="text/javascript" src="js/"></script>
 </head>
 <body>
-<div data-role="page" id="choosePage">
+<div data-role="page">
 <div data-role="panel" id="myPanel">
   <h2>筛选条件</h2>
   <form action="" method="">
@@ -64,6 +64,7 @@
        <div data-role="navbar">
            <ul>
                <li><a id="chooseGuidebtn"  href="#">选择讲解员</a></li>
+               <li><a id="orderGuidebtn"  href="#">发布订单</a></li>
            </ul>
        </div>
     </div>
@@ -88,7 +89,7 @@
                    等级：<span class="starLevel">3</span>
                 </p>
                 </a>
-                 <a id="orderGuideA" href="#orderPage">查看详情</a>
+                 <a id="orderGuideA" href="orderFormPage.html" target="_top">立即预约</a>
               </li>
               <li>
                 <a href="guideInfo.html" target="_top" >
@@ -99,7 +100,7 @@
                    等级：<span class="starLevel">3</span>
                 </p>
                 </a>
-                 <a id="orderGuideA" href="#orderPage">查看详情</a>
+                 <a id="orderGuideA" href="orderFormPage.html" target="_top">立即预约</a>
               </li>
               <li>
                 <a href="guideInfo.html" target="_top" >
@@ -110,7 +111,7 @@
                    等级：<span class="starLevel">3</span>
                 </p>
                 </a>
-                 <a id="orderGuideA" href="#orderPage">查看详情</a>
+                 <a id="orderGuideA" href="orderFormPage.html" target="_top">立即预约</a>
               </li>
               <li>
                 <a href="guideInfo.html" target="_top" >
@@ -121,7 +122,7 @@
                    等级：<span class="starLevel">3</span>
                 </p>
                 </a>
-                 <a id="orderGuideA" href="#orderPage">查看详情</a>
+                 <a id="orderGuideA" href="orderFormPage.html" target="_top">立即预约</a>
               </li>
               <li>
                 <a href="guideInfo.html" target="_top" >
@@ -132,7 +133,7 @@
                    等级：<span class="starLevel">3</span>
                 </p>
                 </a>
-                 <a id="orderGuideA" href="#orderPage">查看详情</a>
+                 <a id="orderGuideA" href="orderFormPage.html" target="_top">立即预约</a>
               </li>
               <li>
                 <a href="guideInfo.html" target="_top" >
@@ -143,23 +144,21 @@
                    等级：<span class="starLevel">3</span>
                 </p>
                 </a>
-                 <a id="orderGuideA" href="#orderPage">查看详情</a>
+                 <a id="orderGuideA" href="orderFormPage.html" target="_top">立即预约</a>
               </li>
-
+              <li>
+                <a href="guideInfo.html" target="_top" >
+                <img src="img/angelababy.jpg">
+                <p>姓名:<span class="name">angelababy</span><br/>
+                   性别：<span class="sex">女</span><br/>
+                   年龄：<span class="age">27</span><br>
+                   等级：<span class="starLevel">3</span>
+                </p>
+                </a>
+                 <a id="orderGuideA" href="orderFormPage.html" target="_top">立即预约</a>
+              </li>
           </ul>
         </div>
-    </div>
-</div>
-<div data-role="page" id="orderPage">
-     <div data-role="header"  id="header" data-position="fixed" class="header">
-       <div data-role="navbar">
-           <ul>
-               <li><a id="orderGuidebtn"  href="#">发布订单</a></li>
-           </ul>
-       </div>
-    </div>
-    <div data-role="main" class="ui-content">
-
         <div id="orderPanel">
             <form action="orderGuide_submit" method="get" accept-charset="utf-8">
                 <div>
@@ -203,11 +202,11 @@
                 </div>
             </form>
         </div>
-      </div>
+    </div>
 </div>
 <script type="text/javascript">
  $(document).ready(function(){
-     /*$("#orderPanel").hide();
+     $("#orderPanel").hide();
  $("#orderGuidebtn").bind("click", function(event) {
         $("#chosePanel").hide(300);
         $("#orderPanel").show(300);
@@ -220,7 +219,7 @@
       $("#chosePanel").hide(300);
       $("#orderPanel").show(300);
     });
-});*/
+});
 </script>
 </body>
 </html>

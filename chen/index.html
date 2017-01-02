@@ -1,49 +1,116 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-	<title>首页</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
-    <link rel="stylesheet" type="text/css" href="css/indexstyle.css">
-	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/index.css" />
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+		</script>
+		<script type="text/javascript" src="js/index.js" ></script>
+	
+	</head>
+		
+	<body>
 
-	<script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-    <script src="js/index.js"></script>
-</head>
-<body>
-<div data-role="page">
-    <header data-role="header" id="header" class="">
-        <form action="index_submit" method="get" accept-charset="utf-8">
-           <label for="search" class="ui-hidden-accessible">搜索</label>
-           <input type="search" name="search" placeholder="秦始皇兵马俑">
-        </form>
-    </header>
-    <div data-role="main" class="ui-content">
-        <div class="imageRotation">
-          <div class="imageBox">
-            <a href="#" target="_blank"><img src="img/index/1.jpg" /></a>
-            <a href="#" target="_blank"><img src="img/index/2.jpg" /></a>
-            <a href="#" target="_blank"><img src="img/index/3.jpg" /></a>
-            <a href="#" target="_blank"><img src="img/index/4.jpg" /></a>
-          </div>
-            <div class="titleBox">
-                <p class="active"><span>第一张图片标题</span></p>
-                <p>第二张图片标题</p>
-                <p>第三张图片标</p>
-                <p>第四张图片标题</p>
-            </div>
-          <div class="icoBox">
-            <span class="active" rel="1">1</span>
-            <span rel="2">2</span>
-            <span rel="3">3</span>
-            <span rel="4">4</span>
-          </div>
-        </div>
-    </div>
-    <footer data-role="footer">
-
-    </footer>
-</div>
-</body>
+		<header class="mui-bar mui-bar-nav">
+		    <div class="mui-input-row mui-search">
+		    	<input type="search" class="mui-input-clear" placeholder="秦始皇兵马俑"/>
+		    </div>
+		</header>
+					<nav class="mui-bar mui-bar-tab">
+					<a class="mui-tab-item mui-active" href="#">
+						<span class="mui-icon mui-icon-home"></span>
+						<span class="mui-tab-label">拼讲解员</span>
+					</a>
+					<a class="mui-tab-item" href="#">
+						<span class="mui-icon mui-icon-compose"></span>
+						<span class="mui-tab-label">预约讲解员</span>
+					</a>
+					<a class="mui-tab-item" href="#">
+						<span class="mui-icon mui-icon-person"></span>
+						<span class="mui-tab-label">个人中心</span>
+					</a>
+			</nav>
+		<div class="mui-content">
+ 		 	<div id="slider" class="mui-slider">
+ 		 		  <div class="mui-slider-group mui-slider-loop">
+ 		 		    <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+ 		 		    <div class="mui-slider-item mui-slider-item-duplicate">
+ 		 		      <a href="#">
+ 		 		        <img src="img/4.jpg">
+ 		 		        <p class="mui-slider-title">This is a beautiful world!</p>
+ 		 		      </a>
+ 		 		    </div>
+ 		 		    <!-- 第一张 -->
+ 		 		    <div class="mui-slider-item">
+ 		 		      <a href="#">
+ 		 		        <img src="img/1.jpg">
+ 		 		        <p class="mui-slider-title">This is a beautiful world!</p>
+ 		 		      </a>
+ 		 		    </div>
+ 		 		    <!-- 第二张 -->
+ 		 		    <div class="mui-slider-item">
+ 		 		      <a href="#">
+ 		 		        <img src="img/2.jpg">
+ 		 		        <p class="mui-slider-title">This is a beautiful world!</p>
+ 		 		      </a>
+ 		 		    </div>
+ 		 		    <!-- 第三张 -->
+ 		 		    <div class="mui-slider-item">
+ 		 		      <a href="#">
+ 		 		        <img src="img/3.jpg">
+ 		 		        <p class="mui-slider-title">This is a beautiful world!</p>
+ 		 		      </a>
+ 		 		    </div>
+ 		 		    <!-- 第四张 -->
+ 		 		    <div class="mui-slider-item">
+ 		 		      <a href="#">
+ 		 		        <img src="img/4.jpg">
+ 		 		        <p class="mui-slider-title">This is a beautiful world!</p>
+ 		 		      </a>
+ 		 		    </div>
+ 		 		    <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+ 		 		    <div class="mui-slider-item mui-slider-item-duplicate">
+ 		 		      <a href="#">
+ 		 		        <img src="img/1.jpg">
+ 		 		        <p class="mui-slider-title">This is a beautiful world!</p>
+ 		 		      </a>
+ 		 		    </div>
+ 		 		  </div>
+ 		 		  <div class="mui-slider-indicator mui-text-right">
+ 		 		    <div class="mui-indicator mui-active"></div>
+ 		 		    <div class="mui-indicator"></div>
+ 		 		    <div class="mui-indicator"></div>
+ 		 		    <div class="mui-indicator"></div>
+ 		 		  </div>
+			</div>
+			<div class="my-title">
+				<h4 class="left-title">推荐景点</h4>
+				<a class="right-title-link" href="#"><span class="my-title-lable">更多</span><span class="mui-icon mui-icon-arrowright"></span></a>
+			</div>
+			<ul class="mui-table-view mui-grid-view">
+				<li class="mui-table-view-cell mui-media mui-col-xs-6"><a href="#"><img class="mui-media-object" src="img/1.jpg">
+					<div class="my-media-title">
+					<p>I have a dream.</p></div>
+				</a></li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6"><a href="#"><img class="mui-media-object" src="img/2.jpg">
+					<div class="my-media-title">
+					<p>I have a dream.</p></div>
+				</a></li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6"><a href="#"><img class="mui-media-object" src="img/3.jpg">
+					<div class="my-media-title">
+					<p>I have a dream.</p></div>
+				</a></li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6"><a href="#"><img class="mui-media-object" src="img/4.jpg">
+					<div class="my-media-title">
+					<p>I have a dream.</p></div>
+				</a></li>
+			</ul>
+		</div>
+	</body>
+	
 </html>
