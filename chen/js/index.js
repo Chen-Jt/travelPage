@@ -4,30 +4,49 @@ mui.ready(function(){
   		interval:1000//自动轮播周期，若为0则不自动播放，默认为0；
 		});
 		});
-		
+//从服务端获取首页活动信息		
 var url = "http://10.50.63.83:8080/TourGuide/getPromotions.do";
-		$.ajax({
+		$.ajax
+		({
 			url: url,
 			datatype: "JSON",
 			type: "GET",
 			error: function()
 			{
-				alert("request error!");
+				alert("活动信息request error!");
 			},
 			success: function(data)
 			{
-				alert("success!");
+				alert("活动信息success!");
 				$.each(data,function(i,item)
-				{
-					//alert(item.promotionLinks);
-					var slider_img1 = document.getElementById("slider_id1");
-					var slider_img2 = document.getElementById("slider_id2");
-			        var slider_img3 = document.getElementById("slider_id3");
-			        var slider_img4 = document.getElementById("slider_id4");
-			        slider_img1.src = item.promotionLinks;
-				});    
-			}
-	});
+				{								        
+			        $("#slider_id1").attr("src",item.promotionImage);			        
+			  });
+			}			
+	   });
+
+//从服务端获取推荐景点信息
+var url1 = "http://10.50.63.83:8080/TourGuide/getScenicByLocation.do;"
+$.ajax({
+	type:"post",
+	url:url1,
+	async:true,
+	data:{province:"陕西"},
+	datatype:"JSON",
+	error:function()
+	{
+		alert("推荐景点Request error!");
+	},
+	success:function(data)
+	{
+		alert("推荐景点success!");
+		$.each(data, function(i,item) 
+		{
+			$("#recommend_img1").attr("src",item.scenicImagePath);			
+		});
+	}
+});
+
 function LoginOrPersonal()
 {
 	var AllCookies = document.cookie;
