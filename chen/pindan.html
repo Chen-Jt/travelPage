@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>拼讲解员</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="css/pindan.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
+    <script type="text/javascript" src="js/"></script>
+</head>
+<body>
+<div data-role="page">
+    <div data-role="header"  id="header" data-position="fixed" class="header">
+        <div data-role="navbar">
+           <ul>
+               <li><a id="panel1btn" href="#">可拼订单</a></li>
+               <li><a id="panel2btn" href="#">发起拼单</a></li>
+           </ul>
+       </div>
+    </div>
+    <div data-role="main" class="ui-content">
+        <div id="panel1">
+            <ul data-role="listview">
+                <li>
+                    <a>
+                    <p>
+                        订单号：<span class="orderFormId">201701020015</span><br/>
+                        游览时间：<span class="vistTime">2017-01-02 16:00</span><br/>
+                        已有人数：<span class="existedVisitor">5</span><br/>
+                        可拼单人数：<span class="">10</span>
+                    </p>
+                    </a>
+                    <div class="goOrder">
+                    <button id="goOrder" type="" class="goOrderbtn ui-btn ui-btn-inline" >去拼单</button>
+                    </div>
+                </li>
+                <li>
+                    <a>
+                    <p>
+                        订单号：<span class="orderFormId">201701020015</span><br/>
+                        游览时间：<span class="vistTime">2017-01-02 16:00</span><br/>
+                        已有人数：<span class="existedVisitor">5</span><br/>
+                        可拼单人数：<span class="">10</span>
+                    </p>
+                    </a>
+                    <div class="goOrder">
+                    <button id="goOrder" type="" class="goOrderbtn ui-btn ui-btn-inline" >去拼单</button>
+                    </div>
+                </li>
+                <li>
+                    <a>
+                    <p>
+                        订单号：<span class="orderFormId">201701020015</span><br/>
+                        游览时间：<span class="vistTime">2017-01-02 16:00</span><br/>
+                        已有人数：<span class="existedVisitor">5</span><br/>
+                        可拼单人数：<span class="">10</span>
+                    </p>
+                    </a>
+                    <div class="goOrder">
+                    <button id="goOrder" type="" class="goOrderbtn ui-btn ui-btn-inline" >去拼单</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="panel2">
+            <form action="pindan_submit" id="" method="get" accept-charset="utf-8">
+                <label for="visitTime" id="visitTimelabel" class="ui-hidden-accessible">浏览时间</label>
+                <input type="text" id="visitTime" name="visitTime" class="" placeholder="浏览时间" />
+                <label for="visitorCount" class="ui-hidden-accessible">浏览人数</label>
+                <input type="text" id="visitorCount" name=""visitorCount class="" placeholder="浏览人数" />
+                <legend>需要为您代购门票吗？</legend>
+                <label for="orderTicket">是，请为我代购门票</label>
+                <input type="radio" id="orderTicket" name="orderTicket" value="yes" class="" />
+                <label for="notorderTicket">否，不用了，谢谢</label>
+                <input type="radio" id="notorderTicket" name="orderTicket" value="no" class="" />
+            </form>
+            <ul data-role="listview">
+                <li data-icon="false">
+                    <a>
+                    <h3>费用信息</h3>
+                    <p>
+                        讲解费：<span class="guideMoney">120</span><br/>
+                        门票：<span class="ticketMoney">5*60=300</span><br/>
+                        合计：<span class="aggregateMoney">420</span><br/>
+                    </p>
+                    </a>
+                </li>
+            </ul>
+            <div class="paybtn">
+            <a href="#" class="ui-btn">去支付</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+ $(document).ready(function(){
+ $("#panel2").hide();
+ $("#panel2btn").bind("click", function(event) {
+        $("#panel1").hide(300);
+        $("#panel2").show(300);
+    });
+    $("#panel1btn").bind("click", function(event) {
+        $("#panel2").hide(300);
+        $("#panel1").show(300);
+    });
+    $(".goOrderbtn").click(function(event){
+        $("#visitTime").remove();/*bug 点击顶部后被删除元素不能恢复*/
+        $("#panel1").hide(300);
+        $("#panel2").show(300);
+    });
+
+});
+</script>
+</body>
+</html>
