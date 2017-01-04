@@ -55,13 +55,23 @@ $.ajax({
 
 function LoginOrPersonal()
 {
-	var AllCookies = document.cookie;
-	if(AllCookies != "")
+	getCookie("LoginName");
+}
+
+function getCookie(LoginName)
+{
+	var AllCookie = document.cookie;
+	var cookie_start = AllCookie.indexOf("LoginName");
+	
+	if(cookie_start != -1)
 	{
-		window.location.href = "TourPersonalMain.html";
+		cookie_start += LoginName.length + 1;
+		alert(cookie_start);
+		var cookie_end = AllCookie.indexOf(";",cookie_start);  
+		alert(cookie_end);
 	}
-	else
-	{
-		window.location.href = "TourLogin.html";
-	}
+	var value = AllCookie.substring(cookie_start,cookie_end);
+	var loginName = unescape(value);
+	alert(loginName);
+	return value;
 }

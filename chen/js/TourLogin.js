@@ -1,15 +1,18 @@
 function setCookie(LoginName,Value)
 {
 	//对字符串进行编码，使计算机能够识别
+	
+	alert(Value);
 	var LoginName = escape(LoginName);
 	var Value = escape(Value);
 	
 	document.cookie = LoginName + "=" + Value;
+	
 }
 function UserLogin()
 {
 	//简单验证
-	var LoginName = document.getElementById("tour_id");
+	var LoginName = document.getElementById("tour_id").value;
 	if(LoginName == "")
 	{
 		alert("用户名不能为空，请输入用户名：");

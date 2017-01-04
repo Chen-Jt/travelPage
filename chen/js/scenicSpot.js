@@ -31,10 +31,39 @@ $.ajax({
 		var wind = data.wind;
 		var img1 = data.image1;
 		var img2 = data.image2;
-		$("#weather").text(weather);
-		$("#img1").attr("src",img1);
-		$("#img2").attr("src",img2);
-		$("#temperature").text(temperature);
-		$("#wind").text(wind);		
+		if(weather.length>2)
+		{
+			$("#weather").text(weather);
+			$("#img1").attr("src",img1);
+			$("#img2").attr("src",img2);
+			$("#temperature").text(temperature);
+			$("#wind").text(wind);
+		}
+		else
+		{
+			$("#weather").text(weather);
+			$("#img1").attr("src",img1);
+			$("#temperature").text(temperature);
+			$("#wind").text(wind);
+		}
+				
+	}
+});
+//从服务器端获取票价
+var url1 = "http://10.50.63.83:8080/TourGuide/geTicketsByScenicNo.do"
+$.ajax({
+	type:"post",
+	url:url1,
+	async:true,
+	data:{scenicNo:"19743"},
+	datatype:"JSON",
+	error:function()
+	{
+		alert("获取门票Request error!");
+	},
+	success:function(data)
+	{
+		alert("获取门票success!");
+		$("#full_price").html(data.fullPrice);
 	}
 });
