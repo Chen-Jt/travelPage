@@ -26,5 +26,15 @@ $.ajax({
 	success:function(data)
 	{
 		alert("今日天气success!");
+		var weather = data.weather;
+		var temperature = data.temprature;
+		var wind = data.wind;
+		var img1 = data.image1;
+		var img2 = data.image2;
+		$("#weather").text(weather);
+		$("#img1").attr("src",img1);
+		$("#img2").attr("src",img2);
+		$("#temperature").text(temperature);
+		$("#wind").text(wind);		
 	}
 });
