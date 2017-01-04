@@ -68,15 +68,25 @@
         </div>
         <div id="panel2">
             <form action="pindan_submit" id="" method="get" accept-charset="utf-8">
-                <label for="visitTime" id="visitTimelabel" class="ui-hidden-accessible">浏览时间</label>
-                <input type="text" id="visitTime" name="visitTime" class="" placeholder="浏览时间" />
+                <div class="visitTime">
+                <label for="visitTime" id="visitTimelabel" class=" visitTime ui-hidden-accessible">浏览时间</label>
+                <input type="text" id="visitTime" name="visitTime" class="visitTime" placeholder="浏览时间" />
+                </div>
                 <label for="visitorCount" class="ui-hidden-accessible">浏览人数</label>
                 <input type="text" id="visitorCount" name=""visitorCount class="" placeholder="浏览人数" />
                 <legend>需要为您代购门票吗？</legend>
-                <label for="orderTicket">是，请为我代购门票</label>
-                <input type="radio" id="orderTicket" name="orderTicket" value="yes" class="" />
-                <label for="notorderTicket">否，不用了，谢谢</label>
-                <input type="radio" id="notorderTicket" name="orderTicket" value="no" class="" />
+                <label for="orderTicketRadio">是，请为我代购门票</label>
+                <input type="radio" id="orderTicketRadio" name="orderTicket" value="yes" class="" />
+                <div data-role="collapsible" id="orderTicketPanel" data-collapsed="false" hidden="true">
+                        <label for="fullPriceTicketNum" class="ui-hidden-accessible">全价票</label>
+                        <input type="number" id="fullPriceTicketNum" name="fullPriceTicketNum" value="" placeholder="全价票">
+                        <label for="halfPriceTicketNum" class="ui-hidden-accessible">半价票</label>
+                        <input type="number" id="halfPriceTicketNum" name="halfPriceTicketNum" value="" placeholder="半价票">
+                        <label for="discountTicketNum" class="ui-hidden-accessible">折扣票</label>
+                        <input type="number" id="discountTicketNum" name="discountTicketNum" value="" placeholder="半价票">
+                </div>
+                <label for="notorderTicketRadio">否，不用了，谢谢</label>
+                <input type="radio" id="notorderTicketRadio" name="orderTicket" value="no" class="" />
             </form>
             <ul data-role="listview">
                 <li data-icon="false">
@@ -99,21 +109,37 @@
 
 <script type="text/javascript">
  $(document).ready(function(){
+ $("#orderTicketPanel").hide();
  $("#panel2").hide();
  $("#panel2btn").bind("click", function(event) {
         $("#panel1").hide(300);
+        $(".visitTime").show();
         $("#panel2").show(300);
+
     });
     $("#panel1btn").bind("click", function(event) {
         $("#panel2").hide(300);
         $("#panel1").show(300);
     });
     $(".goOrderbtn").click(function(event){
-        $("#visitTime").remove();/*bug 点击顶部后被删除元素不能恢复*/
+        $(".visitTime").hide();
         $("#panel1").hide(300);
         $("#panel2").show(300);
     });
+    $("#orderTicketRadio").bind('click', function(event) {
+        if($("#orderTicketRadio").attr("data-cacheval")=="false")
+        {
+            $("#orderTicketPanel").show('200', function() {
+            });
+        }else{
+            $("#orderTicketPanel").hide('200', function() {
+            });
+        }
+    });
+    $("#notorderTicketRadio").bind('click', function(event) {
 
+            $("#orderTicketPanel").hide('200');
+    });
 });
 </script>
 </body>

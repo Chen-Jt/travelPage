@@ -15,32 +15,35 @@
         <h1>确认订单</h1>
     </div>
     <div data-role="main" class="ui-content">
-        <div class="orderCard">
+        <ul data-role="listview">
+            <li data-icon="false">
+            <a>
             <h3>导游信息</h3>
-            <ul data-role="listview">
-                <li>姓名：<span class="name">Angelababy</span></li>
-                <li>性别：<span class="sex">女</span></li>
-                <li>年龄：<span class="age">27</span></li>
-                <li>语种：<span class="language">英语</span></li>
-            </ul>
-        </div>
-        <div class="orderCard">
+
+                姓名：<span class="name">Angelababy</span><br/>
+                性别：<span class="sex">女</span><br/>
+                年龄：<span class="age">27</span><br/>
+                语种：<span class="language">英语</span>
+            </li>
+            </a>
+        <li data-icon="false"><a>
             <h3>预约信息</h3>
-            <ul data-role="listview">
-                <li>预约时间：<span class="orderTime">2017-01-02</span></li>
-                <li>预约人数：<span class="visitorCount">5</span></li>
-            </ul>
-        </div>
-        <div class="orderCard">
+
+                预约时间：<span class="orderTime">2017-01-02</span><br/>
+                预约人数：<span class="visitorCount">5</span><br/>
+
+        </a></li>
+        <li data-icon="false"><a>
             <h3>费用信息</h3>
-            <ul data-role="listview">
-                <li>讲解费：<span class="guideMoney">120</span></li>
-                <li>门票：<span class="ticketMoney">5*60=300</span></li>
-                <li>合计：<span class="aggregateMoney">420</span></li>
-            </ul>
+
+                讲解费：<span class="guideMoney">120</span><br/>
+                门票：<span class="ticketMoney">5*60=300</span><br/>
+                合计：<span class="aggregateMoney">420</span><br/>
+
+         </a></li>
+        </ul>
         </div>
         <button type="">去支付</button>
-    </div>
 </div>
 </body>
 </html>
