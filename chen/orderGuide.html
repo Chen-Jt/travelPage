@@ -8,7 +8,8 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-    <script type="text/javascript" src="js/"></script>
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/OrderGuide.js"></script>
 </head>
 <body>
 <div data-role="page">
@@ -172,25 +173,27 @@
                     <label for="guideLanguage" >讲解语言</label>
 
                     <select id="guideLanguage" name="guideLanguage" >
-                        <option value="Chinese">汉语</option>
-                        <option value="English">英语</option>
-                        <option value="Japanese">日语</option>
-                        <option value="Russia">俄语</option>
-                        <option value="French">法语</option>
+                        <option value="汉语">汉语</option>
+                        <option value="英语">英语</option>
+                        <option value="日语">日语</option>
+                        <option value="俄语">俄语</option>
+                        <option value="法语">法语</option>
                     </select>
                     <fieldset data-role="controlgroup" data-type="horizontal">
                      <legend>讲解员性别</legend>
+                     <div id="sex">
                         <label for="guideFmale" >女</label>
-                        <input type="radio"  id="guideFmale" name="guideSex" value="fmale"/>
+                        <input type="radio"  id="guideFmale" name="guideSex" class = "guideSex" value="女"/>
                         <label for="guideMale" >男</label>
-                        <input type="radio"  id="guideMale" name="guideSex" value="male"/>
+                        <input type="radio"  id="guideMale" name="guideSex" class = "guideSex" value="男"/>
+                    </div>
                     </fieldset>
                     <fieldset data-role="controlgroup" data-type="horizontal">
                     <legend>是否代购门票</legend>
                         <label for="orderTicket" >是</label>
-                        <input type="radio"  id="orderTicket" name="orderTicket" value="yes"/>
+                        <input type="radio"  id="orderTicket" name="orderTicket" class="orderTicket" value="是"/>
                         <label for="notOrderTicket" >否</label>
-                        <input type="radio"  id="notOrderTicket" name="orderTicket" value="no"/>
+                        <input type="radio"  id="notOrderTicket" name="orderTicket" class="orderTicket" value="否"/>
                     <label for="visitorPhone" class="ui-hidden-accessible" >联系电话</label>
                     </fieldset>
                     <input type="tel" id="visitorPhone" name="visitorPhone" value="" placeholder="联系电话">
@@ -198,7 +201,7 @@
                     <input type="text" id="visitorName" name="visitorName" value="" placeholder="您的姓名">
                     <label for="otherRequest">其他需求</label>
                     <textarea name="otherRequest" id="otherRequest"></textarea>
-                    <input id="submitOrderForm" type="submit" name="submit" value="提交订单">
+                    <input id="submitOrderForm" type="submit" name="submit" value="提交订单" onclick="releaseOrder()">
                 </div>
             </form>
         </div>

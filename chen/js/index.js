@@ -43,10 +43,15 @@ $.ajax({
 		alert("推荐景点success!");
 		$.each(data, function(i,item) 
 		{
-			$("#recommend_img1").attr("src",item.scenicImagePath);	
+			$("#recommend_img1").attr("src",item.scenicImagePath);
+			//将景区图片、历史参观人数、简介存入cookie
+			$.cookie('scenicSpotImg',item.scenicImagePath);
+			$.cookie('totalVisits',item.totalVisits);
+			$.cookie('scenicIntro',item.scenicIntro);
 		});
 	}
 });
+
 
 function LoginOrPersonal()
 {
