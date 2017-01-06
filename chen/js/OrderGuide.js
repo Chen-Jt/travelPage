@@ -1,14 +1,20 @@
+
 function releaseOrder()
 {
 	var data = 
 	{
-		scenicID:"19743",visitTime:$("#orderDate").val()+$("#orderDatetime").val(),
-		visitNum:$("#visitorCount").val(),language:$("#guideLanguage").value,
-		guideSex:$("input[name='guideSex']:checked").val(),visitorPhone:$("#visitorPhone").val(),
-		visitorName:$("#visitorName").val(),priceRange:"100",
+		scenicID:"19743",
+		otherCommand:$("#otherRequest").val(),
+		visitNum:$("#visitorCount").val(),
+		priceRange:"100-200",
+		guideSex:$("input[name='guideSex']:checked").val(),
+		visitorPhone:"13589678945",
+		visitorName:$("#visitorName").val(),
+		language:$("#guideLanguage option:selected").val(),
 		purchaseTicket:$("input[name='orderTicket']:checked").val(),
-		otherCommand:$("#otherRequest").val()
-	};
+	    visitTime:$("#orderDate").val()+" "+$("#orderDatetime option:selected").val()
+	};	
+	
 	var url = "http://10.50.63.83:8080/TourGuide/releaseBookOrder.do";
 	$.ajax({
 	type:"post",
@@ -25,5 +31,7 @@ function releaseOrder()
 		alert("发布订单success!");
 		alert(data);
 	}
+
+
 });
 }

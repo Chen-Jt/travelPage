@@ -55,10 +55,18 @@ $.ajax({
 
 function LoginOrPersonal()
 {
-	getCookie("LoginName");
+	var AllCookies = document.cookie;
+	if(AllCookies != "")
+	{
+		window.location.href = "TourPersonalMain.html";
+	}
+	else
+	{
+		window.location.href = "TourLogin.html";
+	}
 }
 
-function getCookie(LoginName)
+/*function getCookie(LoginName)
 {
 	var AllCookie = document.cookie;
 	var cookie_start = AllCookie.indexOf("LoginName");
@@ -74,4 +82,4 @@ function getCookie(LoginName)
 	var loginName = unescape(value);
 	alert(loginName);
 	return value;
-}
+}*/
