@@ -24,14 +24,6 @@ function consistOrder()
 		datatype:"JSON",
 		error:function()
 		{
-			alert(data.scenicID);
-			alert(data.visitTime);
-			alert(data.visitNum);
-			alert(data.visitorPhone);
-			alert(data.purchaseTicket);
-			alert(data.fullPrice);
-			alert(data.halfPrice);
-			alert(data.discoutPrice);
 			alert("发起拼单Request error!");
 		},
 		success:function(data)

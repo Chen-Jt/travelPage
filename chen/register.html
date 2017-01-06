@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <title>注册页面</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <link rel="stylesheet" type="text/css" href="css/">
+    <link rel="stylesheet" type="text/css" href="css/Register.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-    <script type="text/javascript" src="js/"></script>
+    <script type="text/javascript" src="js/Regist.js"></script>
 </head>
 <body>
 <div data-role="page">
@@ -23,19 +23,22 @@
             <input type="text" id="nickname" name="" class="" value="" placeholder="昵称" />
             <label for="sex" class="">性别：</label>
             <input type="text" id="sex" name="" class="" value="女" />
-            <label for="provice" class="">地区：</label>
-            <input type="text" id="province" name="" value="陕西" class="" />
             <label for="name" class="">姓名:</label>
             <input type="text" id="name" name="" class="" />
             <label for="tel" class="">电话:</label>
             <input type="tel" id="tel" name="" class="" />
             <label for="password" class="">密码：</label>
             <input type="password" id="password" name="" class="" />
+            <label for="password" class="">确认密码：</label>
+            <input type="password" id="confirm_password" name="" class="" />
             <label for="headimg">头像：</label>
-            <img src="img/visitor.png">
+            <div>
+            	<input type="file" id="btnFile" style="display: none" onchange="selectImage(this)">
+            	<img src="img/visitor.png" onclick="openFile()" id="visitor_img">
+            </div>  
             <label for="agreeClause" class="">我已阅读并同意<a href="#">相关服务条款</a></label>
-            <input type="radio" id="agreeClause" value="yes" name="" class="" />
-            <input type="submit" id="submit" name="submit" value="注册">
+            <input type="checkbox" id="agreeClause" value="yes" name="" class="" />
+            <input type="button" id="submit" name="submit" value="注册" onclick="Regist()">
             </div>
         </form>
     </div>
