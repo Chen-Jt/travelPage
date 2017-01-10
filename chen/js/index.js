@@ -22,7 +22,7 @@ var url = "http://10.50.63.83:8080/TourGuide/getPromotions.do";
 				{								        
 			        $("#slider_id1").attr("src",item.promotionImage);
 			        $("#slider_a1").attr("href",item.promotionLinks);
-			  });
+			    });
 			}			
 	   });
 
@@ -52,7 +52,14 @@ $.ajax({
 	}
 });
 
-
+function consisGuide()
+{
+	window.location.href = "pindan.html";
+}
+function orderGuide()
+{
+	window.location.href = "orderGuide.html";
+}
 function LoginOrPersonal()
 {
 	var AllCookies = document.cookie;
@@ -65,6 +72,7 @@ function LoginOrPersonal()
 		window.location.href = "TourLogin.html";
 	}
 }
+
 
 /*function getCookie(LoginName)
 {

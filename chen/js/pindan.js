@@ -3,6 +3,21 @@ var VisitTel = $.cookie('LoginName');
 
 function consistOrder()
 {
+	var HalfPrice;
+	var FullPrice;
+	var DiscoutPrice;
+	if($("input[name='pindan_orderTicket']:checked").val() == 0)
+	{
+		HalfPrice = 0;
+		FullPrice = 0;
+		DiscoutPrice = 0;
+	}
+	if($("input[name='pindan_orderTicket']:checked").val() == 1)
+	{
+		HalfPrice = $("#halfPriceTicketNum").val();
+		FullPrice = $("#fullPriceTicketNum").val();
+		DiscoutPrice = $("#discountTicketNum").val();
+	}
 	var data = 
 	{
 		scenicID:"19743",
@@ -10,9 +25,9 @@ function consistOrder()
 		visitNum:$("#visitorCount").val(),
 		visitorPhone:"13589678945",
 		purchaseTicket:$("input[name='pindan_orderTicket']:checked").val(),
-		halfPrice:$("#halfPriceTicketNum").val(),
-		discoutPrice:$("#discountTicketNum").val(),
-		fullPrice:$("#fullPriceTicketNum").val()
+		halfPrice:HalfPrice,
+		discoutPrice:DiscoutPrice,
+		fullPrice:FullPrice
 	};
 	
 	var url = "http://10.50.63.83:8080/TourGuide/releaseConsistOrder.do";
@@ -32,9 +47,43 @@ function consistOrder()
 			alert(data);
 		}
 	});
+	
+	var url1 = "http://10.50.63.83:8080/TourGuide/getIntroFee.do";
+	$.ajax({
+		type:"post",
+		url:url1,
+		async:true,
+		data:{scenicID:"19743",date:$("#visitTime").val()},
+		datatype:"JSON",
+		error:function()
+		{
+			alert("返回讲解费Request error!");
+		},
+		success:function(data)
+		{
+			alert("返回讲解费Request success!");
+			alert(data);
+			$("#pindan_guide_money").html(data);
+			var HalfPrice = $.cookie("HalfPrice");
+			var FullPrice = $.cookie("FullPrice");
+			var DiscoutPrice = $.cookie("DiscoutPrice");
+			var ticketPrice = $("#fullPriceTicketNum").val() * FullPrice			
+							 +$("#halfPriceTicketNum").val() * HalfPrice
+							 +$("#discountTicketNum").val() * DiscoutPrice;
+			var TicketPrice = $("#fullPriceTicketNum").val() + "*" + FullPrice
+			                 +"+"+$("#halfPriceTicketNum").val() + "*" + HalfPrice
+			                 +"+"+$("#discountTicketNum").val() + "*" + DiscoutPrice
+			                 + "=" +ticketPrice;		                
+			$("#pindan_ticket_money").html(TicketPrice); 
+			var TotalMoney = ticketPrice + data;
+			$("#pindan_total_money").html(TotalMoney);
+		}
+	});
 }
 //从服务器获取可拼订单
-/*var url = "http://10.50.63.83:8080/TourGuide/getAvailableConsistOrder.do";
+window.onload = function()
+{
+	var url = "http://10.50.63.83:8080/TourGuide/getAvailableConsistOrder.do";
 	$.ajax({
 		type:"post",
 		url:url,
@@ -48,65 +97,71 @@ function consistOrder()
 		success:function(data)
 		{
 			alert("可拼拼单success!");
-			$.each(data, function(i,n) {
-				$("#consis_orderID").html(n.orderID);
-				$("#consis_visitTime").html(n.visitTime);
-				$("#consis_visitNum").html(n.visitNum);
-				//$("#consis_minus").html(n.maxNum - n.visitNum)
-			});
-//			for(int i = 0 ;i < data.length; i++)
-//			{
+			//动态加载div布局
+			$.each(data, function(i,n){
 				
-//				$("#consis_visitTime").innerHTML = data[i].visitTime;
-//				$("#consis_visitNum").innerHTML = data[i].visitNum;
-//				$("#consis_minus").innerHTML = data[i].maxNum - data[i].visitNum;
-			//}
-			
-			
-		}
-	});*/
-	
-//动态加载div布局
-var Array = [{"orderID":"1234567","visitTime":"2017-01-01","visitNum":"5","consis_minus":"9"},
-             {"orderID":"1234567","visitTime":"2017-01-01","visitNum":"5","consis_minus":"9"}];
-for(i = 0; i < Array.length; i++)
-{
-	var OrderList = document.getElementById("pindan_panel1");
-	alert(OrderList);
-	var OrderListInfo = document.createElement("div");
-	OrderListInfo.id = "panel1";
-	OrderListInfo.className = "pannel1_class";
-	//OrderList.appendChild(OrderListInfo);
-	
-	var UlListInfo = document.createElement("ul");
-	UlListInfo.id = "pindan_ul_id";
-	OrderListInfo.appendChild(UlListInfo);
-	
-	var LiListInfo = document.createElement("li");
-	LiListInfo.id = "pindan_li_id";
-	UlListInfo.appendChild(LiListInfo);
-	
-	//添加订单号
-	var SpanOrderIdInfo = document.createElement("span");
-	SpanOrderIdInfo.id = "consis_orderID";
-	SpanOrderIdInfo.innerHTML = Array[i].orderID;
-	alert(Array[i].orderID);
-	
-	//添加浏览时间
-	var SpanVisitTimeInfo = document.createElement("span");
-	SpanVisitTimeInfo.id = "consis_visitTime";
-	SpanVisitTimeInfo.innerHTML = Array[i].visitTime;
-	
-	//添加已有人数
-	var SpanVisitNumInfo = document.createElement("span");
-	SpanVisitNumInfo.id = "consis_visitNum";
-	SpanVisitNumInfo.innerHTML = Array[i].visitNum;
-	alert(Array[i].visitNum);
-	
-	//添加可拼单人数
-	var SpanConsisNumInfo = document.createElement("span");
-	SpanConsisNumInfo.id = "consis_minus";
-	SpanConsisNumInfo.innerHTML = Array[i].consis_minus;
-	
-	LiListInfo.appendChild(SpanOrderIdInfo).appendChild(SpanVisitTimeInfo).appendChild(SpanVisitNumInfo).appendChild(SpanConsisNumInfo);
+				/*var OrderList = document.getElementById("panel1");							
+			    var OrderListInfo = document.createElement("div");
+				OrderListInfo.id = "order_list1";	
+				OrderList.appendChild(OrderListInfo);
+												
+			   //$("#order_list1").insertBefore(document.getElementById("order_list"));
+								
+				var UlListInfo = document.createElement("ul");
+				UlListInfo.id = "pindan_ul_id";
+				$("ul").attr("data-role","listview");
+				$("ul").listview();
+				OrderListInfo.appendChild(UlListInfo);*/
+				
+				var UlList = document.getElementById("pindan_ul_id");
+				var LiListInfo = document.createElement("li");
+				LiListInfo.id = "pindan_li_id";
+				UlList.appendChild(LiListInfo);
+				
+				//添加订单号
+				var SpanOrderIdInfo = document.createElement("span");
+				SpanOrderIdInfo.id = "consis_orderID";
+				SpanOrderIdInfo.className = "orderFormId";
+				SpanOrderIdInfo.innerHTML = "订单号：" + n.orderID + "<br/>";
+				
+				//添加浏览时间
+				var SpanVisitTimeInfo = document.createElement("span");
+				SpanVisitTimeInfo.id = "consis_visitTime";
+				SpanVisitTimeInfo.className = "vistTime";
+				SpanVisitTimeInfo.innerHTML = "浏览时间：" + n.visitTime+ "<br/>";
+				
+				//添加已有人数
+				var SpanVisitNumInfo = document.createElement("span");
+				SpanVisitNumInfo.id = "consis_visitNum";
+				SpanVisitNumInfo.innerHTML = "已有人数：" + n.visitNum+ "<br/>";
+				
+				//添加可拼单人数
+				var SpanConsisNumInfo = document.createElement("span");
+				SpanConsisNumInfo.id = "consis_minus";
+				var MaxNum = n.maxNum;
+				var NowNum = n.visitNum;
+				var Number = MaxNum - NowNum;
+				SpanConsisNumInfo.innerHTML = "可拼单人数：" + Number+ "<br/>";
+				
+				//添加按钮
+				var DivConsisBtn = document.createElement("div");
+				DivConsisBtn.className = "goOrder";
+				var ConsisBtn = document.createElement("button");
+				ConsisBtn.id = "goOrder";
+				ConsisBtn.className = "goOrderbtn ui-btn ui-btn-inline";
+				ConsisBtn.innerHTML = "去拼单";
+				DivConsisBtn.appendChild(ConsisBtn);
+				
+				LiListInfo.appendChild(SpanOrderIdInfo)
+				.appendChild(SpanVisitTimeInfo)
+				.appendChild(SpanVisitNumInfo)
+				.appendChild(SpanConsisNumInfo)
+				.appendChild(DivConsisBtn);
+				});
+				
+				$("#pindan_ul_id").listview('refresh');
+
+			}
+		});
 }
+

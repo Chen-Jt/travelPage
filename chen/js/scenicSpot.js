@@ -65,5 +65,8 @@ $.ajax({
 	{
 		alert("获取门票success!");
 		$("#full_price").html(data.fullPrice);
+		$.cookie("FullPrice",data.fullPrice);
+		$.cookie("HalfPrice",data.halfPrice);
+		$.cookie("DiscoutPrice",data.discoutPrice);
 	}
 });

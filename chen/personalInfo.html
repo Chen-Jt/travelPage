@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="css/">
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
-    <style type="text/css" media="screen">
+    <style type="text/css" media="screen">    
     .perheader{
         height:30%;
          }
@@ -35,7 +35,8 @@
     </style>
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-    <script type="text/javascript" src="js/"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/PersonalInfo.js"></script>
 </head>
 <body>
 <div data-role="page" id="personalInfoPage">
@@ -50,29 +51,26 @@
             <form action="personalInfo_submit" method="get" accept-charset="utf-8">
                 <tr>
                     <td><label for="name">账号：</label></td>
-                    <td><input type="text" id="name" name="" value="132134" placeholder=""></td>
+                    <td><input type="text" id="person_info_tel" name="" value="132134" placeholder=""></td>
                 </tr>
                 <tr>
                     <td><label for="name">昵称</label></td>
-                    <td><input type="text" id="name" name="" value="Angelababy" placeholder=""></td>
+                    <td><input type="text" id="person_info_nickname" name="" value="Angelababy" placeholder=""></td>
                 </tr>
                 <tr>
                     <td><label for="name">姓名：</label></td>
-                    <td><input type="text" id="name" name="" value="Angelababy" placeholder=""></td>
+                    <td><input type="text" id="person_info_name" name="" value="Angelababy" placeholder=""></td>
                 </tr>
                 <tr>
                     <td><legend for="name">性别:</legend></td>
                     <td><fieldset data-role="controlgroup" data-type="horizontal">
-                    <label for="guideFmale" >女</label>
+                    	<input type="text" id="person_info_sex" value="女">
+                        <!--<label for="guideFmale" >女</label>
                         <input type="radio"  id="guideFmale" name="guideSex" value="fmale"/>
                         <label for="guideMale" >男</label>
-                        <input type="radio"  id="guideMale" name="guideSex" value="male"/>
+                        <input type="radio"  id="guideMale" name="guideSex" value="male"/>-->
                         </fieldset></td>
-                </tr>
-                <tr>
-                    <td><label for="name">所在城市：</label></td>
-                    <td><input type="text" id="name" name="" value="陕西西安" placeholder=""></td>
-                </tr>
+                </tr>            
                 <tr> <td colspan="2"><input type="submit" name="" value="确认修改"></td></tr>
 
             </form>

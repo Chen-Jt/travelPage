@@ -22,42 +22,23 @@
            </ul>
        </div>
     </div>
-    <div data-role="main" class="ui-content">
-        <div id="pindan_panel1" class="pannel1_class">
-            <ul data-role="listview" id="pindan_ul_id">
-                <li id="pindan_li_id">                                   
-                        订单号：<span class="orderFormId" id="consis_orderID">201701020015</span><br/>
-                        游览时间：<span class="vistTime" id="consis_visitTime">2017-01-02 16:00</span><br/>
-                        已有人数：<span class="existedVisitor" id="consis_visitNum">5</span><br/>
-                        可拼单人数：<span class="" id="consis_minus">10</span>                                     
-                    <div class="goOrder">
-                    <button id="goOrder" type="" class="goOrderbtn ui-btn ui-btn-inline" >去拼单</button>
-                    </div>
-                </li>
- <!--               <li>                   
-                    <p>
-                        订单号：<span class="orderFormId">201701020015</span><br/>
-                        游览时间：<span class="vistTime">2017-01-02 16:00</span><br/>
-                        已有人数：<span class="existedVisitor">5</span><br/>
-                        可拼单人数：<span class="">10</span>
-                    </p>                   
-                    <div class="goOrder">
-                    <button id="goOrder" type="" class="goOrderbtn ui-btn ui-btn-inline" >去拼单</button>
-                    </div>
-                </li>
-                <li>                   
-                    <p>
-                        订单号：<span class="orderFormId">201701020015</span><br/>
-                        游览时间：<span class="vistTime">2017-01-02 16:00</span><br/>
-                        已有人数：<span class="existedVisitor">5</span><br/>
-                        可拼单人数：<span class="">10</span>
-                    </p>                    
-                    <div class="goOrder">
-                    <button id="goOrder" type="" class="goOrderbtn ui-btn ui-btn-inline" >去拼单</button>
-                    </div>
-                </li>-->
-            </ul>
+    <div data-role="main" >
+        <div id="panel1" class="ui-content">       	
+	        	<div id="order_list">
+		            <ul data-role="listview" id="pindan_ul_id">
+		                <li id="pindan_li_id">                                   
+		                        订单号：<span class="orderFormId" id="consis_orderID">201701020015</span><br/>
+		                        游览时间：<span class="vistTime" id="consis_visitTime">2017-01-02 16:00</span><br/>
+		                        已有人数：<span class="existedVisitor" id="consis_visitNum">5</span><br/>
+		                        可拼单人数：<span class="consis_minus_class" id="consis_minus">10</span>                                     
+		                    <div class="goOrder">
+		                    <button id="goOrder" type="" class="goOrderbtn ui-btn ui-btn-inline" >去拼单</button>
+		                    </div>
+		                </li>
+		            </ul>
+	          </div>           
         </div>
+           
         <div id="panel2">
             <form action="pindan_submit" id="" method="get" accept-charset="utf-8">
                 <div class="visitTime">
@@ -108,9 +89,9 @@
                     <a>
                     <h3>费用信息</h3>
                     <p>
-                        讲解费：<span class="guideMoney">120</span><br/>
-                        门票：<span class="ticketMoney">5*60=300</span><br/>
-                        合计：<span class="aggregateMoney">420</span><br/>
+                        讲解费：<span class="guideMoney" id="pindan_guide_money"></span><br/>
+                        门票：<span class="ticketMoney" id="pindan_ticket_money">5*60=300</span><br/>
+                        合计：<span class="aggregateMoney" id="pindan_total_money">420</span><br/>
                     </p>
                     </a>
                 </li>
