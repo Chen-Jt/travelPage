@@ -150,6 +150,8 @@ window.onload = function()
 				ConsisBtn.id = "goOrder";
 				ConsisBtn.className = "goOrderbtn ui-btn ui-btn-inline";
 				ConsisBtn.innerHTML = "去拼单";
+				ConsisBtn.onclick = function()
+				{window.location.href = "ConsistOrderList.html?"+"OrderID="+n.orderID;};
 				DivConsisBtn.appendChild(ConsisBtn);
 				
 				LiListInfo.appendChild(SpanOrderIdInfo)
@@ -165,3 +167,7 @@ window.onload = function()
 		});
 }
 
+function goOrder()
+{
+	window.location.href = "ConsistOrderList.html";
+}

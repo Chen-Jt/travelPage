@@ -29,7 +29,10 @@ function guideAuthentication()
 		success:function(data)
 		{
 			alert("导游申请认证拼单success!");
-			alert(data);
+			if(data == -1)
+			{
+				alert("您申请的账号已存在！");
+			}
 		}
 	});
 }

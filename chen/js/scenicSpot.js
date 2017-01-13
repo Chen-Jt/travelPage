@@ -1,11 +1,47 @@
 $(document).ready(function() {
-	var scenicSpotImg = $.cookie('scenicSpotImg');
-    var totalVisits = $.cookie('totalVisits');
-	var scenicIntro = $.cookie('scenicIntro');
+	
+	var loc = window.location.href;
+	var Parame = loc.split("?")[1];
+	//alert(Parame);  //得到问号之后传过来的参数
+	var scenicNo = Parame.split("=")[1];
+	alert(scenicNo);
+	
+	//从服务器端获取景区详细信息
+	var url2 = "http://10.50.63.83:8080/TourGuide/getDetailScenicByScenicID.do"
+	$.ajax({
+		type:"post",
+		url:url2,
+		async:true,
+		data:{"scenicID":scenicNo},
+		datatype:"JSON",
+		error:function()
+		{
+			alert("景区详细信息Request error!");
+		},
+		success:function(data)
+		{
+			alert("景区详细信息request success!");
+			$.each(data, function(i,item) {
+				//设置显示名称
+				$("#scenic_title").html(item.scenicName);
+				//设置显示图片
+				$("#scenic_img").attr("src",item.scenicImagePath);
+				//设置显示简介
+				$("#scenic_info").html(item.scenicIntro);
+				//设置显示历史参观人数
+				var td = $("#scenic_total_visit");
+				$(td).html(item.totalVisits);
+			});
+			
+		}
+	});
+	
+	//设置显示名称
+	//$("#title").innerHTML = scenicName;
 	//设置显示图片
-	$("#scenic_img").attr("src",scenicSpotImg);
+	$("#scenic_img").attr("src",img);
 	//设置显示简介
-	$("#scenic_info").html(scenicIntro);
+	//$("#scenic_info").html(scenicIntro);
 	//设置显示历史参观人数
 	var td = $("#scenic_total_visit");
 	$(td).html(totalVisits);

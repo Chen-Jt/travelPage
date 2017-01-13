@@ -7,8 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/orderGuide.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>  
     <script type="text/javascript" src="js/OrderGuide.js"></script>
 </head>
 <body>
@@ -73,18 +72,21 @@
         <div id="chosePanel" >
           <form action="chooseGuide_submit" method="get" accept-charset="utf-8">
              <div class="ui-field-contain">
+               <label for="chooseDatetime" class="ui-hidden-accessible">景区名称</label>
+               <input type="text" id="chooseDatetime" name="scenicName" value=""  placeholder="景区名称">
                <label for="chooseDate" class="ui-hidden-accessible">日期</label>
                <input type="date" id="chooseDate" name=date"" value="" data-icon="calendar" data-iconpos="right" data-inline="true" placeholder="">
-               <label for="chooseDatetime" class="ui-hidden-accessible">时间</label>
-               <input type="datetime" id="chooseDatetime" name="datetime" value=""  placeholder="时间">
+               <label for="chooseDatetime" class="ui-hidden-accessible">人数</label>
+               <input type="text" id="chooseDatetime" name="datetime" value=""  placeholder="人数">
                <a href="#myPanel" class="ui-btn ui-btn-inline">筛选</a>
+               <button onclick="getAvailableGuides()" class="ui-btn ui-btn-inline">查看推荐</button>
              </div>
           </form>
           <ul data-role="listview" data-inset="true" id="order_guide_ul">
-               <li>
-                <a href="guideInfo.html" target="_top" >
+               <li id="order_guide_li">
+                <a href="guideInfo.html" target="_top" id="order_guide_aid">
                 <img src="img/angelababy.jpg">
-                <p>姓名:<span class="name">angelababy</span><br/>
+                <p>姓名:<span class="name" id="order_guide_name">angelababy</span><br/>
                    性别：<span class="sex">女</span><br/>
                    年龄：<span class="age">27</span><br>
                    等级：<span class="starLevel">3</span>

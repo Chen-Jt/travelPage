@@ -1,118 +1,106 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>首页</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="css/mui.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="css/index.css" />
-		<script src="js/mui.min.js"></script>
-		<script type="text/javascript">
-			mui.init();
-		</script>
-		<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-		<script type="text/javascript" src="js/jquery.cookie.js"></script>
-		<script type="text/javascript" src="js/index.js" ></script>
-	
-	</head>
-		
-	<body>
+<head>
+	<title>首页</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
+    <link rel="stylesheet" type="text/css" href="css/indexstyle.css">
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script  type="text/javascript" src="js/yxMobileSlider.js"></script>
+	<script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
+	<script type="text/javascript" src="js/mui.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</head>
+<body>
+<div data-role="page" id="mainpage">
+    <header data-role="header" id="header" class="">
+           <input type="search" id="search" name="search" placeholder="秦始皇兵马俑">
+    </header>
+    <div data-role="main" >
+        <div class="slider"><!--id="imageSlider" -->
+          <ul class="items" id="index_ul_id">
+            <!--<li><a href="" target="_top" id="slider_a1"><img src="img/1.jpg" alt="这里是测试标题一" id="slider_id1"></a></li>-->
+            <!--<li><a href="#" ><img src="img/2.jpg" alt="这里是测试标题二" ></a></li>
+            <li><a href="#" ><img src="img/3.jpg" alt="这里是测试标题三"></a></li>
+            <li><a href="#" ><img src="img/4.jpg" alt="这里是测试标题四"></a></li>
+            <li><a href="#" ><img src="img/5.jpg" alt="这里是测试标题五"></a></li>-->
+          </ul>
+        </div>
+        <div>
+            <p class="imglist-alt"><span class="left-title">推荐景点</span></p>
+            <ul class="my-imglist" id="index_scenic_ul_id">
+                <!--<li>
+                <div class="imglist-box">
+                <a href="scenicSpot.html" id="" class="">
+                    <img src="img/1.jpg">
+                </a>
+                </div>
+                </li>-->
+                <!--<li>
+                <div class="imglist-box">
+                <a href="scenicSpot.html" target="_top" id="" >
+                    <img src="img/1.jpg">
+                    <p class="imgbar">
+                        兵马俑，即秦始皇兵马俑，亦简称秦兵马俑或秦俑，位于今陕西省西安市临潼区秦始皇陵以东1.5千米处的兵马俑坑内。
+                    </p>
+                </a>
+                </div>
+                </li>
+                <li>
+                <div class="imglist-box">
+                <a href="#" id="" >
+                    <img src="img/1.jpg">
+                </a>
+                </div>
+                </li>
+                <li>
+                <div class="imglist-box">
+                <a href="#" id="" >
+                    <img src="img/1.jpg">
+                </a>
+                </div>
+                </li>
+                <li >
+                <div class="imglist-box">
+                <a href="#" id="" >
+                    <img src="img/1.jpg">
+                </a>
+                </div>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+    <footer data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+            <li><a href="pindan.html" target="_top" id="" class="">拼讲解员</a></li>
+            <li><a href="orderGuide.html" target="_top" id="" class="">预约讲解员</a></li>
+            <li><a href="" target="_top" id="" class="" onclick="LoginOrPersonal()">个人中心</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
 
-		<header class="mui-bar mui-bar-nav">
-		    <div class="mui-input-row mui-search">
-		    	<input type="search" class="mui-input-clear" placeholder="秦始皇兵马俑"/>
-		    </div>
-		</header>
-					<nav class="mui-bar mui-bar-tab">
-					<a class="mui-tab-item mui-active" href="pindan.html" onclick="consisGuide()">
-						<span class="mui-icon mui-icon-home"></span>
-						<span class="mui-tab-label">拼讲解员</span>
-					</a>
-					<a class="mui-tab-item" href="orderGuide.html" onclick="orderGuide()">
-						<span class="mui-icon mui-icon-compose"></span>
-						<span class="mui-tab-label">预约讲解员</span>
-					</a>
-					<a class="mui-tab-item" href="#" onclick="LoginOrPersonal()">
-						<span class="mui-icon mui-icon-person"></span>
-						<span class="mui-tab-label">个人中心</span>
-					</a>
-			</nav>
-		<div class="mui-content">
- 		 	<div id="slider" class="mui-slider">
- 		 		  <div class="mui-slider-group mui-slider-loop">
- 		 		    <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
- 		 		    <div class="mui-slider-item mui-slider-item-duplicate">
- 		 		      <a href="#">
- 		 		        <img src="img/4.jpg">
- 		 		        <p class="mui-slider-title">This is a beautiful world!</p>
- 		 		      </a>
- 		 		    </div>
- 		 		    <!-- 第一张 -->
- 		 		    <div class="mui-slider-item">
- 		 		      <a href="#" id="slider_a1">
- 		 		        <img src="img/1.jpg" id="slider_id1">
- 		 		        <p class="mui-slider-title">This is a beautiful world!</p>
- 		 		      </a>
- 		 		    </div>
- 		 		    <!-- 第二张 -->
- 		 		    <div class="mui-slider-item">
- 		 		      <a href="#">
- 		 		        <img src="img/2.jpg" id="slider_id2">
- 		 		        <p class="mui-slider-title">This is a beautiful world!</p>
- 		 		      </a>
- 		 		    </div>
- 		 		    <!-- 第三张 -->
- 		 		    <div class="mui-slider-item">
- 		 		      <a href="#">
- 		 		        <img src="img/3.jpg" id="slider_id3">
- 		 		        <p class="mui-slider-title">This is a beautiful world!</p>
- 		 		      </a>
- 		 		    </div>
- 		 		    <!-- 第四张 -->
- 		 		    <div class="mui-slider-item">
- 		 		      <a href="#">
- 		 		        <img src="img/4.jpg" id="slider_id4"> 
- 		 		        <p class="mui-slider-title">This is a beautiful world!</p>
- 		 		      </a>
- 		 		    </div>
- 		 		    <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
- 		 		    <div class="mui-slider-item mui-slider-item-duplicate">
- 		 		      <a href="#">
- 		 		        <img src="img/1.jpg">
- 		 		        <p class="mui-slider-title">This is a beautiful world!</p>
- 		 		      </a>
- 		 		    </div>
- 		 		  </div>
- 		 		  <div class="mui-slider-indicator mui-text-right">
- 		 		    <div class="mui-indicator mui-active"></div>
- 		 		    <div class="mui-indicator"></div>
- 		 		    <div class="mui-indicator"></div>
- 		 		    <div class="mui-indicator"></div>
- 		 		  </div>
-			</div>
-			<div class="my-title">
-				<h4 class="left-title">推荐景点</h4>
-				<a class="right-title-link" href="#"><span class="my-title-lable">更多</span><span class="mui-icon mui-icon-arrowright"></span></a>
-			</div>
-			<ul class="mui-table-view mui-grid-view">
-				<li class="mui-table-view-cell mui-media mui-col-xs-6"><a href="scenicSpot.html" id="recommend_a1"><img class="mui-media-object" src="img/1.jpg" id="recommend_img1">
-					<div class="my-media-title">
-					<p>I have a dream.</p></div>
-				</a></li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-6"><a href="#"><img class="mui-media-object" src="img/2.jpg">
-					<div class="my-media-title">
-					<p>I have a dream.</p></div>
-				</a></li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-6"><a href="#"><img class="mui-media-object" src="img/3.jpg">
-					<div class="my-media-title">
-					<p>I have a dream.</p></div>
-				</a></li>
-					<li class="mui-table-view-cell mui-media mui-col-xs-6"><a href="#"><img class="mui-media-object" src="img/4.jpg">
-					<div class="my-media-title">
-					<p>I have a dream.</p></div>
-				</a></li>
-			</ul>
-		</div>
-	</body>
-	
+<div data-role="page" id="searchPanelPage">
+    <div data-role="header" id="header" data-position="fixed" class="header" data-add-back-btn="true" data-back-btn-text="" >
+         <form action="search_submit" method="get" accept-charset="utf-8">
+           <label for="search" class="ui-hidden-accessible">搜索</label>
+           <input type="search" class="searchInput" data-inline="true" id="mysearch"  name="search"  placeholder="秦始皇兵马俑" >
+           <label for="submit" class="ui-hidden-accessible"></label>
+           <input type="button" data-inline="true" id="submit" name="submit" value="搜索" onclick="mySearch()">
+        </form>
+    </div>
+    <div data-role="main" class="ui-content">
+        <ul class="searchTagPanel">
+            <li>秦始皇兵马俑</li>
+            <li>华清池</li>
+            <li>陕西省博物馆</li>
+            <li>半坡遗址公园</li>
+            <li>华山</li>
+        </ul>
+    </div>
+</div>
+</body>
 </html>
