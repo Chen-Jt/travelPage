@@ -1,10 +1,11 @@
-$(document).ready(function() {
-	
-	var loc = window.location.href;
-	var Parame = loc.split("?")[1];
-	//alert(Parame);  //得到问号之后传过来的参数
-	var scenicNo = Parame.split("=")[1];
-	alert(scenicNo);
+  window.onload = function()
+  {
+  	
+  	var loc = window.location.href;
+	  var Parame = loc.split("?")[1];
+	  //alert(Parame);  //得到问号之后传过来的参数
+	  var scenicNo = Parame.split("=")[1];
+	  alert(scenicNo);
 	
 	//从服务器端获取景区详细信息
 	var url2 = "http://10.50.63.83:8080/TourGuide/getDetailScenicByScenicID.do"
@@ -36,20 +37,31 @@ $(document).ready(function() {
 		}
 	});
 	
-	//设置显示名称
-	//$("#title").innerHTML = scenicName;
-	//设置显示图片
-	$("#scenic_img").attr("src",img);
-	//设置显示简介
-	//$("#scenic_info").html(scenicIntro);
-	//设置显示历史参观人数
-	var td = $("#scenic_total_visit");
-	$(td).html(totalVisits);
-}); 
-
-//从服务器端获取今日天气
-var url = "http://10.50.63.83:8080/TourGuide/getWeatherByCity.do"
-$.ajax({
+	//从服务器端获取票价
+	var url1 = "http://10.50.63.83:8080/TourGuide/geTicketsByScenicNo.do"
+	$.ajax({
+		type:"post",
+		url:url1,
+		async:true,
+		data:{scenicNo:"19743"},
+		datatype:"JSON",
+		error:function()
+		{
+			alert("获取门票Request error!");
+		},
+		success:function(data)
+		{
+			alert("获取门票success!");
+			$("#full_price").html(data.fullPrice);
+			$.cookie("FullPrice",data.fullPrice);
+			$.cookie("HalfPrice",data.halfPrice);
+			$.cookie("DiscoutPrice",data.discoutPrice);
+		}
+	});
+	
+	//从服务器端获取今日天气
+	var url = "http://10.50.63.83:8080/TourGuide/getWeatherByCity.do";
+  $.ajax({
 	type:"post",
 	url:url,
 	async:true,
@@ -85,24 +97,8 @@ $.ajax({
 				
 	}
 });
-//从服务器端获取票价
-var url1 = "http://10.50.63.83:8080/TourGuide/geTicketsByScenicNo.do"
-$.ajax({
-	type:"post",
-	url:url1,
-	async:true,
-	data:{scenicNo:"19743"},
-	datatype:"JSON",
-	error:function()
-	{
-		alert("获取门票Request error!");
-	},
-	success:function(data)
-	{
-		alert("获取门票success!");
-		$("#full_price").html(data.fullPrice);
-		$.cookie("FullPrice",data.fullPrice);
-		$.cookie("HalfPrice",data.halfPrice);
-		$.cookie("DiscoutPrice",data.discoutPrice);
-	}
-});
+	
+}
+  
+
+

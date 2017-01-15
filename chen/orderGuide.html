@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>  
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script type="text/javascript" src="js/OrderGuide.js"></script>
 </head>
 <body>
@@ -15,51 +16,42 @@
 <div data-role="panel" id="myPanel">
   <h2>筛选条件</h2>
   <form action="" method="">
+  <table><tbody>
+  <tr><td>性别:</td>
+  <td><fieldset data-role="controlgroup" data-type="horizontal">
+  <label for="female">女</label>
+  <input type="radio" data-mini="true" id="female" name="sex" value="女">
+  <label for="male">男</label>
+  <input type="radio" data-mini="true" id="male" name="sex" value="男">
+  </fieldset></td>
+  </tr>
+    <tr><td>年龄:</td>
+  <td><fieldset data-role="controlgroup" data-type="horizontal">
+  <label for="twtoth">20~30</label>
+  <input id="twtoth" data-mini="true" type="radio" name="age" value="20-30">
+  <label for="thtofu">30~40</label>
+  <input id="thtofu" data-mini="true" type="radio" name="age" value="30-40">
+  <label for="futofi">40~50</label>
+  <input id="futofi" data-mini="true" type="radio" name="age" value="40-50">
+  </fieldset></td></tr>
+  <tr><td>语种:</td>
+  <td>
+  <fieldset data-role="controlgroup" data-type="horizontal">
+  <label for="chinese">中文</label>
+  <input id="chinese" data-mini="true" type="radio" name="language" value="0">
+  <label for="english">英语</label>
+  <input id="english" data-mini="true" type="radio" name="language" value="1">
+  </fieldset></td></tr>
+  <tr>
+    <td><label for="starlevel">星级:</label></td>
+    <td><input id="starleve" type="range" name="starleve" value="1" min="1" max="7"></td>
+  </tr>
+  <tr><td></td><td><input type="button" data-mini="true" value="确定" onclick="selectAvailableGuides()"></td></tr>
+  </tbody></table>
 
-  <fieldset data-role="controlgroup" data-type="horizontal">
-  <legend></legend>
-  <label for=""></label>
-  <input type="checkbox" name="" value="">
-  <label for=""></label>
-  <input type="checkbox" name="" value="">
-  <label for=""></label>
-  <input type="checkbox" name="" value="">
-  </fieldset>
-  <fieldset data-role="controlgroup" data-type="horizontal">
-  <legend></legend>
-  <label for=""></label>
-  <input type="checkbox" name="" value="">
-  <label for=""></label>
-  <input type="checkbox" name="" value="">
-  <label for=""></label>
-  <input type="checkbox" name="" value="">
-  <label for=""></label>
-  <input type="checkbox" name="" value="">
-  </fieldset>
-  <fieldset data-role="controlgroup" data-type="horizontal">
-  <legend></legend>
-  <label for=""></label>
-  <input type="checkbox" name="" value="">
-  <label for=""></label>
-  <input type="checkbox" name="" value="">
-  <label for=""></label>
-  <input type="checkbox" name="" value="">
-  <label for=""></label>
-  <input type="checkbox" name="" value="">
-  </fieldset>
-  <fieldset data-role="controlgroup" data-type="horizontal">
-  <legend></legend>
-  <label for=""></label>
-  <input type="checkbox" name="" value="">
-  <label for=""></label>
-  <input type="checkbox" name="" value="">
-  <label for=""></label>
-  <input type="checkbox" name="" value="">
-  <label for=""></label>
-  <input type="checkbox" name="" value="">
-  </fieldset>
   </form>
 </div>
+
     <div data-role="header"  id="header" data-position="fixed" class="header">
        <div data-role="navbar">
            <ul>
@@ -73,11 +65,11 @@
           <form action="chooseGuide_submit" method="get" accept-charset="utf-8">
              <div class="ui-field-contain">
                <label for="chooseDatetime" class="ui-hidden-accessible">景区名称</label>
-               <input type="text" id="chooseDatetime" name="scenicName" value=""  placeholder="景区名称">
+               <input type="text" id="chooseScenicName" name="scenicName" value=""  placeholder="景区名称">
                <label for="chooseDate" class="ui-hidden-accessible">日期</label>
                <input type="date" id="chooseDate" name=date"" value="" data-icon="calendar" data-iconpos="right" data-inline="true" placeholder="">
                <label for="chooseDatetime" class="ui-hidden-accessible">人数</label>
-               <input type="text" id="chooseDatetime" name="datetime" value=""  placeholder="人数">
+               <input type="text" id="chooseVisitNum" name="VisitNum" value=""  placeholder="人数">
                <a href="#myPanel" class="ui-btn ui-btn-inline">筛选</a>
                <button onclick="getAvailableGuides()" class="ui-btn ui-btn-inline">查看推荐</button>
              </div>

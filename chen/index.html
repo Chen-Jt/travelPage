@@ -12,11 +12,12 @@
 	<script type="text/javascript" src="js/mui.js"></script>
 	<script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <!--<script type="text/javascript" src="js/searchResult.js"></script>-->
 </head>
 <body>
 <div data-role="page" id="mainpage">
     <header data-role="header" id="header" class="">
-           <input type="search" id="search" name="search" placeholder="秦始皇兵马俑">
+           <input type="search" class="search" name="search" placeholder="秦始皇兵马俑">
     </header>
     <div data-role="main" >
         <div class="slider"><!--id="imageSlider" -->
@@ -29,7 +30,9 @@
           </ul>
         </div>
         <div>
-            <p class="imglist-alt"><span class="left-title">推荐景点</span></p>
+            <p class="imglist-title"><span class="left-title">推荐景点</span>
+            	<a class="rightLink" href="#moreSpotPage" target="_top">更多</a>
+            </p>
             <ul class="my-imglist" id="index_scenic_ul_id">
                 <!--<li>
                 <div class="imglist-box">
@@ -84,12 +87,14 @@
 </div>
 
 <div data-role="page" id="searchPanelPage">
-    <div data-role="header" id="header" data-position="fixed" class="header" data-add-back-btn="true" data-back-btn-text="" >
+    <div data-role="header" id="header" data-position="fixed" class="header" >
          <form action="search_submit" method="get" accept-charset="utf-8">
-           <label for="search" class="ui-hidden-accessible">搜索</label>
-           <input type="search" class="searchInput" data-inline="true" id="mysearch"  name="search"  placeholder="秦始皇兵马俑" >
-           <label for="submit" class="ui-hidden-accessible"></label>
-           <input type="button" data-inline="true" id="submit" name="submit" value="搜索" onclick="mySearch()">
+         <a href="#" class="backbtn" data-role="button" data-rel="back">后退</a>
+          <div class="searchDiv">
+             <label for="search" class="ui-hidden-accessible">搜索</label>
+             <input type="search" id="mySearchInput"  name="search"  placeholder="秦始皇兵马俑" >
+           </div>
+           <input class="searchbtn" type="button" data-inline="true" id="searchSubmit" name="submit" value="搜索">
         </form>
     </div>
     <div data-role="main" class="ui-content">
@@ -99,6 +104,76 @@
             <li>陕西省博物馆</li>
             <li>半坡遗址公园</li>
             <li>华山</li>
+        </ul>
+    </div>
+</div>
+
+<!--更多景点页面-->
+<div data-role="page" id="moreSpotPage">
+<header data-role="header" id="header" class="">
+           <input type="search" class="search" name="search" placeholder="秦始皇兵马俑">
+</header>
+<div data-role="main" class="ui-content">
+        <ul class="my-imglist" id="more_ul">
+            <!--<li>
+                <div class="imglist-box" id="relate_div">
+                <a href="#" id="" class="">
+                    <img src="img/1.jpg" id="relate_img">
+                    <p class="imgbar">
+                        <span class="imgbar-left-title">兵马俑</span>
+                        <span class="imgbar-right-title">22000人想去</span>
+                    </p>
+                </a>
+                </div>
+            </li>
+            <li>
+                <div class="imglist-box">
+                <a href="#" id="" class="">
+                    <img src="img/1.jpg">
+                </a>
+                </div>
+            </li>-->
+    </ul>
+</div>
+</div>
+<!--搜索结果页面-->
+<div data-role="page" id="searchResultPage">
+    <div data-role="header"  id="header" class="header">
+           <input type="search" class="search" data-inline="true" id="mysearch"  name="search"  placeholder="秦始皇兵马俑" >
+    </div>
+    <div data-role="main" >
+        <div class="searchResult ui-grid-a">
+            <div class="searchResultImg ui-block-a">
+            <img src="img/1.jpg" id="search_img">
+            </div>
+            <div class="searchResultDis ui-block-b">
+                <p class="spotDis" id="search_scenic_intro">兵马俑，即秦始皇兵马俑，亦简称秦兵马俑或秦俑，位于今陕西省西安市临潼区秦始皇陵以东1.5千米处的兵马俑坑内。</p>
+                <p>景点等级：<span class="spotlevel" id="search_starlevel">AAAA</span></p>
+                <p>景点地址：<span class="spotAddr" id="search_address">陕西省西安市临潼区秦始皇陵</span></p>
+            </div>
+        </div>
+        <p class="imglist-title"><span class="left-title">为您推荐</span>
+        	
+        </p>
+        <ul class="my-imglist" id="search_ul">
+            <!--<li>
+                <div class="imglist-box">
+                <a href="#" id="" class="">
+                    <img src="img/1.jpg">
+                    <p class="imgbar">
+                        <span class="imgbar-left-title">兵马俑</span>
+                        <!--<span class="imgbar-right-title">22000人想去</span>-->
+                    </p>
+                </a>
+                </div>
+            </li>
+            <li>
+                <div class="imglist-box">
+                <a href="#" id="" class="">
+                    <img src="img/1.jpg">
+                </a>
+                </div>
+            </li>-->
         </ul>
     </div>
 </div>

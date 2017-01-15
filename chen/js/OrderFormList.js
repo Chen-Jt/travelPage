@@ -1,4 +1,6 @@
-var url = "http://10.50.63.83:8080/TourGuide/getAllOrders.do";
+window.onload = function()
+{
+    var url = "http://10.50.63.83:8080/TourGuide/getAllOrders.do";
 	$.ajax({
 		type:"post",
 		url:url,
@@ -72,4 +74,6 @@ var url = "http://10.50.63.83:8080/TourGuide/getAllOrders.do";
 			});
 		}
 		//景区图片暂时不显示在列表
-	});
+	});	
+}
+    

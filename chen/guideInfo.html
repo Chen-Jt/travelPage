@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-    <script type="text/javascript" src="js/"></script>
+    <script type="text/javascript" src="js/GuideInfo.js"></script>
 </head>
 <body>
 <div data-role="page">
@@ -17,27 +17,27 @@
             <img  src="img/angelababy.jpg" >
         </div>
         <div class="guideInfoHead">
-        <img src="img/angelababy.jpg">
+        <img src="img/angelababy.jpg" id="guide_img">
         </div>
     </div>
     <div data-role="main" class="ui-content">
         <div class="infocard">
             <p>
-                <span class="name">Angelababy</span>
-                <sapn calss="sex">女</sapn>
-                <span class="age">26</span>
-                <span class="language">英语，法语</span>
-                <span class="starLevel">3</span>
-                接待人次：<span class="">180</span>
-                导游证号：<span class="guideId">666666</span>
-                工作年限：<span class="">2-3年</span>
-                隶属单位：<span class="">个人</span>
-                个人介绍：<span class="personalDis">杨颖身为模特和演员，小时候的英文名是Angela，但她身边的人都觉得这个名字的三个音太难读，加上她有婴儿肥，所以都叫Baby。到她主持迪士尼节目时，用回Angela这个名字，因不想大家混淆她的名字，才结合成为Angelababy。</span>
+                姓名：<span class="name" id="guide_info_name">Angelababy</span><br/>
+                性别：<span class="sex" id="guide_info_sex">女</sapn><br/>
+                年龄：<span class="age" id="guide_age">26</span><br/>
+                语种：<span class="language" id="guide_language">英语，法语</span><br/><br/>
+                导游级别：<span class="starLevel" id="guide_starlevel">3</span><br/>
+                接待人次：<span class="" id="guide_Visitors">180</span><br/>
+                手机号：<span class="guideId" id="guide_phone">666666</span><br/>
+                导游费：<span class="" id="guide_fee">2-3年</span><br/><br/>
+                <!--隶属单位：<span class="">个人</span><br/>-->
+                个人介绍：<span class="personalDis" id="guide_self_intro">杨颖身为模特和演员，小时候的英文名是Angela，但她身边的人都觉得这个名字的三个音太难读，加上她有婴儿肥，所以都叫Baby。到她主持迪士尼节目时，用回Angela这个名字，因不想大家混淆她的名字，才结合成为Angelababy。</span>
             </p>
         </div>
         <div>
         <div class="">
-            <a  class="ui-btn ui-shadow ui-corner-all " href="orderFormPage.html" target="_top">立刻预定</a>
+            <a  class="ui-btn ui-shadow ui-corner-all "  target="_top" onclick="bookGuide()">立刻预定</a>
         </div>
         </div>
         <div>
@@ -54,7 +54,7 @@
                     </p>
                 </a>
                 </li>
-                <li data-icon="false">
+                <!--<li data-icon="false">
                 <a href="#" >
                     <img src="img/visitor.png">
                     <p>
@@ -89,7 +89,7 @@
                         </span>
                     </p>
                 </a>
-                </li>
+                </li>-->
             </ul>
         </div>
     </div>

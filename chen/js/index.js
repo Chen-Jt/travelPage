@@ -1,17 +1,167 @@
+
 $(function($){
-//轮播图片初始化
 $(document).bind("mobileinit", function() {
 $.mobile.page.prototype.options.addBackBtn = true;
 });
-$("#search").focus(function(event) {
-$.mobile.changePage("#searchPanelPage","slideright");
-            $("#mysearch").focus();
-});
-$(".searchTagPanel").click(function(event){
+
+function bindSearch(){
+    $(".search").focus(function(event) {
+    $.mobile.changePage("#searchPanelPage","slideright");
+    });
+}
+bindSearch();
+    $(".searchTagPanel").click(function(event){
          var searchtext = event.target.innerText;
-         $("#mysearch").val(searchtext);
+         $("#mySearchInput").val(searchtext);
+         $("#searchSubmit").trigger("click");
         });
+    //点击搜索按钮
+    $("#searchSubmit").click(function(event) {
+        sessionStorage.searchText=$("#mySearchInput").val();
+         $.mobile.changePage("#searchResultPage","slideright");
+    });
+    //更多景点页面创建时触发 执行一次
+    $('#moreSpotPage').bind('pagecreate',function(event, ui){
+        bindSearch();
+        var url = "http://10.50.63.83:8080/TourGuide/getAllScenicByLocation.do";
+		$.ajax({
+			type:"post",
+			url:url,
+			async:true,
+			data:{"province":"陕西"},
+			datatype:"JSON",
+			error:function()
+			{
+				alert("全部景点Request error!");
+			},
+			success:function(data)
+			{ 
+				$.each(data, function(i,item) {
+					alert("全部景点Request success!");
+					var MoreUlList = document.getElementById("more_ul");
+					
+					var MoreLiList = document.createElement("li");
+					MoreUlList.appendChild(MoreLiList);
+					
+					var MoreAList = document.createElement("a");
+					MoreAList.href = "scenicSpot.html?"+"scenicNo="+item.scenicNo;
+					MoreLiList.appendChild(MoreAList);
+					
+					var MoreImgList = document.createElement("img");
+					MoreImgList.src = item.scenicImagePath;
+					MoreAList.appendChild(MoreImgList);
+					
+					var MorePList = document.createElement("p");
+					MorePList.className = "imgbar";
+					MoreImgList.appendChild(MorePList);
+					
+					var MoreSpanListName = document.createElement("span");
+					MoreSpanListName.className = "imgbar-left-title";
+					MoreSpanListName.innerHTML = item.scenicName;
+//					var MoreSpanListNum = document.createElement("span");
+//					MoreSpanListNum.className = "imgbar-right-title";
+					MorePList.appendChild(MoreSpanListName);
+					
+					
+				});
+				
+				$("#more_ul").listview('refresh');
+			}
+		});
+    });
+    //搜索结果页面创建时触发 执行一次
+    $('#searchResultPage').bind('pagecreate',function(event, ui){
+        bindSearch();
+    });
+    //搜索面板显示时触发 每次都执行
+    $('#searchPanelPage').bind('pageshow',function(event, ui){
+        setTimeout(function(){
+            $("#mySearchInput").trigger("click").focus();
+        },10);
+    });
+    
+    $('#searchResultPage').bind('pagebeforeshow',function(event, ui){
+                if(sessionStorage.searchText)
+                {
+                $(".search").val(sessionStorage.searchText)
+                var url = "http://10.50.63.83:8080/TourGuide/getScenicByName.do";
+				$.ajax({
+					type:"post",
+					url:url,
+					async:true,
+					data:{"scenicName":sessionStorage.searchText},
+					datatype:"JSON",
+					error:function()
+					{
+						alert("搜索结果Request error!");
+					},
+					success:function(data)
+					{
+						alert("搜索结果Request success!");
+						$.each(data, function(i,item) {
+							$("#search_img").attr("src",item.scenicImagePath);
+							$("#search_scenic_intro").html(item.scenicIntro);
+							$("#search_starlevel").html(item.scenicLevel);
+							$("#search_address").html(item.province+item.city+item.scenicLocation);						
+						});
+						
+					}
+				});
+				//获取推荐景点
+				var url = "http://10.50.63.83:8080/TourGuide/getScenicRelatesByName.do";
+				$.ajax({
+					type:"post",
+					url:url,
+					async:true,
+					data:{"scenicName":sessionStorage.searchText},
+					datatype:"JSON",
+					error:function()
+					{
+						alert("相关推荐景点Request error!");
+					},
+					success:function(data)
+					{
+						$.each(data, function(i,item) {
+							alert("相关推荐景点Request success!");
+							var UlList = document.getElementById("search_ul");
+							
+							var LiList = document.createElement("li");
+							UlList.appendChild(LiList);
+							
+							var DivList = document.createElement("div");
+							DivList.className = "imglist-box";
+							LiList.appendChild(DivList);
+										
+							var AList = document.createElement("a");
+							AList.href = "scenicSpot.html?"+"scenicNo="+item.scenicNo;
+							DivList.appendChild(AList);
+							
+							var ImgList = document.createElement("img");
+							ImgList.src = item.scenicImagePath;
+							//ImgList.setAttribute("src",item.scenicImagePath);
+							AList.appendChild(ImgList);
+						    
+						    var PList = document.createElement("p");
+						    PList.className = "imgbar";
+						    ImgList.appendChild(PList);
+						    
+						    var SpanList = document.createElement("span");
+						    SpanList.className = "imgbar-left-title";
+						    SpanList.innerHTML = item.scenicName;
+						    PList.appendChild(SpanList);
+						    
+						    $("search_ul").listview('refresh');
+						});
+						
+					}
+				});
+                
+                }
+            });
+
 });
+
+
 
 
 		
@@ -124,26 +274,3 @@ function LoginOrPersonal()
 	}
 
 }
-
-
-function mySearch()
-	{
-		var url2 = "http://10.50.63.83:8080/TourGuide//getScenicByNameAndRelates.do";
-		$.ajax({
-			type:"post",
-			url:url2,
-			async:true,
-			data:{scenicName:$("#mysearch").val()},
-			datatype:"JSON",
-			error:function()
-			{
-				alert("搜索Request error!");
-			},
-			success:function(data)
-			{
-				alert("搜索success!");
-				//alert(data[0].scenicNo);
-				window.location.href = "searchResult.html";
-			}
-		});
-	}
