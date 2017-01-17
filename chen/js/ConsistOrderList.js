@@ -38,7 +38,7 @@ var OrderID = decodeURI(loc.substr(n2+1,n1-n2));
 		alert(data.discoutPrice);
 		alert(data.fullPrice);
 		
-		var url = "http://10.50.63.83:8080/TourGuide//consistWithconsistOrderID.do";
+		var url = HOST+"/consistWithconsistOrderID.do";
 		$.ajax({
 			type:"post",
 			url:url,

@@ -1,13 +1,14 @@
 
 /*var data = {phone:$.cookie("LoginName")};
 alert(data);*/
+var Phone = getCookie("LoginName");
 
-var url = "http://10.50.63.83:8080/TourGuide/getVisitorInfoWithPhone.do";
+var url = HOST+"/getVisitorInfoWithPhone.do";
 	$.ajax({
 		type:"post",
 		url:url,
 		async:true,
-		data:{phone:"13589678945"},
+		data:{phone:Phone},
 		datatype:"JSON",
 		error:function()
 		{

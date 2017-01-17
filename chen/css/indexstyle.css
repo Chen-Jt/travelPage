@@ -72,8 +72,11 @@ a:hover { color: #D40000; text-decoration: none}
     overflow:hidden;
 }
 .imglist-box{
-    margin:0px 5px 5px 5px;
+    margin:5px -5px -5px -5px;
+    padding: 0px 10px 10px 10px;
+    width: 100%;
     position:relative;
+    overflow: hidden;
 }
 .imglist-box a{
     display: inline-block;
@@ -92,6 +95,9 @@ a:hover { color: #D40000; text-decoration: none}
     text-decoration:none;
     font-style: none;
 
+}
+#more_ul li{
+	overflow: hidden;
 }
 .my-imglist li a img{
     width:100%;

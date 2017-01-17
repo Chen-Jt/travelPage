@@ -1,6 +1,6 @@
 window.onload = function()
 {
-    var url = "http://10.50.63.83:8080/TourGuide/getAllOrders.do";
+    var url = HOST+"/getAllOrders.do";
 	$.ajax({
 		type:"post",
 		url:url,
@@ -13,7 +13,7 @@ window.onload = function()
 		},
 		success:function(data)
 		{
-			alert("全部订单success!");
+//			alert("全部订单success!");
 			$.each(data, function(i,n) {
 				/*$("#order_orderState").html(n.orderState);
 				$("#order_OrderID").html(n.OrderID);

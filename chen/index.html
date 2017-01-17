@@ -9,7 +9,6 @@
 	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
     <script  type="text/javascript" src="js/yxMobileSlider.js"></script>
 	<script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-	<script type="text/javascript" src="js/mui.js"></script>
 	<script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <!--<script type="text/javascript" src="js/searchResult.js"></script>-->
@@ -144,12 +143,13 @@
     <div data-role="main" >
         <div class="searchResult ui-grid-a">
             <div class="searchResultImg ui-block-a">
-            <img src="img/1.jpg" id="search_img">
+            	<a id="imgA" href="" target="_top" >
+            <img src="img/1.jpg" id="search_img"></a>
             </div>
             <div class="searchResultDis ui-block-b">
-                <p class="spotDis" id="search_scenic_intro">兵马俑，即秦始皇兵马俑，亦简称秦兵马俑或秦俑，位于今陕西省西安市临潼区秦始皇陵以东1.5千米处的兵马俑坑内。</p>
-                <p>景点等级：<span class="spotlevel" id="search_starlevel">AAAA</span></p>
-                <p>景点地址：<span class="spotAddr" id="search_address">陕西省西安市临潼区秦始皇陵</span></p>
+                <p class="spotDis" id="search_scenic_intro"></p>
+                <p>景点等级：<span class="spotlevel" id="search_starlevel"></span></p>
+                <p>景点地址：<span class="spotAddr" id="search_address"></span></p>
             </div>
         </div>
         <p class="imglist-title"><span class="left-title">为您推荐</span>
@@ -163,17 +163,10 @@
                     <p class="imgbar">
                         <span class="imgbar-left-title">兵马俑</span>
                         <!--<span class="imgbar-right-title">22000人想去</span>-->
-                    </p>
+                    <!--</p>-->
                 </a>
                 </div>
             </li>
-            <li>
-                <div class="imglist-box">
-                <a href="#" id="" class="">
-                    <img src="img/1.jpg">
-                </a>
-                </div>
-            </li>-->
         </ul>
     </div>
 </div>

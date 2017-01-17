@@ -24,7 +24,7 @@ function setWorkday()
 	var data = {"phone":"3","days":document.getElementById("alternate").value};
 	alert(data.days);
 	alert(data.phone);
-	var url = "http://10.50.63.83:8080/TourGuide/setGuideWorkday.do"
+	var url = HOST+"/setGuideWorkday.do";
 	$.ajax({
 		type:"post",
 		url:url,

@@ -1,5 +1,40 @@
 //从登录界面获得游客的手机号即登录名
+//1-15 datebox 时间无法获取
 var VisitTel = $.cookie('LoginName');
+var scenicNo = GetUrlem("scenicNo");
+window.onload = function()
+{
+	$("#panel2").hide();
+	$("#orderTicketPanel").hide();
+ 	
+	getconsistOrder();
+	
+}
+	
+function textchange()
+{
+	alert("進入");
+	 getFee();
+	
+}
+
+function getFee()
+{
+	var a=$("#date").val();
+	var url = HOST+"/getIntroFee.do";
+	var fee;
+	$.ajax({
+		type:"get",
+		url:url,
+		async:true,
+		data:{scenicID:scenicNo,date:a},
+		success:function(data)
+		{
+			fee=data;
+		},
+	});
+	$("#fee").innerHTML=fee;
+}
 
 function consistOrder()
 {
@@ -30,7 +65,7 @@ function consistOrder()
 		fullPrice:FullPrice
 	};
 	
-	var url = "http://10.50.63.83:8080/TourGuide/releaseConsistOrder.do";
+	var url = HOST+"/releaseConsistOrder.do";
 	$.ajax({
 		type:"post",
 		url:url,
@@ -44,11 +79,11 @@ function consistOrder()
 		success:function(data)
 		{
 			alert("发起拼单success!");
-			alert(data);
+			
 		}
 	});
 	
-	var url1 = "http://10.50.63.83:8080/TourGuide/getIntroFee.do";
+	var url1 = HOST+"/getIntroFee.do";
 	$.ajax({
 		type:"post",
 		url:url1,
@@ -81,14 +116,20 @@ function consistOrder()
 	});
 }
 //从服务器获取可拼订单
-window.onload = function()
+
+function getconsistOrder()
 {
-	var url = "http://10.50.63.83:8080/TourGuide/getAvailableConsistOrder.do";
+	
+	var url = HOST+"/getAvailableConsistOrder.do";
+	var scenicId = GetUrlem("scenicNo");
+	
+	alert(scenicId);
+	
 	$.ajax({
 		type:"post",
 		url:url,
 		async:true,
-		data:{scenicID:"19743"},
+		data:{scenicID:scenicId},
 		datatype:"JSON",
 		error:function()
 		{
@@ -96,7 +137,8 @@ window.onload = function()
 		},
 		success:function(data)
 		{
-			alert("可拼拼单success!");
+			
+			
 			//动态加载div布局
 			$.each(data, function(i,n){
 				
@@ -159,10 +201,8 @@ window.onload = function()
 				.appendChild(SpanVisitNumInfo)
 				.appendChild(SpanConsisNumInfo)
 				.appendChild(DivConsisBtn);
-				});
-				
+			});				
 				$("#pindan_ul_id").listview('refresh');
-
 			}
 		});
 }

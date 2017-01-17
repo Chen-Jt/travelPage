@@ -25,7 +25,7 @@ function UserLogin()
 	
 	var data = {username:$("#tour_id").val(),
 	            password:$("#tour_password_id").val()};
-	var url = "http://10.50.63.83:8080/TourGuide/login.do";
+	var url = HOST+"/login.do";
 	$.ajax({
 		type:"post",
 		url:url,

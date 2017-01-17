@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>订单详情</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
+    	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    	<script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
+    	<script type="text/javascript" src="js/DetailBeTakenOrder.js"></script>
+	</head>
+	
+	
+	<body>
+		<div data-role = "page">
+			<div data-role = "header">
+				<h1>订单详情</h1>
+			</div>
+
+<!--是否代购门票、全价票、半价票、折扣票、-->
+			<div data-role="main" class="ui-content">
+				<li data-icon="false">
+					<h3>订单信息</h3>
+					<p>订单编号：<lable id="orderID"></lable></p>
+					<p>景区名称：<lable id="scenicName"></lable></p>
+					<p>参观时间：<lable id="visitTime"></lable></p>
+					<p>参观人数：<lable id="visitNum"></lable></p>	
+					<p>门票总额：<lable id="totalTicket"></lable></p>	
+				</li>
+				
+				<li data-icon="false">
+					<h3>讲解信息</h3>
+					<p>讲解语言：<lable id="language"></lable></p>
+					<p>讲解员性别：<lable id="sex"></lable></p>
+					<p>可接受讲解费：<lable id="price"></lable></p>										
+				</li>
+				
+				<li data-icon="false">
+					<h3>游客信息</h3>
+					<p>游客姓名：<lable id="visitorName"></lable></p>
+					<p>游客手机号：<lable id="visitorPhone"></lable>
+						<button type="button" data-inline="ture">一键拨号</button>
+					</p>
+				</li>
+					
+				<li id="ticket" data-icon="false">
+					
+				</li>
+				<p>其他需求：<label id="otherCommand"></label></p>
+				
+				<button data-theme="b" name="takeOrder" onclick="takeorder()"><b>抢 单<b/></button>
+			</div>
+		</div>
+	</body>
+</html>

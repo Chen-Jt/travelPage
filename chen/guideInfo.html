@@ -14,17 +14,17 @@
 <div data-role="page">
     <div data-role="header" data-position="fixed" id="header" class="header">
         <div class="guideInfoBGimg">
-            <img  src="img/angelababy.jpg" >
+            <img  id="bgimg" src="" ><!--img/angelababy.jpg-->
         </div>
         <div class="guideInfoHead">
-        <img src="img/angelababy.jpg" id="guide_img">
+        <img src="" id="guide_img">
         </div>
     </div>
     <div data-role="main" class="ui-content">
         <div class="infocard">
             <p>
                 姓名：<span class="name" id="guide_info_name">Angelababy</span><br/>
-                性别：<span class="sex" id="guide_info_sex">女</sapn><br/>
+                性别：<span class="sex" id="guide_info_sex">男</span><br/>
                 年龄：<span class="age" id="guide_age">26</span><br/>
                 语种：<span class="language" id="guide_language">英语，法语</span><br/><br/>
                 导游级别：<span class="starLevel" id="guide_starlevel">3</span><br/>
@@ -54,42 +54,6 @@
                     </p>
                 </a>
                 </li>
-                <!--<li data-icon="false">
-                <a href="#" >
-                    <img src="img/visitor.png">
-                    <p>
-                        <span class="visitorName">游客1**1</span>
-                        <span class="messageDate">(2017--/01/02)</span><br/>
-                        <span class="meassageInfo">
-                            明明能靠脸吃饭，却偏偏要靠才华，导游知识面很广，讲的很仔细。明明能靠脸吃饭，却偏偏要靠才华，导游知识面很广，讲的很仔细。明明能靠脸吃饭，却偏偏要靠才华，导游知识面很广，讲的很仔细。
-                        </span>
-                    </p>
-                </a>
-                </li>
-                <li data-icon="false">
-                <a href="#" >
-                    <img src="img/visitor.png">
-                    <p>
-                        <span class="visitorName">游客1**1</span>
-                        <span class="messageDate">(2017--/01/02)</span><br/>
-                        <span class="meassageInfo">
-                            明明能靠脸吃饭，却偏偏要靠才华，导游知识面很广，讲的很仔细。明明能靠脸吃饭，却偏偏要靠才华，导游知识面很广，讲的很仔细。明明能靠脸吃饭，却偏偏要靠才华，导游知识面很广，讲的很仔细。
-                        </span>
-                    </p>
-                </a>
-                </li>
-                <li data-icon="false">
-                <a href="#" >
-                    <img src="img/visitor.png">
-                    <p>
-                        <span class="visitorName">游客1**1</span>
-                        <span class="messageDate">(2017--/01/02)</span><br/>
-                        <span class="meassageInfo">
-                            明明能靠脸吃饭，却偏偏要靠才华，导游知识面很广，讲的很仔细。明明能靠脸吃饭，却偏偏要靠才华，导游知识面很广，讲的很仔细。明明能靠脸吃饭，却偏偏要靠才华，导游知识面很广，讲的很仔细。
-                        </span>
-                    </p>
-                </a>
-                </li>-->
             </ul>
         </div>
     </div>
@@ -97,7 +61,12 @@
 <script type="text/javascript">
    $(document).ready(function() {
         $(".guideInfoHead").width($(".guideInfoHead").height());
+        $(window).bind("resize load",function(){
+        	$(".guideInfoHead").width($(".guideInfoHead").height());
+        });
     });
+     
 </script>
+
 </body>
 </html>

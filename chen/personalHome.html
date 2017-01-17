@@ -31,7 +31,7 @@
             <p >我的订单</p>
             <a  class="viewmyorder" href="orderFormList.html" target="_top"> >查看全部订单</a>
             </div>
-        <div class="marginRL">
+        <div class="marginRL myorder">
             <table><tbody>
             <tr>
                 <td><a href="#" class="my-ui-block orderFormLink"><span>待接单</span></a></td>
@@ -44,22 +44,36 @@
         <div class="titlebar">
             <p>我是导游</p>
         </div>
-        <div class="marginRL">
+        <div class="marginRL ImGuide">
             <table><tbody>
             <tr >
-                    <td><a href="register.html" target="_top" class="my-ui-block borderBottom"><span>申请导游</span></a></td>
+                    <td><a href="guideApply.html" target="_top" class="my-ui-block borderBottom"><span>申请导游</span></a></td>
 
                     <td><a href="workPlace.html" target="_top" class="my-ui-block borderBottom borderLeft borderRight"><span>挂靠景区</span></a></td>
 
-                    <td><a href="orderFormList.html" target="_top" class="my-ui-block borderBottom"><span>订单管理</span></a></td>
+                    <td><a href="GuideOrders.html" target="_top" class="my-ui-block borderBottom"><span>订单管理</span></a></td>
             </tr>
             <tr>
                     <td><a href="" class="my-ui-block "><span>关联导游机</span></a></td>
                     <td><a href="" class="my-ui-block borderLeft borderRight"><span>我的钱包</span></a></td>
                     <td><a href="SetWorkday.html" target="_top" class="my-ui-block "><span>个人日程</span></a></td>
             </tr>
+            <tr>
+                    <td><a href="takeOrder.html" target="_top" class="my-ui-block "><span>抢单</span></a></td>
+                    <td><a href="" class="my-ui-block borderLeft borderRight"><span></span></a></td>
+                    <td><a href=" " target=" " class="my-ui-block "><span></span></a></td>
+            </tr>
             </tbody></table>
 
+<footer data-role="footer" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+            <li><a href="pindan.html" target="_top" id="" class="">拼讲解员</a></li>
+            <li><a href="orderGuide.html" target="_top" id="" class="">预约讲解员</a></li>
+            <li><a href="" target="_top" id="" class="" onclick="LoginOrPersonal()">个人中心</a></li>
+            </ul>
+        </div>
+</footer>
 
         </div>
     </div>
@@ -72,9 +86,13 @@ $(function($){
       $(window).bind('resize load', function(){
         $("#header").height($("#header").width()*0.5);
        $(".guideInfoHead").width($(".guideInfoHead").height());
-       $("a.my-ui-block").height($("a.my-ui-block").width());
-         });
-
+       //$("a.my-ui-block").height($("a.my-ui-block").width());
+      var myorder = $(".myorder").find("a.my-ui-block");
+      myorder.height(myorder.width());
+       var ImGuide = $(".ImGuide").find("a.my-ui-block");
+      ImGuide.height(ImGuide.width());     
+        });
+ 
     $(".orderFormLink").click(function(event) {
         location.href="orderFormList.html?hide="+$(this).children('span').html();
     });

@@ -4,10 +4,13 @@
     <meta charset="UTF-8" />
     <title>预约讲解员</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
+    <link rel="stylesheet" href="css/jtsage-datebox-4.1.0.jqm.min.css">
     <link rel="stylesheet" type="text/css" href="css/orderGuide.css">
-    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>  
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/jtsage-datebox-4.1.0.jqm.min.js"></script>
+    <script type="text/javascript" src="js/jtsage-datebox.i18n.zh-CN.utf8.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script type="text/javascript" src="js/OrderGuide.js"></script>
 </head>
@@ -46,7 +49,7 @@
     <td><label for="starlevel">星级:</label></td>
     <td><input id="starleve" type="range" name="starleve" value="1" min="1" max="7"></td>
   </tr>
-  <tr><td></td><td><input type="button" data-mini="true" value="确定" onclick="selectAvailableGuides()"></td></tr>
+  <tr><td></td><td><input type="button" data-mini="true" id="selectAvailableGuides" value="确定" ></td></tr>
   </tbody></table>
 
   </form>
@@ -67,16 +70,16 @@
                <label for="chooseDatetime" class="ui-hidden-accessible">景区名称</label>
                <input type="text" id="chooseScenicName" name="scenicName" value=""  placeholder="景区名称">
                <label for="chooseDate" class="ui-hidden-accessible">日期</label>
-               <input type="date" id="chooseDate" name=date"" value="" data-icon="calendar" data-iconpos="right" data-inline="true" placeholder="">
-               <label for="chooseDatetime" class="ui-hidden-accessible">人数</label>
+               <input id="chooseDate" data-role="datebox" data-options='{"mode": "flipbox","afterToday": true,"overrideDateFormat": "%Y-%m-%d"}' type="text" name="" value="" placeholder="请输入日期">
+               <label for="chooseVisitNum" class="ui-hidden-accessible">人数</label>
                <input type="text" id="chooseVisitNum" name="VisitNum" value=""  placeholder="人数">
                <a href="#myPanel" class="ui-btn ui-btn-inline">筛选</a>
-               <button onclick="getAvailableGuides()" class="ui-btn ui-btn-inline">查看推荐</button>
+               <button id="getAvailableGuides" class="ui-btn ui-btn-inline">查看推荐</button>
              </div>
           </form>
           <ul data-role="listview" data-inset="true" id="order_guide_ul">
                <li id="order_guide_li">
-                <a href="guideInfo.html" target="_top" id="order_guide_aid">
+                <!--<a href="guideInfo.html" target="_top" id="order_guide_aid">
                 <img src="img/angelababy.jpg">
                 <p>姓名:<span class="name" id="order_guide_name">angelababy</span><br/>
                    性别：<span class="sex">女</span><br/>
@@ -84,133 +87,50 @@
                    等级：<span class="starLevel">3</span>
                 </p>
                 </a>
-                 <a id="orderGuideA" href="orderFormPage.html" target="_top">立即预约</a>
+                 <a class="DirectOrderBtn" href="#orderTicketPop" data-rel="dialog" >立即预约</a>-->
               </li>
-              <!--<li>
-                <a href="guideInfo.html" target="_top" >
-                <img src="img/angelababy.jpg">
-                <p>姓名:<span class="name">angelababy</span><br/>
-                   性别：<span class="sex">女</span><br/>
-                   年龄：<span class="age">27</span><br>
-                   等级：<span class="starLevel">3</span>
-                </p>
-                </a>
-                 <a id="orderGuideA" href="orderFormPage.html" target="_top">立即预约</a>
-              </li>
-              <li>
-                <a href="guideInfo.html" target="_top" >
-                <img src="img/angelababy.jpg">
-                <p>姓名:<span class="name">angelababy</span><br/>
-                   性别：<span class="sex">女</span><br/>
-                   年龄：<span class="age">27</span><br>
-                   等级：<span class="starLevel">3</span>
-                </p>
-                </a>
-                 <a id="orderGuideA" href="orderFormPage.html" target="_top">立即预约</a>
-              </li>
-              <li>
-                <a href="guideInfo.html" target="_top" >
-                <img src="img/angelababy.jpg">
-                <p>姓名:<span class="name">angelababy</span><br/>
-                   性别：<span class="sex">女</span><br/>
-                   年龄：<span class="age">27</span><br>
-                   等级：<span class="starLevel">3</span>
-                </p>
-                </a>
-                 <a id="orderGuideA" href="orderFormPage.html" target="_top">立即预约</a>
-              </li>
-              <li>
-                <a href="guideInfo.html" target="_top" >
-                <img src="img/angelababy.jpg">
-                <p>姓名:<span class="name">angelababy</span><br/>
-                   性别：<span class="sex">女</span><br/>
-                   年龄：<span class="age">27</span><br>
-                   等级：<span class="starLevel">3</span>
-                </p>
-                </a>
-                 <a id="orderGuideA" href="orderFormPage.html" target="_top">立即预约</a>
-              </li>
-              <li>
-                <a href="guideInfo.html" target="_top" >
-                <img src="img/angelababy.jpg">
-                <p>姓名:<span class="name">angelababy</span><br/>
-                   性别：<span class="sex">女</span><br/>
-                   年龄：<span class="age">27</span><br>
-                   等级：<span class="starLevel">3</span>
-                </p>
-                </a>
-                 <a id="orderGuideA" href="orderFormPage.html" target="_top">立即预约</a>
-              </li>
-              <li>
-                <a href="guideInfo.html" target="_top" >
-                <img src="img/angelababy.jpg">
-                <p>姓名:<span class="name">angelababy</span><br/>
-                   性别：<span class="sex">女</span><br/>
-                   年龄：<span class="age">27</span><br>
-                   等级：<span class="starLevel">3</span>
-                </p>
-                </a>
-                 <a id="orderGuideA" href="orderFormPage.html" target="_top">立即预约</a>
-              </li>-->
           </ul>
         </div>
         <div id="orderPanel">
             <form action="orderGuide_submit" method="get" accept-charset="utf-8">
                 <div>
-                    <label for="orderDate" class="ui-hidden-accessible">日期</label>
-                    <input id="orderDate" type="date" name="" value="" placeholder="年/月/日">
+                     <label for="orderDate" class="ui-hidden-accessible">日期</label>
+                    <input id="orderDate" data-role="datebox" data-options='{"mode": "flipbox","afterToday": true,"overrideDateFormat": "%Y-%m-%d"}' type="text" name="" value="" placeholder="请输入日期">
                     <label for="orderDatetime" class="ui-hidden-accessible">时间</label>
-                    <select id="orderDatetime" name="datetime" value="" placeholder="时间">
-					<option>8:00:00</option>
-					<option>8:30:00</option>
-					<option>9:00:00</option>
-					<option>9:30:00</option>
-					<option>10:00:00</option>
-					<option>10:30:00</option>
-					<option>11:00:00</option>
-					<option>11:30:00</option>
-					<option>12:00:00</option>
-					<option>12:30:00</option>
-					<option>13:00:00</option>
-					<option>13:30:00</option>
-					<option>14:00:00</option>
-					<option>14:30:00</option>
-					<option>15:00:00</option>
-					<option>15:30:00</option>
-					<option>16:00:00</option>
-					<option>16:30:00</option>
-					<option>17:00:00</option>
-					<option>17:30:00</option>
-					<option>18:00:00</option>
-				</select>
-                    
+                    <input type="datetime" id="orderDatetime"  name="datetime" value="" placeholder="时间" data-role="datebox" data-options='{"mode": "timeflipbox","overrideTimeFormat":"24","overrideTimeOutput":"%H:%M","minHour":"8","maxHour":"18","minuteStep":"30"}' >
                     <label for="visitorCount" class="ui-hidden-accessible">游客人数</label>
                     <input type="number" id="visitorCount" name="visitorCount" value="" placeholder="参观人数">
 
-                    <label for="guideLanguage" >讲解语言</label>
+                    <table width="100%"><tbody>
 
-                    <select id="guideLanguage" name="guideLanguage" >
-                        <option value="汉语">汉语</option>
-                        <option value="英语">英语</option>
-                        <option value="日语">日语</option>
-                        <option value="俄语">俄语</option>
-                        <option value="法语">法语</option>
-                    </select>
-                    <fieldset data-role="controlgroup" data-type="horizontal">
-                     <legend>讲解员性别</legend>
-                     <div id="sex">
-                        <label for="guideFmale" >女</label>
-                        <input type="radio"  id="guideFmale" name="guideSex" class = "guideSex" value="女"/>
+                <tr><td>    <label for="guideLanguage" >讲解语言：</label></td>
+                  <td>  <select id="guideLanguage" data-mini="true" name="guideLanguage" >
+                        <option value="0">汉语</option>
+                        <option value="1">英语</option>
+                    </select></td></tr>
+
+                  <tr><td>   <legend>讲解员性别：</legend></td>
+                      <td><fieldset data-role="controlgroup" data-type="horizontal">
+                      <label for="guideFmale" >女</label>
+                        <input type="radio" data-mini="true" id="guideFmale" name="guideSex" value="女"/>
                         <label for="guideMale" >男</label>
-                        <input type="radio"  id="guideMale" name="guideSex" class = "guideSex" value="男"/>
-                    </div>
-                    </fieldset>
-                    <fieldset data-role="controlgroup" data-type="horizontal">
-                    <legend>是否代购门票</legend>
-                        <label for="orderTicket" >是</label>
-                        <input type="radio"  id="orderTicket" name="orderTicket" class="orderTicket" value="1"/>
-                        <label for="notOrderTicket" >否</label>
-                        <input type="radio"  id="notOrderTicket" name="orderTicket" class="orderTicket" value="0"/>
+                        <input type="radio" data-mini="true" id="guideMale" name="guideSex" value="男"/>
+                        </fieldset>	
+                       </td></tr>
+                    </tbody></table>
+                    <legend>需要为您代购门票吗？</legend>
+                <label for="orderTicketRadio" >是，请为我代购门票</label>
+                <input type="radio" id="orderTicketRadio" class="orderTicketRadio" name="orderTicket" value="1" class="" />
+                <div data-role="collapsible" class="orderTicketPanel" data-collapsed="false" hidden="true">
+                        <label for="fullPriceTicketNum" class="ui-hidden-accessible">全价票</label>
+                        <input type="number" id="fullPriceTicketNum" name="fullPriceTicketNum"  placeholder="全价票">
+                        <label for="halfPriceTicketNum" class="ui-hidden-accessible">半价票</label>
+                        <input type="number" id="halfPriceTicketNum" name="halfPriceTicketNum"  placeholder="半价票">
+                        <label for="discountTicketNum" class="ui-hidden-accessible">折扣票</label>
+                        <input type="number" id="discountTicketNum" name="discountTicketNum"  placeholder="半价票">
+                </div>
+                <label for="notorderTicketRadio" value="0">否，不用了，谢谢</label>
+                <input type="radio" id="notorderTicketRadio" class="notorderTicketRadio" name="orderTicket" value="0" class="" />
                     <label for="visitorPhone" class="ui-hidden-accessible" >联系电话</label>
                     </fieldset>
                     <input type="tel" id="visitorPhone" name="visitorPhone" value="" placeholder="联系电话">
@@ -218,12 +138,36 @@
                     <input type="text" id="visitorName" name="visitorName" value="" placeholder="您的姓名">
                     <label for="otherRequest">其他需求</label>
                     <textarea name="otherRequest" id="otherRequest"></textarea>
-                    <input id="submitOrderForm" type="button" name="submit" value="提交订单" onclick="releaseOrder()">
+                    <input id="submitOrderForm" data-theme="b" type="button" name="submit" value="提交订单">
                 </div>
             </form>
         </div>
     </div>
 </div>
+<!--是否代购门票对话框-->
+<div data-role="dialog"  id="orderTicketPop">
+  <div data-role="header">
+    <h1>是否代购门票？</h1>
+  </div>
+  <div data-role="content">
+   		 <legend>需要为您代购门票吗？</legend>
+            <label for="DirectorderTicket" >是，请为我代购门票</label>
+            <input type="radio" id="DirectorderTicket" class="orderTicketRadio" name="DirectorderTicket" value="1" class="" />
+            <div data-role="collapsible" id="DirectorderTicketPanel" class="orderTicketPanel" data-collapsed="false" hidden="true">
+                     <label for="fullPriceTicketNum" class="ui-hidden-accessible">全价票</label>
+                     <input type="number" id="DirectfullPriceTicketNum" name="fullPriceTicketNum"  placeholder="全价票">
+                     <label for="halfPriceTicketNum" class="ui-hidden-accessible">半价票</label>
+                     <input type="number" id="DirecthalfPriceTicketNum" name="halfPriceTicketNum"  placeholder="半价票">
+                     <label for="discountTicketNum" class="ui-hidden-accessible">折扣票</label>
+                     <input type="number" id="DirectdiscountTicketNum" name="discountTicketNum"  placeholder="半价票">
+            </div>
+            <a style="display: none;" id="directOrderGuidePhone"  ></a>
+            <label for="DirectnotorderTicketRadio" value="0">否，不用了，谢谢</label>
+            <input type="radio" id="DirectnotorderTicketRadio" class="notorderTicketRadio" name="DirectorderTicket" value="0" class="" />
+            <button data-theme="b"  id="DirectorderTicketSub">确定</button>
+  </div>
+</div> 
+
 <script type="text/javascript">
  $(document).ready(function(){
      $("#orderPanel").hide();
@@ -238,6 +182,12 @@
     $("#orderGuideA").click(function(event){
       $("#chosePanel").hide(300);
       $("#orderPanel").show(300);
+    });
+      $(".orderTicketRadio").bind('click', function(event) {
+        $(".orderTicketPanel").toggle('200');
+    });
+    $(".notorderTicketRadio").bind('click', function(event) {
+            $(".orderTicketPanel").hide('200');
     });
 });
 </script>

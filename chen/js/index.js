@@ -4,6 +4,7 @@ $(document).bind("mobileinit", function() {
 $.mobile.page.prototype.options.addBackBtn = true;
 });
 
+
 function bindSearch(){
     $(".search").focus(function(event) {
     $.mobile.changePage("#searchPanelPage","slideright");
@@ -23,7 +24,7 @@ bindSearch();
     //更多景点页面创建时触发 执行一次
     $('#moreSpotPage').bind('pagecreate',function(event, ui){
         bindSearch();
-        var url = "http://10.50.63.83:8080/TourGuide/getAllScenicByLocation.do";
+        var url = HOST+"/getAllScenicByLocation.do";
 		$.ajax({
 			type:"post",
 			url:url,
@@ -37,7 +38,7 @@ bindSearch();
 			success:function(data)
 			{ 
 				$.each(data, function(i,item) {
-					alert("全部景点Request success!");
+					
 					var MoreUlList = document.getElementById("more_ul");
 					
 					var MoreLiList = document.createElement("li");
@@ -48,7 +49,7 @@ bindSearch();
 					MoreLiList.appendChild(MoreAList);
 					
 					var MoreImgList = document.createElement("img");
-					MoreImgList.src = item.scenicImagePath;
+					MoreImgList.src = HOST+item.scenicImagePath;
 					MoreAList.appendChild(MoreImgList);
 					
 					var MorePList = document.createElement("p");
@@ -66,6 +67,7 @@ bindSearch();
 				});
 				
 				$("#more_ul").listview('refresh');
+				$("more_ul").children("li").height($("more_ul").children("li").width()*0.6);
 			}
 		});
     });
@@ -84,7 +86,7 @@ bindSearch();
                 if(sessionStorage.searchText)
                 {
                 $(".search").val(sessionStorage.searchText)
-                var url = "http://10.50.63.83:8080/TourGuide/getScenicByName.do";
+                var url = HOST+"/getScenicByName.do";
 				$.ajax({
 					type:"post",
 					url:url,
@@ -97,9 +99,11 @@ bindSearch();
 					},
 					success:function(data)
 					{
-						alert("搜索结果Request success!");
+						//alert("搜索结果Request success!");
 						$.each(data, function(i,item) {
-							$("#search_img").attr("src",item.scenicImagePath);
+							//alert(item.scenicNo);
+							$("#imgA").attr("href","scenicSpot.html?scenicNo="+item.scenicNo);
+							$("#search_img").attr("src",HOST+item.scenicImagePath);
 							$("#search_scenic_intro").html(item.scenicIntro);
 							$("#search_starlevel").html(item.scenicLevel);
 							$("#search_address").html(item.province+item.city+item.scenicLocation);						
@@ -108,7 +112,7 @@ bindSearch();
 					}
 				});
 				//获取推荐景点
-				var url = "http://10.50.63.83:8080/TourGuide/getScenicRelatesByName.do";
+				var url = HOST+"/getScenicRelatesByName.do";
 				$.ajax({
 					type:"post",
 					url:url,
@@ -122,7 +126,7 @@ bindSearch();
 					success:function(data)
 					{
 						$.each(data, function(i,item) {
-							alert("相关推荐景点Request success!");
+							//alert("相关推荐景点Request success!");
 							var UlList = document.getElementById("search_ul");
 							
 							var LiList = document.createElement("li");
@@ -137,7 +141,7 @@ bindSearch();
 							DivList.appendChild(AList);
 							
 							var ImgList = document.createElement("img");
-							ImgList.src = item.scenicImagePath;
+							ImgList.src = HOST+item.scenicImagePath;
 							//ImgList.setAttribute("src",item.scenicImagePath);
 							AList.appendChild(ImgList);
 						    
@@ -168,7 +172,7 @@ bindSearch();
 window.onload = function()
 {
 	//从服务端获取首页活动信息
-     var url = "http://10.50.63.83:8080/TourGuide/getPromotions.do";
+     var url = HOST+"/getPromotions.do";
 		$.ajax
 		({
 			url: url,
@@ -180,7 +184,7 @@ window.onload = function()
 			},
 			success: function(data)
 			{
-				alert("活动信息success!");
+//				alert("活动信息success!");
 				$.each(data,function(i,item)
 				{			      			        
 			        var UlList = document.getElementById("index_ul_id");
@@ -204,7 +208,7 @@ window.onload = function()
 	   });
 
 	//从服务端获取推荐景点信息
-	var url1 = "http://10.50.63.83:8080/TourGuide/getScenicByLocation.do";
+	var url1 = HOST+"/getScenicByLocation.do";
 	$.ajax({
 		type:"post",
 		url:url1,
@@ -217,7 +221,7 @@ window.onload = function()
 		},
 		success:function(data)
 		{
-			alert("推荐景点success!");
+//			alert("推荐景点success!");
 			$.each(data, function(i,item)
 			{
 							
@@ -227,26 +231,25 @@ window.onload = function()
 				
 				var DivList = document.createElement("div");
 				DivList.className = "imglist-box";
-				
 				LiList.appendChild(DivList);
 				
 				var AList = document.createElement("a");	
 				AList.href = "scenicSpot.html?"+"scenicNo="+item.scenicNo;
 																	  
-				AList.target = "_blank";
+				AList.target = "_top";
 				
 				DivList.appendChild(AList);
 				
 				var ImgList = document.createElement("img");
-				ImgList.setAttribute("src","item.scenicImagePath");
+				ImgList.setAttribute("src",HOST+item.scenicImagePath);
 				
 				AList.appendChild(ImgList);
 				
 			});
+			$(".imglist-box").height($(".imglist-box").width()*0.5);
 		}
 	});
-	
-	
+
 }
 
 

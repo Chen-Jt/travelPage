@@ -7,13 +7,18 @@
     <link rel="stylesheet" type="text/css" href="css/scenicSpot.css"/>
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css"/>
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script>
+   	$(document).bind('mobileinit',function() {   
+    jQuery.mobile.ajaxEnabled = false;   
+	}); 
+   </script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script type="text/javascript" src="js/scenicSpot.js"></script>
 </head>
 <body>
 <div data-role="page">
-    <div data-role="header" data-position="fixed" id="header" class="header">
+    <div data-role="header" id="header" class="header">
          <a href="index.html" class="ui-btn ui-corner-all ui-icon-carat-l ui-btn-icon-notext">返回</a>
         <a href="#" class="ui-btn ui-corner-all ui-icon-action ui-btn-icon-notext">分享</a>
          <img class="image" src="img/bmy.jpg" alt="兵马俑" id="scenic_img">
@@ -51,7 +56,7 @@
             <table>
             	<tr>
             		<th>全价票:</th>
-            		<th id="full_price">140元</th>
+            		<th id="full_price">元</th>
             	</tr>
             </table>
             <!--<table border="0" align="center" id="price_table">
@@ -74,20 +79,20 @@
              <div class="ui-grid-a" >
 
                 <div class="ui-block-a">
-                 <a calss="left-button"  data-role="button" target="_top" href="orderGuide.html">预约讲解员</a>
+                 <a calss="left-button"  id="orderGuideBtn" data-role="button" target="_top" href="orderGuide.html">预约讲解员</a>
                  </div>
                  <div class="ui-block-b">
-                    <a calss="right-button"  data-role="button" href="pindan.html">拼讲解员</a>
+                    <a calss="right-button" id="pinGuideBtn" data-role="button" href="pindan.html">拼讲解员</a>
                 </div>
             </div>
         </div >
         <div calss="discription" id="scenic_info">
             <p>
-                秦始皇兵马俑陪葬坑坐西向东，三坑呈品字形排列。最早发现的是一号俑坑，呈长方形，坑里有8000多个兵马俑，四面有斜坡门道。一号俑坑左右两侧各有一个兵马俑坑，称二号坑和三号坑。
-兵马俑坑是地下坑道式的土木结构建筑，即从地面挖一个深约5米的大坑，在坑的中间筑起一条条平行的土隔墙。墙的两边排列木质立柱，柱上置横木，横木和土隔墙上密集地搭盖棚木，棚木上铺一层苇席，再覆盖黄土，从而构成坑顶，坑顶高出当时的地表约2米。俑坑的底部用青砖墁铺。坑顶至坑底内部的空间高度为3.2米。陶俑、陶马放进俑坑后，用立木封堵四周的门道，门道内用夯土填实，于是就形成了一座封闭式的地下建筑。
+                
             </p>
         </div>
         </div>
+        
     </div>
 </body>
 </html>

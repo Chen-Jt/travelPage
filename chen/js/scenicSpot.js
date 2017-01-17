@@ -1,19 +1,17 @@
   window.onload = function()
   {
-  	
-  	var loc = window.location.href;
-	  var Parame = loc.split("?")[1];
-	  //alert(Parame);  //得到问号之后传过来的参数
-	  var scenicNo = Parame.split("=")[1];
-	  alert(scenicNo);
-	
+  
+	  var ScenicNo = GetUrlem("scenicNo");
+	  
+	$("#orderGuideBtn").attr("href","orderGuide.html?scenicNo="+ScenicNo);
+	$("#pinGuideBtn").attr("href","pindan.html?scenicNo="+ScenicNo);
 	//从服务器端获取景区详细信息
-	var url2 = "http://10.50.63.83:8080/TourGuide/getDetailScenicByScenicID.do"
+	var url2 = HOST+"/getDetailScenicByScenicID.do"
 	$.ajax({
 		type:"post",
 		url:url2,
 		async:true,
-		data:{"scenicID":scenicNo},
+		data:{"scenicID":ScenicNo},
 		datatype:"JSON",
 		error:function()
 		{
@@ -21,12 +19,12 @@
 		},
 		success:function(data)
 		{
-			alert("景区详细信息request success!");
+			//alert("景区详细信息request success!");
 			$.each(data, function(i,item) {
 				//设置显示名称
 				$("#scenic_title").html(item.scenicName);
 				//设置显示图片
-				$("#scenic_img").attr("src",item.scenicImagePath);
+				$("#scenic_img").attr("src",HOST+item.scenicImagePath);
 				//设置显示简介
 				$("#scenic_info").html(item.scenicIntro);
 				//设置显示历史参观人数
@@ -38,12 +36,12 @@
 	});
 	
 	//从服务器端获取票价
-	var url1 = "http://10.50.63.83:8080/TourGuide/geTicketsByScenicNo.do"
+	var url1 = HOST+"/geTicketsByScenicNo.do"
 	$.ajax({
 		type:"post",
 		url:url1,
 		async:true,
-		data:{scenicNo:"19743"},
+		data:{scenicNo:ScenicNo},
 		datatype:"JSON",
 		error:function()
 		{
@@ -51,7 +49,7 @@
 		},
 		success:function(data)
 		{
-			alert("获取门票success!");
+			
 			$("#full_price").html(data.fullPrice);
 			$.cookie("FullPrice",data.fullPrice);
 			$.cookie("HalfPrice",data.halfPrice);
@@ -60,12 +58,12 @@
 	});
 	
 	//从服务器端获取今日天气
-	var url = "http://10.50.63.83:8080/TourGuide/getWeatherByCity.do";
+	var url = HOST+"/getWeatherByCity.do";
   $.ajax({
 	type:"post",
 	url:url,
 	async:true,
-	data:{city:"西宁"},
+	data:{city:"西安"},
 	datatype:"JSON",
 	error:function()
 	{
@@ -73,7 +71,7 @@
 	},
 	success:function(data)
 	{
-		alert("今日天气success!");
+		//alert("今日天气success!");
 		var weather = data.weather;
 		var temperature = data.temprature;
 		var wind = data.wind;
@@ -93,8 +91,7 @@
 			$("#img1").attr("src",img1);
 			$("#temperature").text(temperature);
 			$("#wind").text(wind);
-		}
-				
+		}			
 	}
 });
 	

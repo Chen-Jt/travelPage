@@ -7,7 +7,12 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-    <script type="text/javascript" src="js/"></script>
+    <script type="text/javascript" src="js/orderFormPage.js"></script>
+    <style type="text/css">
+    	.ticketMoney p{
+    		text-indent: 3em;
+    	}
+    </style>
 </head>
 <body>
 <div data-role="page">
@@ -19,31 +24,28 @@
             <li data-icon="false">
             <a>
             <h3>导游信息</h3>
-
-                姓名：<span class="name">Angelababy</span><br/>
-                性别：<span class="sex">女</span><br/>
-                年龄：<span class="age">27</span><br/>
-                语种：<span class="language">英语</span>
+                姓名：<span id="name" class="name">Angelababy</span><br/>
+                性别：<span id="sex" class="sex">女</span><br/>
+                年龄：<span id="age" class="age">27</span><br/>
+                语种：<span id="language" class="language">英语</span>
             </li>
             </a>
         <li data-icon="false"><a>
             <h3>预约信息</h3>
 
-                预约时间：<span class="orderTime">2017-01-02</span><br/>
-                预约人数：<span class="visitorCount">5</span><br/>
+                预约时间：<span id="orderTime" class="orderTime">2017-01-02</span><br/>
+                预约人数：<span id="visitorCount" class="visitorCount">5</span><br/>
 
         </a></li>
         <li data-icon="false"><a>
             <h3>费用信息</h3>
-
-                讲解费：<span class="guideMoney">120</span><br/>
-                门票：<span class="ticketMoney">5*60=300</span><br/>
-                合计：<span class="aggregateMoney">420</span><br/>
-
+                讲解费：<span id = "guideMoney" class="guideMoney">120</span><br/>
+                门票：<span id="ticketMoney" class="ticketMoney">5*60=300</span><br/>
+                合计：<span id="sumMoney" class="sumMoney">420</span><br/>
          </a></li>
         </ul>
         </div>
-        <button type="">去支付</button>
+        <button data-theme="b" type="">去支付</button>
 </div>
 </body>
 </html>

@@ -15,7 +15,7 @@ function guideAuthentication()
 	alert(data.language);
 	alert(data.image);
 	alert(data.age);*/
-	var url = "http://10.50.63.83:8080/TourGuide//getGuideAuthentication.do";
+	var url = HOST+"/TourGuide//getGuideAuthentication.do";
 	$.ajax({
 		type:"post",
 		url:url,

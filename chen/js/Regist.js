@@ -1,8 +1,11 @@
-function openFile()
-{
-	document.getElementById("btnFile").click();
-}
-
+$(function($){
+	$("#Registsubmit").click(function(){
+		Regist();
+	});
+	$("#visitor_img").click(function(){
+		$("#btnFile").click();
+	});
+	
 var image = "";
 function selectImage(file)
 {
@@ -21,17 +24,17 @@ function selectImage(file)
 
 function Regist()
 {
-	check();
+	if(check()){
 	var data=
 	{
-		"nickName":document.getElementById("nickname").value,
-		"sex":document.getElementById("sex").value,
-		"name":document.getElementById("name").value,
-		"phone":document.getElementById("tel").value,
-		"passwd":document.getElementById("password").value,
+		"nickName":$("#nickname").val(),
+		"sex":$("input:radio[name='guideSex']:checked").val(),
+		"name":$("#name").val(),
+		"phone":$("#tel").val(),
+		"passwd":$("#password").val(),
 		"image":$("#btnFile").val()    		
 	};	
-	var url = "http://10.50.63.83:8080/TourGuide/visitorRegister.do";
+	var url = HOST+"/TourGuide/visitorRegister.do";
 	$.ajax({
 		type:"post",
 		url:url,
@@ -48,18 +51,19 @@ function Regist()
 			alert(data);
 		}
 	});
+	}
 }
 
 //检验输入是否合法
 function check()
 {
 	//获取值
-	var NickName = document.getElementById("nickname").value;
-	var Sex = document.getElementById("sex").value;
-	var Name = document.getElementById("name").value;
-	var Tel = document.getElementById("tel").value;
-	var Password = document.getElementById("password").value;
-	var ConfirmPassword = document.getElementById("confirm_password").value;
+	var NickName = $("#nickname").val();
+	var Sex = $("input:radio[name='guideSex']:checked").val();
+	var Name = $("#name").val();
+	var Tel = $("#tel").val();
+	var Password = $("#password").val();
+	var ConfirmPassword = $("#confirm_password").val();
 	var FilePath = $("#btnFile").val();
 	
 	if(Tel == null || Tel == "")
@@ -92,14 +96,12 @@ function check()
 		alert("密码长度不能少于3位，请重新输入！");
 		return false;
 	}
-     if((document.getElementById("agreeClause").checked) == true)
-	{
-		alert("注册成功！");
-	}
-	
-	else
+     if(!(document.getElementById("agreeClause").checked))
 	{
 		alert("请选择您接受相关条款服务！");
-    } 
-	
+		return false;
+	}
+	return true;
 }
+	
+});
