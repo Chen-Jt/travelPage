@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
     	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-    	<script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
+    	<script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
     	<script type="text/javascript" src="js/DetailBeTakenOrder.js"></script>
 	</head>
 	
@@ -17,9 +17,9 @@
 				<h1>订单详情</h1>
 			</div>
 
-<!--是否代购门票、全价票、半价票、折扣票、-->
 			<div data-role="main" class="ui-content">
-				<li data-icon="false">
+				<ul data-role="listview"  data-icon="false">
+				<li>
 					<h3>订单信息</h3>
 					<p>订单编号：<lable id="orderID"></lable></p>
 					<p>景区名称：<lable id="scenicName"></lable></p>
@@ -46,9 +46,11 @@
 				<li id="ticket" data-icon="false">
 					
 				</li>
-				<p>其他需求：<label id="otherCommand"></label></p>
-				
-				<button data-theme="b" name="takeOrder" onclick="takeorder()"><b>抢 单<b/></button>
+				<li data-icon="false">
+					<p>其他需求：<label id="otherCommand"></label></p>
+				</li>
+				</ul>
+				<button data-theme="b" id="takeOrder" name="takeOrder" onclick="takeorder()"><b>抢 单<b/></button>
 			</div>
 		</div>
 	</body>

@@ -1,6 +1,13 @@
-var ScenicNo = GetUrlem("scenicNo"); 
-	sessionStorage.scenicNo = ScenicNo;
+
 $(function($){
+	var ScenicNo = GetUrlem("scenicNo");
+	var sname = GetUrlem("sname");
+	if(ScenicNo!=null){
+		sessionStorage.scenicNo = ScenicNo;
+	}
+	if(sname!=null){
+		$("#chooseScenicName").val(sname);
+	}
 	$("#selectAvailableGuides").click(function(){
 		selectAvailableGuides();
 	});
@@ -40,10 +47,7 @@ function myrefresh(){
 			DiscoutPrice = $("#DirectdiscountTicketNum").val();
 		}
 		URL = "orderFormPage.html?phone="+phone+"&purchaseTicket="+PurchaseTicket+"&halfPrice="+HalfPrice+"&discoutPrice="+DiscoutPrice+"&fullPrice="+FullPrice;
-		//jQuery.mobile.changePage(URL);
-		//$("#directOrderGuidePhone").attr("href",URL);
-		//$("#directOrderGuidePhone").click();
-		window.location.href = URL;
+		 $.mobile.changePage(URL);
 	}else{
 		alert("请选择是否代购门票！");
 		return false;
@@ -69,12 +73,12 @@ function checkOrderForm(){
 	}
 	var data =
 	{
-		scenicID:"19743",
+		scenicID:sessionStorage.scenicNo,
 		otherCommand:$("#otherRequest").val(),
 		visitNum:$("#visitorCount").val(),
-		priceRange:"100-200",
+		priceRange:$("#orderM").val(),
 		guideSex:$("input[name='guideSex']:checked").val(),
-		visitorPhone:"13589678945",
+		visitorPhone:$("#visitorPhone").val(),
 		visitorName:$("#visitorName").val(),
 		language:$("#guideLanguage option:selected").val(),
 		purchaseTicket:PurchaseTicket,
@@ -86,6 +90,11 @@ function checkOrderForm(){
 	if(!$("#orderDate").val())
 	{
 		alert("请选择日期!");
+		return false;
+	}
+	if(!$("#orderM").val())
+	{
+		alert("请输入预期价格！");
 		return false;
 	}
 	if(!$("#orderDatetime").val())
@@ -114,10 +123,10 @@ function checkOrderForm(){
 //发布订单
 function releaseOrder(formdata)
 {
-	var url = HOST+"/releaseBookOrder.do";
+	var Url = HOST+"/releaseBookOrder.do";
 	$.ajax({
 	type:"post",
-	url:url,
+	url:Url,
 	async:true,
 	data:formdata,
 	datatype:"JSON",
@@ -127,8 +136,11 @@ function releaseOrder(formdata)
 	},
 	success:function(data)
 	{
-		alert("发布订单success!");
-		alert(data);
+		if(data==true){
+		alert("发布订单成功！");
+	}else{
+		alert("发布订单失败");
+	}
 	}
 });
 }
@@ -367,15 +379,16 @@ $("#order_guide_ul").empty();
 				SpanListLevel.innerHTML = "等级："+n.guideLevel+"<br/>";
 				
 				PList.appendChild(SpanListName)
-					 .appendChild(SpanListSex)
-					 .appendChild(SpanListAge)
-					 .appendChild(SpanListLevel);
+				PList.appendChild(SpanListSex)
+				PList.appendChild(SpanListAge)
+				PList.appendChild(SpanListLevel);
 				//添加立即预约链接
 				var A1List = document.createElement("a");
 				A1List.href = "?phone="+n.phone+"#orderTicketPop";
 				A1List.setAttribute("data-rel","dialog");
 				A1List.setAttribute("Phone",n.phone);
 				A1List.setAttribute("class","DirectOrderBtn");
+				A1List.setAttribute("data-position-to","window");
 				LiListInfo.appendChild(A1List);  
 			});
 			$("#order_guide_ul").listview('refresh');

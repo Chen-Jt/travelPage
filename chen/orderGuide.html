@@ -127,12 +127,13 @@
                         <label for="halfPriceTicketNum" class="ui-hidden-accessible">半价票</label>
                         <input type="number" id="halfPriceTicketNum" name="halfPriceTicketNum"  placeholder="半价票">
                         <label for="discountTicketNum" class="ui-hidden-accessible">折扣票</label>
-                        <input type="number" id="discountTicketNum" name="discountTicketNum"  placeholder="半价票">
+                        <input type="number" id="discountTicketNum" name="discountTicketNum"  placeholder="折扣票">
                 </div>
                 <label for="notorderTicketRadio" value="0">否，不用了，谢谢</label>
                 <input type="radio" id="notorderTicketRadio" class="notorderTicketRadio" name="orderTicket" value="0" class="" />
-                    <label for="visitorPhone" class="ui-hidden-accessible" >联系电话</label>
                     </fieldset>
+                    <input id="orderM" type="number" placeholder="预期价格" />
+                    <label for="visitorPhone" class="ui-hidden-accessible" >联系电话</label>
                     <input type="tel" id="visitorPhone" name="visitorPhone" value="" placeholder="联系电话">
                     <label for="visitorName" class="ui-hidden-accessible">姓名</label>
                     <input type="text" id="visitorName" name="visitorName" value="" placeholder="您的姓名">
@@ -147,7 +148,7 @@
 <!--是否代购门票对话框-->
 <div data-role="dialog"  id="orderTicketPop">
   <div data-role="header">
-    <h1>是否代购门票？</h1>
+  	<h1>提示</h1>
   </div>
   <div data-role="content">
    		 <legend>需要为您代购门票吗？</legend>

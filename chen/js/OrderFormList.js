@@ -1,11 +1,66 @@
-window.onload = function()
+
+  	
+$(function($){
+  	getOrderList();
+  	//隐藏未选中的订单
+  	$(".navList").click(function(juagechar){
+                      var juagechar = $(this).html();
+                      hideOtherLi(juagechar);
+   });
+          
+});
+
+ function orderinfo(obj){
+  		var state = obj.find("span.viewState").html();
+  		var orderId = obj.find("span.orderFormId").find("span").html();
+  		window.location = "orderFormInfo.html?state="+state+"&orderId="+orderId;
+  	}
+ 
+ function goComment(obj){
+ 	var orderId = obj.parents("li").children("a.orderinfo").find("span.orderFormId").find("span").html();
+ 	window.location = "comment.html?orderId="+orderId;
+ }
+ 
+   /*实现订单筛选*/
+    function hideOtherLi(juagechar){
+    	juagechar = arguments[0] ? arguments[0]:null;
+        if(juagechar){
+            $(".viewState").parents("li").show();//显示全部订单
+             if(juagechar!="全部")
+           {
+                $(".viewState").each(function() {//隐藏未选中的
+               if($(this).html()!=juagechar)
+                {
+                    $(this).parents("li").hide();
+                }
+                });
+            }
+        }
+    }
+    
+    function getUrlhideChar(){
+        var murl = window.location.search;
+        var hidechar = GetUrlem("hide");
+        if(hidechar)
+        {
+            var hidechar = GetUrlem("hide");
+            return hidechar;
+        }
+        else
+        {
+            return null;
+        }
+    }
+  
+  
+function getOrderList()
 {
     var url = HOST+"/getAllOrders.do";
 	$.ajax({
 		type:"post",
 		url:url,
 		async:true,
-		data:{visitorPhone:"13589678945"},
+		data:{visitorPhone:"15198945231"},
 		datatype:"JSON",
 		error:function()
 		{
@@ -15,20 +70,16 @@ window.onload = function()
 		{
 //			alert("全部订单success!");
 			$.each(data, function(i,n) {
-				/*$("#order_orderState").html(n.orderState);
-				$("#order_OrderID").html(n.OrderID);
-				$("#order_visitTime").html(n.visitTime);
-				$("#order_visitNum").html(n.visitNum);
-				$("#order_totalMoney").html(n.totalMoney);
-				$("#order_scenicName").html(n.scenicName);*/
 				
 				var UlList = document.getElementById("OrderStateUl");
 				var LiList = document.createElement("li");
 				UlList.appendChild(LiList);
 				
 				var AList = document.createElement("a");
-				AList.target = "_top";
-				
+				//AList.target = "_top";
+				AList.className = "orderinfo";
+				AList.href = "JavaScript:void(0)";
+				AList.setAttribute("onclick","orderinfo($(this))");
 				LiList.appendChild(AList);
 				
 				var PList = document.createElement("p");
@@ -42,13 +93,18 @@ window.onload = function()
 				//添加订单号
 				var SpanListOrderId = document.createElement("span");
 				SpanListOrderId.className = "orderFormId";
-				SpanListOrderId.innerHTML = "订单号："+n.OrderID+"<br/>";
+				SpanListOrderId.innerHTML = "订单号：<span>"+n.OrderID+"</span><br/>";
 				  //添加订单状态
 				var SpanListOrderState = document.createElement("span");
 				SpanListOrderState.className = "viewState";
 				SpanListOrderState.innerHTML = n.orderState;
-				SpanListOrderId.appendChild(SpanListOrderState);
-				
+				if(n.orderState=="待评价"){
+					var div = document.createElement("div");
+					div.className = "libtn";
+					div.innerHTML = '<a href="JavaScript:void(0)" onclick="goComment($(this))" class="abtn goComment">去评价</a>';
+					LiList.appendChild(div);
+				}
+
 				//添加时间
 				var SpanListTime = document.createElement("span");
 				SpanListTime.className = "vistTime";
@@ -64,16 +120,16 @@ window.onload = function()
 				SpanListPrice.innerHTML = "价格："+n.totalMoney+"<br/>";
 				
 				PList.appendChild(SpanListName)
-					 .appendChild(SpanListOrderId)
-					 .appendChild(SpanListTime)
-					 .appendChild(SpanListNum)
-					 .appendChild(SpanListPrice);
-					 
-				$("#OrderStateUl").listview('refresh');	 
+				PList.appendChild(SpanListOrderId)
+				PList.appendChild(SpanListOrderState);
+				PList.appendChild(SpanListTime)
+				PList.appendChild(SpanListNum)
+				PList.appendChild(SpanListPrice);
 				
+				$("#OrderStateUl").listview('refresh');	 
 			});
+			hideOtherLi(getUrlhideChar());
 		}
 		//景区图片暂时不显示在列表
 	});	
 }
-    

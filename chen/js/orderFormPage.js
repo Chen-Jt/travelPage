@@ -1,14 +1,13 @@
 
 $(function($){
-	
 	setGuideInfo();//设置讲解员信息返回讲解费
 	setOrderInfo();//设置预约信息
 	setChargeInfo();//设置门票信息
-	
+	$("#gopay").bind("click",function(){
+		putOrder();
+	});
 });
-
 //获取session值
-
 function setOrderInfo()
 {
 	var visitTime = getSession(sessionStorage.directVisitTime);
@@ -63,8 +62,7 @@ function setChargeInfo(guideMoney)
 		{
 			ticm += "<p>折扣票"+disc+"*"+data.discoutPrice+"元</p>";
 		}
-			}
-		//var add = parseInt(full)*parseInt(data.fullPrice)+parseInt(half)*parseInt(data.halfPrice)+parseInt(disc)+*parseInt(data.discoutPrice);
+	}
 		if(pur==1)
 		{	
 			TicketM = parseInt(full) * parseInt(data.fullPrice) + parseInt(half) * parseInt(data.halfPrice)+parseInt(disc)*parseInt(data.discoutPrice);
@@ -74,7 +72,6 @@ function setChargeInfo(guideMoney)
 		$("#ticketMoney").html(ticm);
 		}		
 	});
-	
 }
 //http://127.0.0.1:8020/travelPage/chen/orderFormPage.html?phone=13165662195&purchaseTicket=1&halfPrice=1&discoutPrice=3&fullPrice=2
 function setGuideInfo()//设置讲解员信息返回讲解费
@@ -93,7 +90,7 @@ function setGuideInfo()//设置讲解员信息返回讲解费
 		},
 		success:function(data)
 		{
-			alert("导游详细信息success!");
+			//alert("导游详细信息success!");
 			$.each(data, function(i,item) {
 				$("#name").html(item.name);
 				$("#sex").html(item.sex);
@@ -145,24 +142,51 @@ function getTicketMoney(){
 		}		
 	});
 }
-
-function goPay(){
-	var data =
+function putOrder(){
+	var secnicNo = getSession(sessionStorage.scenicNo);
+	var pur = GetUrlem("purchaseTicket");
+	var half = GetUrlem("halfPrice");
+	var disc = GetUrlem("discoutPrice");
+	var full = GetUrlem("fullPrice");
+	var visitTime = getSession(sessionStorage.directVisitTime);
+	var visitNum = getSession(sessionStorage.directVisitNum);
+	
+	var phone = GetUrlem("phone");
+	var postData =
 	{
-		scenicID:"19743",
-		otherCommand:$("#otherRequest").val(),
-		visitNum:$("#visitorCount").val(),
-		priceRange:"100-200",
-		guideSex:$("input[name='guideSex']:checked").val(),
-		visitorPhone:"13589678945",
-		visitorName:$("#visitorName").val(),
-		language:$("#guideLanguage option:selected").val(),
-		purchaseTicket:PurchaseTicket,
-		halfPrice:HalfPrice,
-		discoutPrice:DiscoutPrice,
-		fullPrice:FullPrice,
-	    visitTime:$("#orderDate").val()+" "+$("#orderDatetime").val()
+		'scenicID':secnicNo,
+		'visitNum':visitNum,
+		'visitTime':visitTime,
+		'visitorPhone':"13589678945",
+		'guidePhone':phone,
+		'purchaseTicket':pur,
+		'halfPrice':half,
+		'discoutPrice':disc,
+		'fullPrice':full,
 	};
+	var Url = HOST+"/BookOrderWithGuide.do";
+	//alert(JSON.stringify(postData));
+	$.ajax({
+		type:"post",
+		url:Url,
+		async:true,
+		data:postData,
+		datatype:"JSON",
+		error:function()
+		{
+			alert("提交订单失败！");
+			return false;
+		},
+		success:function(data)
+		{	
+			if(data==1)
+			{
+				alert("提交订单成功！");
+			}else{
+				alert("提交订单失败！");
+			}
+		}		
+	});
 }
 
 function getSession(name){

@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/personalHome.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="js/"></script>
 </head>
 <body>
@@ -54,9 +54,9 @@
                     <td><a href="GuideOrders.html" target="_top" class="my-ui-block borderBottom"><span>订单管理</span></a></td>
             </tr>
             <tr>
-                    <td><a href="" class="my-ui-block "><span>关联导游机</span></a></td>
-                    <td><a href="" class="my-ui-block borderLeft borderRight"><span>我的钱包</span></a></td>
-                    <td><a href="SetWorkday.html" target="_top" class="my-ui-block "><span>个人日程</span></a></td>
+                    <td><a href="" class="my-ui-block borderBottom "><span>关联导游机</span></a></td>
+                    <td><a href="" class="my-ui-block borderBottom borderLeft borderRight"><span>我的钱包</span></a></td>
+                    <td><a href="SetWorkday.html" target="_top" class="borderBottom my-ui-block "><span>个人日程</span></a></td>
             </tr>
             <tr>
                     <td><a href="takeOrder.html" target="_top" class="my-ui-block "><span>抢单</span></a></td>
@@ -86,7 +86,6 @@ $(function($){
       $(window).bind('resize load', function(){
         $("#header").height($("#header").width()*0.5);
        $(".guideInfoHead").width($(".guideInfoHead").height());
-       //$("a.my-ui-block").height($("a.my-ui-block").width());
       var myorder = $(".myorder").find("a.my-ui-block");
       myorder.height(myorder.width());
        var ImGuide = $(".ImGuide").find("a.my-ui-block");

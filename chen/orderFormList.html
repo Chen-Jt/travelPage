@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/orderFormList.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
  	<script type="text/javascript" src="js/OrderFormList.js"></script>
 </head>
 <body>
@@ -25,7 +25,7 @@
     </div>
     <div data-role="main" class="ui-content">
          <ul data-role="listview" id="OrderStateUl">
-                <!--<li>
+                <!-- <li>
                     <a href="orderFormInfo.html" target="_top">
                     <p>
                         订单号：<span class="orderFormId">201701020015</span>
@@ -35,8 +35,9 @@
                         价格：<span class="">10</span>
                     </p>
                     </a>
+                    <div class="libtn"><a class="abtn">去评价</a></div>
                 </li>
-                <li>
+               <li>
                     <a href="orderFormInfo.html" target="_top">
                     <p>
                         订单号：<span class="orderFormId">201701020015</span>
@@ -73,43 +74,7 @@
     </div>
 </div>
 <script type="text/javascript">
-  $(document).ready(function($) {
-             /*实现订单筛选*/
-    function hideOtherLi(juagechar){
-    	juagechar = arguments[0] ? arguments[0]:null;
-        if(juagechar){
-            $(".viewState").parentsUntil("li").show();//显示全部订单
-             if(juagechar!="全部")
-           {
-                $(".viewState").each(function() {//隐藏未选中的
-               if($(this).html()!=juagechar)
-                {
-                    $(this).parentsUntil("li").hide();
-                }
-                });
-            }
-        }
-    }
-    $(".navList").click(function(juagechar){
-                      var juagechar = $(this).html();
-                      hideOtherLi(juagechar);
-    });
-    function getUrlhideChar(){
-        var url = window.location.search;
-        if(url)
-        {
-            var hidestring = url.split('?')[1];
-            var hidechar = hidestring.split("=")[1];
-            return decodeURI(hidechar);
-        }
-        else
-        {
-            return null;
-        }
-    }
-    hideOtherLi(getUrlhideChar());
 
-});
 </script>
 </body>
 </html>

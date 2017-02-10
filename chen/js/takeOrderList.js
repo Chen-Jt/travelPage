@@ -14,9 +14,9 @@ window.onload = function(){
 		success:function(data)
 		{
 //			alert("可接单订单success!");
-			var num = 0;
+			var num = data.length;
+			$("#orderCount").html(num);
 			$.each(data, function(i,n){
-				num++;
 				var UlList = document.getElementById("takeOrders");
 				var LiList = document.createElement("li");
 
@@ -59,7 +59,7 @@ window.onload = function(){
 				//添加讲解语言
 				var SpanListLanguage = document.createElement("span");
 				SpanListLanguage.className = "language";
-				SpanListLanguage.innerHTML = "讲解语言："+n.language+"&nbsp;&nbsp;&nbsp;&nbsp;";
+				SpanListLanguage.innerHTML = "讲解语言："+getLanguage(n.language)+"&nbsp;&nbsp;&nbsp;&nbsp;";
 				
 				//添加讲解员性别
 				var SpanListSex = document.createElement("span");
@@ -67,15 +67,15 @@ window.onload = function(){
 				SpanListSex.innerHTML = "讲解员性别："+n.guideSex+"<br/>";
 				
 				PList.appendChild(SpanListOrderId)
-					 .appendChild(SpanListName)					
-					 .appendChild(SpanListTime)
-					 .appendChild(SpanListNum)
-					 .appendChild(SpanListPrice)
-					 .appendChild(SpanListLanguage)
-					 .appendChild(SpanListSex); 
+				PList.appendChild(SpanListName)					
+				PList.appendChild(SpanListTime)
+				PList.appendChild(SpanListNum)
+				PList.appendChild(SpanListPrice)
+				PList.appendChild(SpanListLanguage)
+				PList.appendChild(SpanListSex); 
 				$("#takeOrders").listview('refresh');
 			});
-			$("#orderCount").html(num);
+			
 		}	
 	});
 }

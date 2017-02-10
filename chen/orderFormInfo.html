@@ -7,8 +7,16 @@
     <link rel="stylesheet" type="text/css" href="css/">
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
-    <script type="text/javascript" src="js/"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/orderFormInfo.js"></script>
+    <style type="text/css">
+    	li img{
+    		width: 80px;
+    		height: 80px;
+    		margin-top: 0.5em;
+    		margin-left: 0.5em;
+    	}
+    </style>
 </head>
 <body>
 <div data-role="page">
@@ -16,7 +24,7 @@
 
     </div>
     <div data-role="main" class="ui-content">
-        <ul data-role="listview">
+        <ul data-role="listview" id="infolist">
                 <li data-inset="true" >
                     <p><span class="viewState">待游览</span>
                         合计：<span class="">￥315</span>
@@ -24,41 +32,37 @@
                     </p>
                 </li>
                 <li>
-                    <a href="">秦始皇兵马俑</a>
+                    <a href="" class="scenicName"></a>
                 </li>
                 <li>
-                    <img src="img/bmy.jpg">
+                    <img class="scenicImg" src="img/bmy.jpg">
                     <p>
-                        订单号：<span class="orderFormId">201701020015</span>
-                        <span class="viewState">待游览</span><br/>
-                        时间：<span class="vistTime">2017-01-02 16:00</span><br/>
-                        人数：<span class="existedVisitor">5</span><br/>
-                        价格：<span class="">10</span>
+                        订单号：<span class="orderFormId"></span>
+                        <span class="viewState"></span><br/>
+                        下单时间：<span class="orderTime"></span><br/>
+                        参观人数：<span class="vistorNum"></span><br/>
+                       支付费用：<span class="totalMoney"></span>
                     </p>
                 </li>
-                <li>
-                    <p>
-                         讲解费：<span class="guideMoney">120</span><br/>
-                         门票：<span class="ticketMoney">5*60=300</span><br/>
-                         合计：<span class="aggregateMoney">420</span><br/>
+                <li id="MoneyInfo">
+                	
                 </li>
                 <li>
                     <p>
-                        订单号：<span class="orderFormId">201701020015</span><br/>
-                        时间：<span class="vistTime">2017-01-02 16:00</span><br/>
-                        人数：<span class="existedVisitor">5</span><br/>
-                        价格：<span class="">10</span>
+                        参观时间：<span class="vistTime"></span><br/>
+                        人数：<span class="vistorNum"></span><br/>
                     </p>
                 </li>
-                <li>
+                <li id="guideInfo">
+                	<!--<img class="guideHead" src="">
                     <p>
-                        讲解员：<span class="name">Angelababy</span><br/>
-                        性别：<span class="sex">女</span><br/>
-                        年龄：<span class="age">27</span><br/>
-                        语种：<span class="language">英语</span><br/>
-                        联系方式：<span class="tel">1566666565</span>
+                        讲解员：<span class="name"></span><br/>
+                        性别：<span class="sex"></span><br/>
+                        年龄：<span class="age"></span><br/>
+                        语种：<span class="language"></span><br/>
+                        联系方式：<span class="tel"></span>
                         <button type="" data-inline="ture">一键拨号</button>
-                    </p>
+                    </p>-->
                 </li>
         </ul>
         <button type="">取消订单</button>

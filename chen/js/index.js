@@ -37,37 +37,8 @@ bindSearch();
 			},
 			success:function(data)
 			{ 
-				$.each(data, function(i,item) {
-					
-					var MoreUlList = document.getElementById("more_ul");
-					
-					var MoreLiList = document.createElement("li");
-					MoreUlList.appendChild(MoreLiList);
-					
-					var MoreAList = document.createElement("a");
-					MoreAList.href = "scenicSpot.html?"+"scenicNo="+item.scenicNo;
-					MoreLiList.appendChild(MoreAList);
-					
-					var MoreImgList = document.createElement("img");
-					MoreImgList.src = HOST+item.scenicImagePath;
-					MoreAList.appendChild(MoreImgList);
-					
-					var MorePList = document.createElement("p");
-					MorePList.className = "imgbar";
-					MoreImgList.appendChild(MorePList);
-					
-					var MoreSpanListName = document.createElement("span");
-					MoreSpanListName.className = "imgbar-left-title";
-					MoreSpanListName.innerHTML = item.scenicName;
-//					var MoreSpanListNum = document.createElement("span");
-//					MoreSpanListNum.className = "imgbar-right-title";
-					MorePList.appendChild(MoreSpanListName);
-					
-					
-				});
-				
-				$("#more_ul").listview('refresh');
-				$("more_ul").children("li").height($("more_ul").children("li").width()*0.6);
+				var UlList = document.getElementById("more_ul");
+					freshList(data,UlList);
 			}
 		});
     });
@@ -125,38 +96,8 @@ bindSearch();
 					},
 					success:function(data)
 					{
-						$.each(data, function(i,item) {
-							//alert("相关推荐景点Request success!");
-							var UlList = document.getElementById("search_ul");
-							
-							var LiList = document.createElement("li");
-							UlList.appendChild(LiList);
-							
-							var DivList = document.createElement("div");
-							DivList.className = "imglist-box";
-							LiList.appendChild(DivList);
-										
-							var AList = document.createElement("a");
-							AList.href = "scenicSpot.html?"+"scenicNo="+item.scenicNo;
-							DivList.appendChild(AList);
-							
-							var ImgList = document.createElement("img");
-							ImgList.src = HOST+item.scenicImagePath;
-							//ImgList.setAttribute("src",item.scenicImagePath);
-							AList.appendChild(ImgList);
-						    
-						    var PList = document.createElement("p");
-						    PList.className = "imgbar";
-						    ImgList.appendChild(PList);
-						    
-						    var SpanList = document.createElement("span");
-						    SpanList.className = "imgbar-left-title";
-						    SpanList.innerHTML = item.scenicName;
-						    PList.appendChild(SpanList);
-						    
-						    $("search_ul").listview('refresh');
-						});
-						
+						var UlList = document.getElementById("search_ul");
+						freshList(data,UlList);
 					}
 				});
                 
@@ -165,10 +106,6 @@ bindSearch();
 
 });
 
-
-
-
-		
 window.onload = function()
 {
 	//从服务端获取首页活动信息
@@ -201,7 +138,6 @@ window.onload = function()
 			        ImgList.setAttribute("src",item.promotionImage);
 			        ImgList.setAttribute("alt","首页活动图片");			        
 			        AList.appendChild(ImgList);			       
-			        
 			 });
 		      $(".slider").yxMobileSlider({width:640,height:320,during:3000});//轮播图片初始化
 			}
@@ -221,11 +157,17 @@ window.onload = function()
 		},
 		success:function(data)
 		{
+			var UlList = document.getElementById("index_scenic_ul_id");
+			freshList(data,UlList);
 //			alert("推荐景点success!");
-			$.each(data, function(i,item)
-			{
-							
-				var UlList = document.getElementById("index_scenic_ul_id");
+		}
+	});
+
+}
+//填充景区列表
+function freshList(data,UlList){
+	$.each(data, function(i,item)
+			{		
 				var LiList = document.createElement("li");
 				UlList.appendChild(LiList);
 				
@@ -242,17 +184,14 @@ window.onload = function()
 				
 				var ImgList = document.createElement("img");
 				ImgList.setAttribute("src",HOST+item.scenicImagePath);
-				
+				var Plist = document.createElement("p");
+				Plist.className = "imgbar";
+				Plist.innerHTML = item.scenicName;
 				AList.appendChild(ImgList);
-				
+				AList.appendChild(Plist);
 			});
-			$(".imglist-box").height($(".imglist-box").width()*0.5);
-		}
-	});
-
+			$(".imglist-box").height($(document).width()*0.25);
 }
-
-
 
 function LoginOrPersonal()
 

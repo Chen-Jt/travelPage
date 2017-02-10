@@ -2,9 +2,6 @@
   {
   
 	  var ScenicNo = GetUrlem("scenicNo");
-	  
-	$("#orderGuideBtn").attr("href","orderGuide.html?scenicNo="+ScenicNo);
-	$("#pinGuideBtn").attr("href","pindan.html?scenicNo="+ScenicNo);
 	//从服务器端获取景区详细信息
 	var url2 = HOST+"/getDetailScenicByScenicID.do"
 	$.ajax({
@@ -30,6 +27,9 @@
 				//设置显示历史参观人数
 				var td = $("#scenic_total_visit");
 				$(td).html(item.totalVisits);
+				
+				$("#orderGuideBtn").attr("href","orderGuide.html?scenicNo="+ScenicNo+"&sname="+item.scenicName);
+				$("#pinGuideBtn").attr("href","pindan.html?scenicNo="+ScenicNo+"&sname="+item.scenicName);
 			});
 			
 		}

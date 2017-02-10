@@ -1,11 +1,13 @@
 window.onload = function(){
-	
-	var url = HOST+"/getMyBookedOrder.do";
+	getData("/getMyBookedOrder.do","OrderUl");
+	getData("/getFinishedBookedOrder.do","finishOrder");
+}
+function getData(Url,ulid){
+		Url= HOST+Url;
 //	var url = HOST+"/getFinishedBookedOrder.do";
-	
 	$.ajax({
 		type:"post",
-		url:url,
+		url:Url,
 		async:true,
 		data:{guidePhone:"13165662195"},
 		datatype:"JSON",
@@ -14,16 +16,22 @@ window.onload = function(){
 			alert("全部订单Request error!");
 		},
 		success:function(data){
-			$.each(data, function(i,n) {
-				
-				var UlList = document.getElementById("OrderUl");
+			setList(data,ulid);
+		}
+	});
+}
+function setList(data,ulid){
+	$.each(data, function(i,n) {
+				var UlList = document.getElementById(ulid);
 				var LiList = document.createElement("li");
-				
 				UlList.appendChild(LiList);
-				
+				//Orderid
+				var AList = document.createElement("a");
+				AList.href="DetailBeTakenOrder.html?Orderid="+n.bookOrderID+"&fin=t";
+				AList.setAttribute("target","_top");
 				var PList = document.createElement("p");
-				LiList.appendChild(PList);
-				
+				AList.appendChild(PList);
+				LiList.appendChild(AList);
 				//添加订单号
 				var SpanListOrderId = document.createElement("span");
 				SpanListOrderId.className = "orderId";
@@ -49,7 +57,7 @@ window.onload = function(){
 				SpanListFee.innerHTML = "讲解费："+n.guideFee+"<br/>";
 				
 				var startButton = document.createElement("button");
-				startButton.className = "start";
+				startButton.className = "start mybtn";
 				startButton.innerHTML = "开始讲解";
 								
 				var finishButton = document.createElement("button");
@@ -57,14 +65,16 @@ window.onload = function(){
 				finishButton.innerHTML = "结束讲解";
 				
 				PList.appendChild(SpanListOrderId)
-					 .appendChild(SpanListName)
-					 .appendChild(SpanListTime)
-					 .appendChild(SpanListNum)
-					 .appendChild(SpanListFee)
-					 .appendChild(startButton);
-					 
-				$("#OrderUl").listview('refresh');	
+				PList.appendChild(SpanListName)
+				PList.appendChild(SpanListTime)
+				PList.appendChild(SpanListNum)
+				PList.appendChild(SpanListFee)
+				LiList.appendChild(startButton); 	
 			});
-		}
-	});
+			$("#"+ulid).listview('refresh');	
+			$(".start").click(function(){
+				$(this).removeClass("start");
+				$(this).addClass("finish");
+				$(this).html("结束讲解");
+			});
 }

@@ -72,11 +72,16 @@ a:hover { color: #D40000; text-decoration: none}
     overflow:hidden;
 }
 .imglist-box{
-    margin:5px -5px -5px -5px;
-    padding: 0px 10px 10px 10px;
+    margin:5px  -5px;
+    padding: 0px  10px;
     width: 100%;
     position:relative;
     overflow: hidden;
+}
+.imglist-box img{
+	width:100%;
+	height: auto;
+	overflow: hidden;
 }
 .imglist-box a{
     display: inline-block;
@@ -106,9 +111,10 @@ a:hover { color: #D40000; text-decoration: none}
 .imgbar{
     margin:0px;
     height:2em;
+    line-height: 2em;
     width:100%;
     position: absolute;
-    bottom: 5px;
+    bottom: 0px;
     background-color: black;
     opacity: 0.7;
     color:white;

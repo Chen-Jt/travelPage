@@ -8,9 +8,9 @@
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css"/>
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
     <script>
-   	$(document).bind('mobileinit',function() {   
-    jQuery.mobile.ajaxEnabled = false;   
-	}); 
+// 	$(document).bind('mobileinit',function() {   
+//  jQuery.mobile.ajaxEnabled = false;   
+//	}); 
    </script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
@@ -76,15 +76,10 @@
             		<th id="dicount_price">120</th>
             	</tr>
             </table>-->
-             <div class="ui-grid-a" >
-
-                <div class="ui-block-a">
-                 <a calss="left-button"  id="orderGuideBtn" data-role="button" target="_top" href="orderGuide.html">预约讲解员</a>
-                 </div>
-                 <div class="ui-block-b">
-                    <a calss="right-button" id="pinGuideBtn" data-role="button" href="pindan.html">拼讲解员</a>
-                </div>
-            </div>
+            <ul id="sideBar" class="sideBar">
+                 <li><a calss="left-button sidebtn"  id="orderGuideBtn"  target="_top" href="orderGuide.html">预约讲解员</a></li>
+                 <li><a calss="right-button sidebtn" id="pinGuideBtn" target="_top" href="pindan.html">拼讲解员</a></li>
+           	</ul>
         </div >
         <div calss="discription" id="scenic_info">
             <p>
