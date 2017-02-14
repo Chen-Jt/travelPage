@@ -24,12 +24,12 @@ function myrefresh(){
 	
 	$(".DirectOrderBtn").bind("click",function(){
 		var guidephone = $(this).attr("phone");
-		$("#directOrderGuidePhone").attr("phone",guidephone);
+		$("#DirectorderTicketSub").attr("phone",guidephone);
 	});
 }
 	//直接预约 是否订购门票
 	$("#DirectorderTicketSub").click(function(){
-		var phone = $("#directOrderGuidePhone").attr("phone");
+		var phone = $(this).attr("phone");
 		if(!phone){
 			alert("Error no PhoneNumber");
 			return false;
@@ -46,8 +46,10 @@ function myrefresh(){
 			HalfPrice = $("#DirecthalfPriceTicketNum").val();
 			DiscoutPrice = $("#DirectdiscountTicketNum").val();
 		}
+		//$(".ui-page-active").dialog("close");
 		URL = "orderFormPage.html?phone="+phone+"&purchaseTicket="+PurchaseTicket+"&halfPrice="+HalfPrice+"&discoutPrice="+DiscoutPrice+"&fullPrice="+FullPrice;
-		 $.mobile.changePage(URL);
+		 $.mobile.changePage(URL,{transition:"flow"});
+		 //window.location=URL;
 	}else{
 		alert("请选择是否代购门票！");
 		return false;

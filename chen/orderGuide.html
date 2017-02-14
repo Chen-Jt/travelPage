@@ -5,18 +5,20 @@
     <title>预约讲解员</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css">
+    <link rel="stylesheet" type="text/css" href="css/nativedroid2.css">
     <link rel="stylesheet" href="css/jtsage-datebox-4.1.0.jqm.min.css">
     <link rel="stylesheet" type="text/css" href="css/orderGuide.css">
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    
     <script type="text/javascript" src="js/jtsage-datebox-4.1.0.jqm.min.js"></script>
     <script type="text/javascript" src="js/jtsage-datebox.i18n.zh-CN.utf8.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
-    <script type="text/javascript" src="js/OrderGuide.js"></script>
+
 </head>
 <body>
 <div data-role="page">
-<div data-role="panel" id="myPanel">
+<div data-role="panel" data-display="overlay" id="myPanel">
   <h2>筛选条件</h2>
   <form action="" method="">
   <table><tbody>
@@ -56,15 +58,20 @@
 </div>
 
     <div data-role="header"  id="header" data-position="fixed" class="header">
-       <div data-role="navbar">
+       <!--<div data-role="navbar">
            <ul>
                <li><a id="chooseGuidebtn"  href="#">选择讲解员</a></li>
                <li><a id="orderGuidebtn"  href="#">发布订单</a></li>
            </ul>
-       </div>
+           
+       </div>-->
+       <ul data-role="nd2tabs" data-swipe="true">
+               <li data-tab="choose" data-tab-active="true">选择讲解员</li>
+               <li data-tab="order" >发布订单</li>
+       </ul>
     </div>
     <div  data-role="main" class="ui-content">
-        <div id="chosePanel" >
+        <div data-role="nd2tab" data-tab="choose" id="chosePanel" >
           <form action="chooseGuide_submit" method="get" accept-charset="utf-8">
              <div class="ui-field-contain">
                <label for="chooseDatetime" class="ui-hidden-accessible">景区名称</label>
@@ -91,7 +98,7 @@
               </li>
           </ul>
         </div>
-        <div id="orderPanel">
+        <div data-role="nd2tab" data-tab="order">
             <form action="orderGuide_submit" method="get" accept-charset="utf-8">
                 <div>
                      <label for="orderDate" class="ui-hidden-accessible">日期</label>
@@ -162,28 +169,27 @@
                      <label for="discountTicketNum" class="ui-hidden-accessible">折扣票</label>
                      <input type="number" id="DirectdiscountTicketNum" name="discountTicketNum"  placeholder="半价票">
             </div>
-            <a style="display: none;" id="directOrderGuidePhone"  ></a>
             <label for="DirectnotorderTicketRadio" value="0">否，不用了，谢谢</label>
             <input type="radio" id="DirectnotorderTicketRadio" class="notorderTicketRadio" name="DirectorderTicket" value="0" class="" />
-            <button data-theme="b"  id="DirectorderTicketSub">确定</button>
+            <a class="ui-btn" data-theme="b"  id="DirectorderTicketSub">确定</a>
   </div>
 </div> 
-
+<script type="text/javascript" src="js/nativedroid2.js"></script>
 <script type="text/javascript">
  $(document).ready(function(){
-     $("#orderPanel").hide();
- $("#orderGuidebtn").bind("click", function(event) {
-        $("#chosePanel").hide(300);
-        $("#orderPanel").show(300);
-    });
-    $("#chooseGuidebtn").bind("click", function(event) {
-        $("#orderPanel").hide(300);
-        $("#chosePanel").show(300);
-    });
-    $("#orderGuideA").click(function(event){
-      $("#chosePanel").hide(300);
-      $("#orderPanel").show(300);
-    });
+//   $("#orderPanel").hide();
+// $("#orderGuidebtn").bind("click", function(event) {
+//      $("#chosePanel").hide(300);
+//      $("#orderPanel").show(300);
+//  });
+//  $("#chooseGuidebtn").bind("click", function(event) {
+//      $("#orderPanel").hide(300);
+//      $("#chosePanel").show(300);
+//  });
+//  $("#orderGuideA").click(function(event){
+//    $("#chosePanel").hide(300);
+//    $("#orderPanel").show(300);
+//  });
       $(".orderTicketRadio").bind('click', function(event) {
         $(".orderTicketPanel").toggle('200');
     });
@@ -192,5 +198,6 @@
     });
 });
 </script>
+    <script type="text/javascript" src="js/OrderGuide.js"></script>
 </body>
 </html>

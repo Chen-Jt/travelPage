@@ -1,16 +1,88 @@
 //从登录界面获得游客的手机号即登录名
 //1-15 datebox 时间无法获取
-var VisitTel = $.cookie('LoginName');
 var scenicNo = GetUrlem("scenicNo");
-window.onload = function()
-{
+$(function($){
 	$("#panel2").hide();
 	$("#orderTicketPanel").hide();
- 	
 	getconsistOrder();
 	
-}
+	$("#panel2").find("input").bind("focus click",function(){
+		$("#ul_fee").empty();
+		$("#paySubmit").attr("data-state","confirm");
+		$("#paySubmit").html("确定");
+	});
 	
+	$("#paySubmit").click(function(){
+		if($(this).attr("data-state")=="confirm"){
+			setFeeform();
+			$(this).attr("data-state","gopay");
+			$(this).html("去支付");
+		}else if($(this).attr("data-state")=="gopay"){
+			consistOrder();
+		}
+	});
+});
+function setFeeform(){
+	var url1 = HOST+"/getIntroFee.do";
+	$.ajax({
+		type:"post",
+		url:url1,
+		async:true,
+		data:{'scenicID':scenicNo,'date':$("#visitTime").val()},
+		datatype:"JSON",
+		error:function()
+		{
+			alert("返回讲解费Request error!");
+		},
+		success:function(data)
+		{
+			//alert("返回讲解费Request success!");
+			//alert(data);
+			alert(data);
+			var ul_feetext ="<li><a><h3>费用信息</h3><p>讲解费："+data+"<br>";
+			var HalfPrice = sessionStorage.halfPrice;
+			var FullPrice = sessionStorage.fullPrice;
+			var DiscoutPrice = sessionStorage.discoutPrice;
+			var Hal=0;
+			var Ful=0;
+			var Dis=0;
+			var order = $("input[name='pindan_orderTicket']:checked").val();
+			var ticketPrice = 0;
+			var TotalMoney = 0;
+			if(order==1){
+				var TicketPrice ="";
+				Hal = $("#halfPriceTicketNum").val();
+				Ful = $("#fullPriceTicketNum").val();
+				Dis = $("#discountTicketNum").val();		
+				ticketPrice = Ful* FullPrice			
+							+Hal* HalfPrice
+							+Dis* DiscoutPrice;
+				TotalMoney = ticketPrice + data;
+				if(Ful!=0){
+				TicketPrice+=Ful + "*" + FullPrice;
+				if(Dis!=0||Hal!=0){
+					TicketPrice+="+";
+				}
+			}
+			if(Hal!=0){
+				TicketPrice+=Hal + "*" + HalfPrice;
+				if(Dis!=0){
+					TicketPrice+="+";
+				}
+			}
+			if(Dis!=0){
+				TicketPrice+=Dis + "*" + DiscoutPrice;
+			}
+			ul_feetext+="门票："+TicketPrice+"<br>";
+			}
+				
+			ul_feetext+="合计：<span>"+TotalMoney+"</span>";
+			
+			$("#ul_fee").append(ul_feetext);
+			$("#ul_fee").listview("refresh");
+		}
+	});
+}
 function textchange()
 {
 	alert("進入");
@@ -38,32 +110,30 @@ function getFee()
 
 function consistOrder()
 {
-	var HalfPrice;
-	var FullPrice;
-	var DiscoutPrice;
-	if($("input[name='pindan_orderTicket']:checked").val() == 0)
-	{
-		HalfPrice = 0;
-		FullPrice = 0;
-		DiscoutPrice = 0;
-	}
+	var HalfPrice=0;
+	var FullPrice=0;
+	var DiscoutPrice=0;
 	if($("input[name='pindan_orderTicket']:checked").val() == 1)
 	{
-		HalfPrice = $("#halfPriceTicketNum").val();
-		FullPrice = $("#fullPriceTicketNum").val();
-		DiscoutPrice = $("#discountTicketNum").val();
+		if($("#halfPriceTicketNum").val())
+		{HalfPrice = $("#halfPriceTicketNum").val();}
+		if($("#fullPriceTicketNum").val())
+		{FullPrice = $("#fullPriceTicketNum").val();}
+		if($("#discountTicketNum").val())
+		{DiscoutPrice = $("#discountTicketNum").val();}
 	}
 	var data = 
 	{
-		scenicID:"19743",
-		visitTime:$("#visitTime").val()+" "+$("#pindan_orderDatetime option:selected").val(),
+		scenicID:scenicNo,
+		visitTime:$("#visitTime").val()+" "+$("#chooseDatetime").val(),
 		visitNum:$("#visitorCount").val(),
-		visitorPhone:"13589678945",
+		visitorPhone:vistPhone,
 		purchaseTicket:$("input[name='pindan_orderTicket']:checked").val(),
 		halfPrice:HalfPrice,
 		discoutPrice:DiscoutPrice,
 		fullPrice:FullPrice
 	};
+	alert(JSON.stringify(data));
 	
 	var url = HOST+"/releaseConsistOrder.do";
 	$.ajax({
@@ -78,40 +148,7 @@ function consistOrder()
 		},
 		success:function(data)
 		{
-			alert("发起拼单success!");
-			
-		}
-	});
-	
-	var url1 = HOST+"/getIntroFee.do";
-	$.ajax({
-		type:"post",
-		url:url1,
-		async:true,
-		data:{scenicID:"19743",date:$("#visitTime").val()},
-		datatype:"JSON",
-		error:function()
-		{
-			alert("返回讲解费Request error!");
-		},
-		success:function(data)
-		{
-			alert("返回讲解费Request success!");
-			alert(data);
-			$("#pindan_guide_money").html(data);
-			var HalfPrice = $.cookie("HalfPrice");
-			var FullPrice = $.cookie("FullPrice");
-			var DiscoutPrice = $.cookie("DiscoutPrice");
-			var ticketPrice = $("#fullPriceTicketNum").val() * FullPrice			
-							 +$("#halfPriceTicketNum").val() * HalfPrice
-							 +$("#discountTicketNum").val() * DiscoutPrice;
-			var TicketPrice = $("#fullPriceTicketNum").val() + "*" + FullPrice
-			                 +"+"+$("#halfPriceTicketNum").val() + "*" + HalfPrice
-			                 +"+"+$("#discountTicketNum").val() + "*" + DiscoutPrice
-			                 + "=" +ticketPrice;		                
-			$("#pindan_ticket_money").html(TicketPrice); 
-			var TotalMoney = ticketPrice + data;
-			$("#pindan_total_money").html(TotalMoney);
+			alert("发起拼单success!");	
 		}
 	});
 }
@@ -121,24 +158,21 @@ function getconsistOrder()
 {
 	
 	var url = HOST+"/getAvailableConsistOrder.do";
-	var scenicId = GetUrlem("scenicNo");
-	
-	alert(scenicId);
-	
 	$.ajax({
 		type:"post",
 		url:url,
 		async:true,
-		data:{scenicID:scenicId},
+		data:{scenicID:scenicNo},
 		datatype:"JSON",
 		error:function()
 		{
 			alert("可拼拼单Request error!");
 		},
 		success:function(data)
-		{
-			
-			
+		{		//JSON.stringify(data)=="[]"
+			if(data.length==0){
+			$("#panel1").append("<p class='errorTip'>(* ￣︿￣)该景点暂时没有可拼订单，发个订单试试吧<p>");
+			}
 			//动态加载div布局
 			$.each(data, function(i,n){
 				

@@ -1,10 +1,9 @@
 
 $(function($){
+	
 $(document).bind("mobileinit", function() {
 $.mobile.page.prototype.options.addBackBtn = true;
 });
-
-
 function bindSearch(){
     $(".search").focus(function(event) {
     $.mobile.changePage("#searchPanelPage","slideright");
@@ -51,12 +50,13 @@ bindSearch();
         setTimeout(function(){
             $("#mySearchInput").trigger("click").focus();
         },10);
+        
     });
-    
+     
     $('#searchResultPage').bind('pagebeforeshow',function(event, ui){
                 if(sessionStorage.searchText)
                 {
-                $(".search").val(sessionStorage.searchText)
+                $(".search").val(sessionStorage.searchText);
                 var url = HOST+"/getScenicByName.do";
 				$.ajax({
 					type:"post",
@@ -115,9 +115,10 @@ window.onload = function()
 			url: url,
 			datatype: "JSON",
 			type: "GET",
-			error: function()
+			error: function(data)
 			{
 				alert("活动信息request error!");
+				console.log(JSON.stringify(data));
 			},
 			success: function(data)
 			{

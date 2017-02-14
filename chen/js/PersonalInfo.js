@@ -1,7 +1,8 @@
 
 /*var data = {phone:$.cookie("LoginName")};
 alert(data);*/
-var Phone = getCookie("LoginName");
+$(function($){
+	var Phone = vistPhone;
 
 var url = HOST+"/getVisitorInfoWithPhone.do";
 	$.ajax({
@@ -28,3 +29,4 @@ var url = HOST+"/getVisitorInfoWithPhone.do";
 			}*/
 		}
 	});
+});

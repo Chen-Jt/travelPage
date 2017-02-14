@@ -60,7 +60,7 @@ function getOrderList()
 		type:"post",
 		url:url,
 		async:true,
-		data:{visitorPhone:"15198945231"},
+		data:{visitorPhone:vistPhone},
 		datatype:"JSON",
 		error:function()
 		{

@@ -101,15 +101,3 @@ function setNormalData(data){
 		});
 		
 	}
-function getLanguage(data){
-	var language = "中文";
-		if(data==1)
-		{
-			language = "英文";
-		}
-		else if(data==2)
-		{
-			language += "/英文";
-		}
-		return language;
-}

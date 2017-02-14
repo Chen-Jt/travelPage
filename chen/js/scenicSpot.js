@@ -51,9 +51,12 @@
 		{
 			
 			$("#full_price").html(data.fullPrice);
-			$.cookie("FullPrice",data.fullPrice);
-			$.cookie("HalfPrice",data.halfPrice);
-			$.cookie("DiscoutPrice",data.discoutPrice);
+			sessionStorage.fullPrice=data.fullPrice;
+			sessionStorage.halfPrice=data.halfPrice;
+			sessionStorage.discoutPrice=data.discoutPrice;
+//			$.cookie("FullPrice",data.fullPrice);
+//			$.cookie("HalfPrice",data.halfPrice);
+//			$.cookie("DiscoutPrice",data.discoutPrice);
 		}
 	});
 	

@@ -1,9 +1,13 @@
-$(function($){
-
 var phone = GetUrlem("phone");
+$(function($){
 setGuideInfo(phone);
 setGuideComment(phone);
-
+$("#bookGuide").click(function(){
+	 $.mobile.changePage('#orderTicketPop', {
+            transition: "slide",
+            role: "dialog"
+        });
+});
 });
 //获取并设置导游信息
 function setGuideInfo(phone){
@@ -84,5 +88,5 @@ var Url = HOST+"/getComments.do";
 //点击立即预定
 function bookGuide()
 {
-	
+	$("#DirectorderTicketSub").attr("phone",guidephone);
 }

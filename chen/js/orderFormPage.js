@@ -1,23 +1,22 @@
-
 $(function($){
 	setGuideInfo();//设置讲解员信息返回讲解费
 	setOrderInfo();//设置预约信息
-	setChargeInfo();//设置门票信息
+	
 	$("#gopay").bind("click",function(){
 		putOrder();
 	});
-});
+});	
 //获取session值
 function setOrderInfo()
 {
 	var visitTime = getSession(sessionStorage.directVisitTime);
 	var visitNum = getSession(sessionStorage.directVisitNum);
-	$("#orderTime").html(visitTime);
-	$("#visitorCount").html(visitNum);
+	$(".orderTime").html(visitTime);
+	$(".visitorCount").html(visitNum);
 }
 function setChargeInfo(guideMoney)
 {
-	$("#guideMoney").html(guideMoney);
+	$(".guideMoney").html(guideMoney);
 	var pur = GetUrlem("purchaseTicket");
 	var TicketM = 0;
 	var ticm = "<br/>";
@@ -45,11 +44,11 @@ function setChargeInfo(guideMoney)
 		},
 		success:function(data)
 		{
-		
+		alert(JSON.stringify(data));
 		if(pur==1){
 			
 	
-		//alert(JSON.stringify(data));
+		
 		if(full!=0)
 		{
 			ticm +="<p>全价票"+full+"*"+data.fullPrice+"元</p>";
@@ -67,10 +66,9 @@ function setChargeInfo(guideMoney)
 		{	
 			TicketM = parseInt(full) * parseInt(data.fullPrice) + parseInt(half) * parseInt(data.halfPrice)+parseInt(disc)*parseInt(data.discoutPrice);
 		}
-		var guideMoney = $("#guideMoney").html();
-		$("#sumMoney").html(TicketM+parseInt(guideMoney));
-		$("#ticketMoney").html(ticm);
-		}		
+		$("#setsumMoney").html(TicketM+parseInt(guideMoney));
+		$("#setticketMoney").html(ticm);
+		}
 	});
 }
 //http://127.0.0.1:8020/travelPage/chen/orderFormPage.html?phone=13165662195&purchaseTicket=1&halfPrice=1&discoutPrice=3&fullPrice=2
@@ -92,9 +90,9 @@ function setGuideInfo()//设置讲解员信息返回讲解费
 		{
 			//alert("导游详细信息success!");
 			$.each(data, function(i,item) {
-				$("#name").html(item.name);
-				$("#sex").html(item.sex);
-				$("#age").html(item.age);			
+				$(".name").html(item.name);
+				$(".sex").html(item.sex);
+				$(".age").html(item.age);			
 				/*$("#guide_img").attr("src","img/1.jpg");
 				$("#guide_starlevel").html(item.guideLevel);
 				$("#guide_Visitors").html(item.historyNum);
@@ -110,38 +108,15 @@ function setGuideInfo()//设置讲解员信息返回讲解费
 				{
 					language="汉语 英语";
 				}
-				$("#language").html(language);
-				$("#guideMoney").html(item.guideFee);
+				$(".language").html(language);
+				$("#setguideMoney").html(item.guideFee);
+				setChargeInfo(item.guideFee);//设置门票信息
 			});
 		}
 	});
 }
 
-function getTicketMoney(){
-	var secnicNo = getSession(sessionStorage.scenicNo);
-	if(!secnicNo)
-	{
-		return false;
-	}
-	var url = HOST+"/geTicketsByScenicNo.do";
-	$.ajax({
-		type:"post",
-		url:url,
-		async:true,
-		data:{"scenicNo":secnicNo},
-		datatype:"JSON",
-		error:function()
-		{
-			alert("获取门票费用Request error!");
-			return false;
-		},
-		success:function(data)
-		{
-			alert(JSON.stringify(data));
-			return data;
-		}		
-	});
-}
+
 function putOrder(){
 	var secnicNo = getSession(sessionStorage.scenicNo);
 	var pur = GetUrlem("purchaseTicket");
@@ -151,14 +126,14 @@ function putOrder(){
 	var visitTime = getSession(sessionStorage.directVisitTime);
 	var visitNum = getSession(sessionStorage.directVisitNum);
 	
-	var phone = GetUrlem("phone");
+	var guidephone = GetUrlem("phone");
 	var postData =
 	{
 		'scenicID':secnicNo,
 		'visitNum':visitNum,
 		'visitTime':visitTime,
 		'visitorPhone':"13589678945",
-		'guidePhone':phone,
+		'guidePhone':guidephone,
 		'purchaseTicket':pur,
 		'halfPrice':half,
 		'discoutPrice':disc,

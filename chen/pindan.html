@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="css/pindan.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
+    <link rel="stylesheet" type="text/css" href="css/nativedroid2.css">
      <link rel="stylesheet" href="css/jtsage-datebox-4.1.0.jqm.min.css">
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
    <script>
-   	$(document).bind('mobileinit',function() {   
-    jQuery.mobile.ajaxEnabled = false;   
-	}); 
+// 	$(document).bind('mobileinit',function() {   
+//  jQuery.mobile.ajaxEnabled = false;   
+//	}); 
    </script>
-    <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" src="js/jtsage-datebox-4.1.0.jqm.min.js"></script>
     <script type="text/javascript" src="js/jtsage-datebox.i18n.zh-CN.utf8.min.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
@@ -42,14 +43,14 @@
             <form action="pindan_submit" id="" method="get" accept-charset="utf-8">
                 <div class="visitTime">
                  <label for="visitTime" class="ui-hidden-accessible">日期</label>
-               <input data-role="datebox" id="visitTime" name="date" data-options='{"mode": "flipbox","afterToday": true,"overrideDateFormat": "%Y/%m/%d"}' placeholder="请输入日期">
+               <input data-role="datebox" id="visitTime" name="date" data-options='{"mode": "flipbox","afterToday": true,"overrideDateFormat": "%Y-%m-%d"}' placeholder="请输入日期">
 
                <label for="chooseDatetime" class="ui-hidden-accessible">时间</label>
-               <input type="datetime" data-role="datebox" data-options='{"mode": "timeflipbox","overrideTimeFormat":"24","overrideTimeOutput":"%H:%M","minuteStep":"30"}' id="chooseDatetime" name="datetime" value=""  placeholder="时间">
+               <input id="chooseDatetime" name="datetime" type="datetime" data-role="datebox" data-options='{"mode": "timeflipbox","overrideTimeFormat":"24","overrideTimeOutput":"%H:%M","minuteStep":"30"}'  value=""  placeholder="时间">
                </div>
                
                 <label for="visitorCount" class="ui-hidden-accessible">浏览人数</label>
-                <input id="number" type="number" min="1" max="10" step="1" id="visitorCount" name="visitorCount" class="" placeholder="浏览人数" onpropertychange="()" />
+                <input type="number" min="1" max="10" step="1" id="visitorCount" name="visitorCount" class="" placeholder="浏览人数" onpropertychange="()" />
                 <legend>需要为您代购门票吗？</legend>
                 <label for="orderTicketRadio" value ="1">是，请为我代购门票</label>
                 <input type="radio" id="orderTicketRadio" name="pindan_orderTicket" value="1" class="" />
@@ -64,8 +65,8 @@
                 <label for="notorderTicketRadio" value="0">否，不用了，谢谢</label>
                 <input type="radio" id="notorderTicketRadio" name="pindan_orderTicket" value="0" class="" />
             </form>
-            <ul data-role="listview">
-                <li data-icon="false">
+            <ul data-role="listview" id="ul_fee" data-icon="false">
+                <!--<li >
                     <a>
                     <h3>费用信息</h3>
                     <p>
@@ -74,10 +75,10 @@
                         合计：<span class="aggregateMoney" id="pindan_total_money">400</span><br/>
                     </p>
                     </a>
-                </li>
+                </li>-->
             </ul>
             <div class="paybtn">
-            <a href="#" class="ui-btn ui-btn-b" data-theme="b" id="paySubmit">去支付</a>
+            <a href="#" class="ui-btn ui-btn-b" data-state="confirm" data-theme="b" id="paySubmit">确定</a>
             </div>
         </div>
     </div>
