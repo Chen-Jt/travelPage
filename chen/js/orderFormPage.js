@@ -1,11 +1,11 @@
-$(function($){
+$('#confirmOrderPage').bind('pageshow',function(event, ui){
 	setGuideInfo();//设置讲解员信息返回讲解费
 	setOrderInfo();//设置预约信息
 	
 	$("#gopay").bind("click",function(){
 		putOrder();
 	});
-});	
+});
 //获取session值
 function setOrderInfo()
 {
@@ -44,11 +44,9 @@ function setChargeInfo(guideMoney)
 		},
 		success:function(data)
 		{
-		alert(JSON.stringify(data));
+		//alert(JSON.stringify(data));
 		if(pur==1){
-			
-	
-		
+
 		if(full!=0)
 		{
 			ticm +="<p>全价票"+full+"*"+data.fullPrice+"元</p>";
@@ -90,25 +88,17 @@ function setGuideInfo()//设置讲解员信息返回讲解费
 		{
 			//alert("导游详细信息success!");
 			$.each(data, function(i,item) {
-				$(".name").html(item.name);
-				$(".sex").html(item.sex);
-				$(".age").html(item.age);			
+				$(".ui-page-active").find("#name").html(item.name);
+				$(".ui-page-active").find("#sex").html(item.sex);
+				$(".ui-page-active").find("#age").html(item.age);			
 				/*$("#guide_img").attr("src","img/1.jpg");
 				$("#guide_starlevel").html(item.guideLevel);
 				$("#guide_Visitors").html(item.historyNum);
 				$("#guide_fee").html(item.guideFee+"元");
 				$("#guide_self_intro").html(item.selfIntro);
 				$("#guide_phone").html(item.phone);*/	
-				var language="汉语";
-				if(item.language == 1)
-				{
-					language = "英语";
-				}
-				if(item.language == 2)
-				{
-					language="汉语 英语";
-				}
-				$(".language").html(language);
+				var language=getLanguage(item.language);
+				$(".ui-page-active").find("#language").html(language);
 				$("#setguideMoney").html(item.guideFee);
 				setChargeInfo(item.guideFee);//设置门票信息
 			});
@@ -162,13 +152,5 @@ function putOrder(){
 			}
 		}		
 	});
-}
-
-function getSession(name){
-	if(name)
-	{
-		return name;
-	}
-	return null;
 }
 

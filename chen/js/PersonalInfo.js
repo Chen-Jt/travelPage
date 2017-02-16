@@ -1,10 +1,54 @@
 
-/*var data = {phone:$.cookie("LoginName")};
-alert(data);*/
 $(function($){
 	var Phone = vistPhone;
+	setperinfo(Phone);
+	$("#signINbtn").click(function(){
+		signIN(Phone);
+	});
+});
+//签到
+function signIN(Phone){
+	var URL = HOST+"guideCheckIn.do?phone="+Phone;
+	$.ajax({
+		type:"get",
+		url:URL,
+		async:true,
+		error:function(data){
+			alert("requertError签到失败");
+		},
+		success:function(data){
+			if(data=true)
+			{
+				alert("签到成功");
+			}else{
+				alert("签到失败");
+			}
+		}
+	});
+}
+//是否签到
+function ISsignIN(Phone){
+	var URL = HOST+"whetherCheckIn.do?phone="+Phone;
+	$.ajax({
+		type:"get",
+		url:URL,
+		async:true,
+		error:function(data){
+			alert("requesterror获取签到状态失败");
+		},
+		success:function(data){
+			if(data=true)
+			{
+				
+			}else{
+				
+			}
+		}
+	});
+}
 
-var url = HOST+"/getVisitorInfoWithPhone.do";
+function setperinfo(Phone){
+	var url = HOST+"/getVisitorInfoWithPhone.do";
 	$.ajax({
 		type:"post",
 		url:url,
@@ -17,16 +61,14 @@ var url = HOST+"/getVisitorInfoWithPhone.do";
 		},
 		success:function(data)
 		{
+			//alert(JSON.stringify(data)!="{}");
+			if(JSON.stringify(data)!="{}"){
 			alert("显示个人信息success!");
 			document.getElementById("person_info_tel").value = data.phone;
 			document.getElementById("person_info_nickname").value = data.nickName;
 			document.getElementById("person_info_name").value = data.name;
 			document.getElementById("person_info_sex").value = data.sex;		
-			/*if(data == -1)
-			{
-				alert("您还未登录，请登录！");
-				window.location.href = "TourLogin.html";
-			}*/
+			}
 		}
 	});
-});
+}

@@ -1,20 +1,18 @@
 
   	
-$(function($){
+$("#orderFormListPage").bind('pageshow',function(event, ui){
   	getOrderList();
   	//隐藏未选中的订单
   	$(".navList").click(function(juagechar){
                       var juagechar = $(this).html();
                       hideOtherLi(juagechar);
    });
-          
 });
-
  function orderinfo(obj){
   		var state = obj.find("span.viewState").html();
   		var orderId = obj.find("span.orderFormId").find("span").html();
   		window.location = "orderFormInfo.html?state="+state+"&orderId="+orderId;
-  	}
+  }
  
  function goComment(obj){
  	var orderId = obj.parents("li").children("a.orderinfo").find("span.orderFormId").find("span").html();

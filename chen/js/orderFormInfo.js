@@ -1,7 +1,7 @@
+
 $(function($){
 	setData();
 });
-
 function setData(){
 	var state = GetUrlem("state");
 	var orderId = GetUrlem("orderId");

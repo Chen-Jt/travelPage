@@ -1,5 +1,4 @@
-
-$(function($){
+$('#OrderguidePage').bind('pagecreate',function(event, ui){
 	var ScenicNo = GetUrlem("scenicNo");
 	var sname = GetUrlem("sname");
 	if(ScenicNo!=null){
@@ -19,42 +18,15 @@ $(function($){
 	$("#submitOrderForm").click(function(){
 		checkOrderForm();//检查表单正确后，调用提交方法
 	});
-	
+});
 function myrefresh(){
 	
 	$(".DirectOrderBtn").bind("click",function(){
 		var guidephone = $(this).attr("phone");
 		$("#DirectorderTicketSub").attr("phone",guidephone);
+		$.mobile.changePage("#orderTicketPop", "pop", false, false);
 	});
 }
-	//直接预约 是否订购门票
-	$("#DirectorderTicketSub").click(function(){
-		var phone = $(this).attr("phone");
-		if(!phone){
-			alert("Error no PhoneNumber");
-			return false;
-		}
-		var HalfPrice = 0;
-		var DiscoutPrice = 0;
-		var FullPrice = 0;
-		var PurchaseTicket = $("input[name='DirectorderTicket']:checked").val();
-	if(PurchaseTicket!=null)
-	{
-		if(PurchaseTicket==1)//购票
-		{
-		    FullPrice = $("#DirectfullPriceTicketNum").val();
-			HalfPrice = $("#DirecthalfPriceTicketNum").val();
-			DiscoutPrice = $("#DirectdiscountTicketNum").val();
-		}
-		//$(".ui-page-active").dialog("close");
-		URL = "orderFormPage.html?phone="+phone+"&purchaseTicket="+PurchaseTicket+"&halfPrice="+HalfPrice+"&discoutPrice="+DiscoutPrice+"&fullPrice="+FullPrice;
-		 $.mobile.changePage(URL,{transition:"flow"});
-		 //window.location=URL;
-	}else{
-		alert("请选择是否代购门票！");
-		return false;
-	}
-	});
 	
 function checkOrderForm(){
 	var HalfPrice = 0;
@@ -346,9 +318,8 @@ $("#order_guide_ul").empty();
 				var AList = document.createElement("a");		
 				AList.href = "guideInfo.html?"+"phone="+n.phone;
 				//AList.setAttribute("href","guideInfo.html");
-				AList.target = "_top";
-				
-				
+				//AList.target = "_top";
+				//AList.setAttribute("rel","external");
 				LiListInfo.appendChild(AList);	
 				
 				
@@ -386,8 +357,8 @@ $("#order_guide_ul").empty();
 				PList.appendChild(SpanListLevel);
 				//添加立即预约链接
 				var A1List = document.createElement("a");
-				A1List.href = "?phone="+n.phone+"#orderTicketPop";
-				A1List.setAttribute("data-rel","dialog");
+				//A1List.href = "?phone="+n.phone+"#orderTicketPop";
+				//A1List.setAttribute("data-transition","pop");
 				A1List.setAttribute("Phone",n.phone);
 				A1List.setAttribute("class","DirectOrderBtn");
 				A1List.setAttribute("data-position-to","window");
@@ -399,4 +370,3 @@ $("#order_guide_ul").empty();
 
 
 
-});

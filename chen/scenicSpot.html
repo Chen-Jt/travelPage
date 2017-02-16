@@ -18,12 +18,11 @@
     <script type="text/javascript" src="js/scenicSpot.js"></script>
 </head>
 <body>
-<div data-role="page">
+<div data-role="page" id="scenicSpotPage">
     <div data-role="header" id="header" class="header">
-         <a href="index.html" class="ui-btn ui-corner-all ui-icon-carat-l ui-btn-icon-notext">返回</a>
+    	<a href="#" class="ui-btn ui-corner-all ui-icon-carat-l ui-btn-icon-notext" data-rel="back">返回</a>
         <a href="#" class="ui-btn ui-corner-all ui-icon-action ui-btn-icon-notext">分享</a>
-         <img class="image" src="img/bmy.jpg" alt="" id="scenic_img">
-
+         <img class="image" src="" alt="" id="scenic_img">
     </div>
     <div data-role="main" class="ui-content">
         <div class="order-panle">
@@ -50,14 +49,14 @@
             <table>
             	<tr>
             		<th>历史参观人数：</th>
-            		<th id="scenic_total_visit">20万+</th>
+            		<th id="scenic_total_visit"></th>
             	</tr>
             </table> 
             <br/>
             <table>
             	<tr>
             		<th>全价票:</th>
-            		<th id="full_price">元</th>
+            		<th id="full_price"></th>
             	</tr>
             </table>
             <!--<table border="0" align="center" id="price_table">
@@ -78,8 +77,8 @@
             	</tr>
             </table>-->
             <ul id="sideBar" class="sideBar">
-                 <li><a calss="left-button sidebtn"  id="orderGuideBtn"  target="_top" href="orderGuide.html">预约讲解员</a></li>
-                 <li><a calss="right-button sidebtn" id="pinGuideBtn" target="_top" href="pindan.html">拼讲解员</a></li>
+                 <li><a calss="left-button sidebtn" target="_top" id="orderGuideBtn"  href="orderGuide.html">预约讲解员</a></li>
+                 <li><a calss="right-button sidebtn" target="_top" id="pinGuideBtn"  href="pindan.html">拼讲解员</a></li>
            	</ul>
         </div >
         <div calss="discription" id="scenic_info">
@@ -88,7 +87,7 @@
             </p>
         </div>
         </div>
-        
+        <script type="text/javascript" src="js/scenicSpot.js"></script>
     </div>
 </body>
 </html>

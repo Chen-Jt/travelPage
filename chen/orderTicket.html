@@ -1,5 +1,5 @@
 <!--是否代购门票对话框-->
-<div data-role="dialog" id="orderTicketPop">
+<div data-role="popup" id="orderTicketPop">
   <div data-role="header">
   	<h1>提示</h1>
   </div>
@@ -46,10 +46,10 @@
 			HalfPrice = $("#DirecthalfPriceTicketNum").val();
 			DiscoutPrice = $("#DirectdiscountTicketNum").val();
 		}
-		5
+
 		URL = "orderFormPage.html?phone="+phone+"&purchaseTicket="+PurchaseTicket+"&halfPrice="+HalfPrice+"&discoutPrice="+DiscoutPrice+"&fullPrice="+FullPrice;
-		//$.mobile.changePage(URL);
-		window.location=URL;
+		//window.location=URL;
+		$.mobile.changePage(URL,{transition:"flow"});
 	}else{ 
 		alert("请选择是否代购门票！");
 		return false;

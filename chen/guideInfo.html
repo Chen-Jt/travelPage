@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="css/guideInfo.css">
     <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.css">
+   	<link rel="stylesheet" type="text/css" href="css/nativedroid2.css"/>
     <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
-    <script type="text/javascript" src="js/GuideInfo.js"></script>
     <script type="text/javascript" src="js/jquery.raty.min.js"></script>
-    
+	<script type="text/javascript" src="js/nativedroid2.js"></script>
 </head>
 <body>
-<div data-role="page">
-    <div data-role="header" data-position="fixed" id="header" class="header">
+<div data-role="page" id="guideinfoPage">
+    <div data-role="header" data-position="fixed" id="header" class="infoheader">
         <div class="guideInfoBGimg">
             <img  id="bgimg" src="" ><!--img/angelababy.jpg-->
         </div>
@@ -39,7 +39,7 @@
         </div>
         <div>
         <div class="sideRadius" >
-            <a  href="#" data-rel="dialog" data-position-to="window" class="sidebtn"   id="bookGuide">立刻预定</a>
+            <a  data-position-to="window" class="sidebtn" id="bookGuide">立刻预定</a>
         </div>
         </div>
         <div>
@@ -57,21 +57,15 @@
                 </li>-->
             </ul>
         </div>
-    </div>
 </div>
-<script type="text/javascript">
-$(function($){
-	$.mobile.loadPage("./orderTicket.html");
-});
 
-   $(document).ready(function() {
-        $(".guideInfoHead").width($(".guideInfoHead").height());
-        $(window).bind("resize load",function(){
-        	$(".guideInfoHead").width($(".guideInfoHead").height());
-        });
-    });
-     
-</script>
+<!--<nd2-include data-src="/examples/fragments/panel.left.html"></nd2-include>-->
+ <script type="text/javascript" src="js/nativedroid2.js"></script>  
+ <script type="text/javascript" src="js/GuideInfo.js"></script>
+
+</div> 
+
+
 
 </body>
 </html>

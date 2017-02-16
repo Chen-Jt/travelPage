@@ -179,7 +179,7 @@ function freshList(data,UlList){
 				var AList = document.createElement("a");	
 				AList.href = "scenicSpot.html?"+"scenicNo="+item.scenicNo;
 																	  
-				AList.target = "_top";
+				//AList.target = "_top";
 				
 				DivList.appendChild(AList);
 				

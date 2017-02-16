@@ -1,8 +1,24 @@
-  window.onload = function()
-  {
-  
-	  var ScenicNo = GetUrlem("scenicNo");
-	//从服务器端获取景区详细信息
+
+//$('#scenicSpotPage').bind('pagecreate',function(event, ui){
+//	var ScenicNo=GetUrlem("scenicNo");
+//	sessionStorage.ScenicNo=ScenicNo;
+//	refreshPage(ScenicNo,"creat");
+//	
+//});
+$('#scenicSpotPage').bind('pageshow',function(event, ui){
+	//var cur = getSession(sessionStorage.ScenicNo);
+	var ScenicNo=GetUrlem("scenicNo");
+		refreshPage(ScenicNo);
+});
+
+function refreshPage(ScenicNo){
+	sessionStorage.ScenicNo=ScenicNo;
+	setscenicInfo(ScenicNo);
+	setTickMoney(ScenicNo);
+	setweather("西安");
+};
+  //从服务器端获取景区详细信息
+function setscenicInfo(ScenicNo){
 	var url2 = HOST+"/getDetailScenicByScenicID.do"
 	$.ajax({
 		type:"post",
@@ -34,8 +50,10 @@
 			
 		}
 	});
+}
 	
 	//从服务器端获取票价
+function setTickMoney(ScenicNo){
 	var url1 = HOST+"/geTicketsByScenicNo.do"
 	$.ajax({
 		type:"post",
@@ -54,19 +72,18 @@
 			sessionStorage.fullPrice=data.fullPrice;
 			sessionStorage.halfPrice=data.halfPrice;
 			sessionStorage.discoutPrice=data.discoutPrice;
-//			$.cookie("FullPrice",data.fullPrice);
-//			$.cookie("HalfPrice",data.halfPrice);
-//			$.cookie("DiscoutPrice",data.discoutPrice);
 		}
 	});
+}
 	
 	//从服务器端获取今日天气
+function setweather(City){
 	var url = HOST+"/getWeatherByCity.do";
   $.ajax({
 	type:"post",
 	url:url,
 	async:true,
-	data:{city:"西安"},
+	data:{city:City},
 	datatype:"JSON",
 	error:function()
 	{
@@ -74,8 +91,8 @@
 	},
 	success:function(data)
 	{
-		//alert("今日天气success!");
-		var weather = data.weather;
+		if(data!=null){
+			var weather = data.weather;
 		var temperature = data.temprature;
 		var wind = data.wind;
 		var img1 = data.image1;
@@ -95,10 +112,12 @@
 			$("#temperature").text(temperature);
 			$("#wind").text(wind);
 		}			
+		}
+		
 	}
 });
-	
 }
+	
   
 
 

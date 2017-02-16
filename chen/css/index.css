@@ -1,9 +1,6 @@
 body{
 	background-color: white;
 }
-.mui-content{
-	background-color: white;
-}
 .my-title{
 	position: relative;
 	background-color: white;
@@ -17,7 +14,6 @@ body{
 .middle-title
 {
 	text-align: center;
-
 }
 .right-title-link{
 	position: absolute;

@@ -1,14 +1,29 @@
-var phone = GetUrlem("phone");
-$(function($){
-setGuideInfo(phone);
-setGuideComment(phone);
-$("#bookGuide").click(function(){
-	 $.mobile.changePage('#orderTicketPop', {
-            transition: "slide",
-            role: "dialog"
+$('#guideinfoPage').bind('pageshow',function(event, ui){
+	
+	$(".guideInfoHead").width($(".guideInfoHead").height());
+        $(window).bind("resize load",function(){
+        	$(".guideInfoHead").width($(".guideInfoHead").height());
         });
+	var phone = GetUrlem("phone");
+	$("#DirectorderTicketSub").attr("phone",phone);
+	$("#bookGuide").click(function(){
+		//alert("123");
+		$.mobile.changePage("./orderGuide.html#orderTicketPop", "pop", false, false);
+	});
+//	$("#bookGuide").click(function(){
+//		bookGuide(phone);
+//	});
+	setGuideInfo(phone);
+	setGuideComment(phone);
 });
-});
+
+//$("#bookGuide").click(function(){
+//	 $.mobile.changePage('#orderTicketPop', {
+//          transition: "slide",
+//          role: "dialog"
+//      });
+//});
+
 //获取并设置导游信息
 function setGuideInfo(phone){
 	var Url = HOST+"/getDetailGuideInfoByPhone.do";
@@ -86,7 +101,7 @@ var Url = HOST+"/getComments.do";
 }
 
 //点击立即预定
-function bookGuide()
+function bookGuide(guidephone)
 {
 	$("#DirectorderTicketSub").attr("phone",guidephone);
 }

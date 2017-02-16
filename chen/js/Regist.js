@@ -1,11 +1,12 @@
-$(function($){
+$('#registerPage').bind('pagebeforecreate',function(event, ui){
+	setSex();
 	$("#Registsubmit").click(function(){
 		Regist();
 	});
 	$("#visitor_img").click(function(){
 		$("#btnFile").click();
 	});
-	
+});
 var image = "";
 function selectImage(file)
 {
@@ -22,6 +23,14 @@ function selectImage(file)
 	reader.readAsDataURL(file.files[0]);
 }
 
+function setSex(){
+	var sex = $("#sexlable").attr("sex");
+	if(sex==1){
+		$("#Male").attr("checked",'true');
+	}else if(sex==2){
+		$("#Fmale").attr("checked",'true');
+	}
+}
 function Regist()
 {
 	if(check()){
@@ -32,25 +41,28 @@ function Regist()
 		"name":$("#name").val(),
 		"phone":$("#tel").val(),
 		"passwd":$("#password").val(),
-		"image":$("#btnFile").val()    		
+		"image":$("#visitor_img").attr("src"),
+		"openID":$("#openID").val()
 	};	
-	var url = HOST+"/TourGuide/visitorRegister.do";
-	$.ajax({
-		type:"post",
-		url:url,
-		async:true,
-		data:data,
-		datatype:"JSON",
-		error:function()
-		{
-			alert("注册Request error!");
-		},
-		success:function(data)
-		{
-			alert("注册success!");
-			alert(data);
-		}
-	});
+	console.log(JSON.stringify(data));
+//	var url = HOST+"/visitorRegister.do";
+//	$.ajax({
+//		type:"post",
+//		url:url,
+//		async:true,
+//		data:data,
+//		datatype:"JSON",
+//		error:function(data)
+//		{
+//			alert("注册Request error!");
+//			console.log(JSON.stringify(data));
+//		},
+//		success:function(data)
+//		{
+//			alert("注册success!");
+//			//alert(data);
+//		}
+//	});
 	}
 }
 
@@ -104,4 +116,3 @@ function check()
 	return true;
 }
 	
-});
