@@ -34,7 +34,7 @@ function setSex(){
 function Regist()
 {
 	if(check()){
-	var data=
+	var postdata=
 	{
 		"nickName":$("#nickname").val(),
 		"sex":$("input:radio[name='guideSex']:checked").val(),
@@ -44,25 +44,26 @@ function Regist()
 		"image":$("#visitor_img").attr("src"),
 		"openID":$("#openID").val()
 	};	
-	console.log(JSON.stringify(data));
-//	var url = HOST+"/visitorRegister.do";
-//	$.ajax({
-//		type:"post",
-//		url:url,
-//		async:true,
-//		data:data,
-//		datatype:"JSON",
-//		error:function(data)
-//		{
-//			alert("注册Request error!");
-//			console.log(JSON.stringify(data));
-//		},
-//		success:function(data)
-//		{
-//			alert("注册success!");
-//			//alert(data);
-//		}
-//	});
+	//console.log(JSON.stringify(data));
+	var url = HOST+"/visitorRegister.do";
+	$.ajax({
+		type:"post",
+		url:url,
+		async:true,
+		data:postdata,
+		datatype:"JSON",
+		error:function(data)
+		{
+			alert("注册Request error!");
+			//console.log(JSON.stringify(data));
+		},
+		success:function(data)
+		{
+			window.location=HOST+"/web/index.html?phone="+postdata.phone;
+			//alert("注册success!");
+			//alert(data);
+		}
+	});
 	}
 }
 

@@ -15,16 +15,16 @@
 <div data-role="page" data-add-back-btn="true">
     <div data-role="header"  id="header"  class="perheader">
         <div class="personalHomeBGimg">
-            <img  src="img/angelababy.jpg" >
+            <img  src="img/angelababy.jpg" class="perhead">
         </div>
         <div class="about">
         <a href="about.html">关于</a>
         </div>
         <div class="personalHomeHead">
-        <img src="img/angelababy.jpg">
+        <img src="img/angelababy.jpg" class="perhead">
         <a href="personalInfo.html"></a>
         </div>
-        <p class="guideHeadername">Angelababy</p>
+        <p class="guideHeadername" id="guideHeadername">Angelababy</p>
 
     </div>
     <div data-role="main">
@@ -79,7 +79,7 @@
 
         </div>
     </div>
-
+</div>
 <script type="text/javascript">
 $(function($){
     $("#header").height($("#header").width()*0.5);
@@ -98,10 +98,58 @@ $(function($){
         URL="orderFormList.html?hide="+$(this).children('span').html();
         $.mobile.changePage(URL);
     });
+	var Phone = vistPhone;
+	setperinfo(Phone);
+	$("#signINbtn").click(function(){
+		signIN(Phone);
+	});
 });
 
+//签到
+function signIN(Phone){
+	var URL = HOST+"guideCheckIn.do?phone="+Phone;
+	$.ajax({
+		type:"get",
+		url:URL,
+		async:true,
+		error:function(data){
+			alert("requertError签到失败");
+		},
+		success:function(data){
+			if(data=true)
+			{
+				alert("签到成功");
+			}else{
+				alert("签到失败");
+			}
+		}
+	});
+}
+function setperinfo(Phone){
+	var url = HOST+"/getVisitorInfoWithPhone.do";
+	$.ajax({
+		type:"post",
+		url:url,
+		async:true,
+		data:{phone:Phone},
+		datatype:"JSON",
+		error:function()
+		{
+			alert("显示个人信息Request error!");
+		},
+		success:function(data)
+		{
+			//alert(JSON.stringify(data)!="{}");
+			if(JSON.stringify(data)!="{}"){
+				$("#guideHeadername").html(data.nickName);
+				$(".perhead").attr("src",data.image);
+			//alert("显示个人信息success!");		
+			}
+		}
+	});
+}
 </script>
-<script type="text/javascript" src="js/PersonalInfo.js"></script>
-</div>
+<!--<script type="text/javascript" src="js/PersonalInfo.js"></script>-->
+
 </body>
 </html>

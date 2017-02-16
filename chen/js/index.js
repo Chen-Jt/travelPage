@@ -1,15 +1,19 @@
 
 $(function($){
-	
+	 //首页创建前
+   setPromotions();
+   setScenicByLocation();
+   bindSearch();
 $(document).bind("mobileinit", function() {
 $.mobile.page.prototype.options.addBackBtn = true;
 });
+
+
 function bindSearch(){
-    $(".search").focus(function(event) {
+    $(".search").bind("focus",function(event){
     $.mobile.changePage("#searchPanelPage","slideright");
     });
 }
-bindSearch();
     $(".searchTagPanel").click(function(event){
          var searchtext = event.target.innerText;
          $("#mySearchInput").val(searchtext);
@@ -52,8 +56,11 @@ bindSearch();
         },10);
         
     });
-     
-    $('#searchResultPage').bind('pagebeforeshow',function(event, ui){
+   
+    
+   
+ //搜索结果页面
+$('#searchResultPage').bind('pagebeforeshow',function(event, ui){
                 if(sessionStorage.searchText)
                 {
                 $(".search").val(sessionStorage.searchText);
@@ -105,10 +112,8 @@ bindSearch();
             });
 
 });
-
-window.onload = function()
-{
-	//从服务端获取首页活动信息
+//从服务端获取首页活动信息
+function setPromotions(){
      var url = HOST+"/getPromotions.do";
 		$.ajax
 		({
@@ -122,7 +127,6 @@ window.onload = function()
 			},
 			success: function(data)
 			{
-//				alert("活动信息success!");
 				$.each(data,function(i,item)
 				{			      			        
 			        var UlList = document.getElementById("index_ul_id");
@@ -142,9 +146,10 @@ window.onload = function()
 			 });
 		      $(".slider").yxMobileSlider({width:640,height:320,during:3000});//轮播图片初始化
 			}
-	   });
-
-	//从服务端获取推荐景点信息
+	  });
+}
+//从服务端获取推荐景点信息
+function setScenicByLocation(){
 	var url1 = HOST+"/getScenicByLocation.do";
 	$.ajax({
 		type:"post",
@@ -167,14 +172,16 @@ window.onload = function()
 }
 //填充景区列表
 function freshList(data,UlList){
+	$(UlList).empty();
 	$.each(data, function(i,item)
 			{		
 				var LiList = document.createElement("li");
-				UlList.appendChild(LiList);
+
 				
 				var DivList = document.createElement("div");
 				DivList.className = "imglist-box";
 				LiList.appendChild(DivList);
+				UlList.appendChild(LiList);
 				
 				var AList = document.createElement("a");	
 				AList.href = "scenicSpot.html?"+"scenicNo="+item.scenicNo;
@@ -192,28 +199,4 @@ function freshList(data,UlList){
 				AList.appendChild(Plist);
 			});
 			$(".imglist-box").height($(document).width()*0.25);
-}
-
-function LoginOrPersonal()
-
-{
-
-	var AllCookies = document.cookie;
-    alert(AllCookies);
-	if(AllCookies != "")
-
-	{
-
-		window.location.href = "personalHome.html";
-
-	}
-
-	else
-
-	{
-
-		window.location.href = "TourLogin.html";
-
-	}
-
 }
